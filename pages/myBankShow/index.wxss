@@ -1,0 +1,29 @@
+/* pages/myBankShow/index.wxss */
+page{
+  width: 100%;
+  height: 100%;
+  background: rgb(240,240,240);
+  overflow: hidden;
+}
+.bankCont{
+  width: 702rpx;
+  height: 240rpx;
+  font-size: 26rpx;
+  color: rgb(255,255,255);
+  background: #ec7c03;
+  margin: 60rpx auto;
+  border-radius: 8rpx;
+  box-sizing: border-box;
+  padding: 60rpx 20rpx;
+}
+.name{
+  margin-bottom: 40rpx;
+}
+.card>text{
+  font-size: 36rpx;
+}
+.eidtBank{
+  width: 702rpx;
+  font-size: 30rpx;
+  margin: 0 auto;
+}

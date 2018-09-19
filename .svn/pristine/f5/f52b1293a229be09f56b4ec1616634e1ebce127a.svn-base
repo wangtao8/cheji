@@ -1,0 +1,94 @@
+<!--pages/peifuorder/index.wxml-->
+<view>
+  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+    <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">全车现场</view>
+    <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">车架号</view>
+    <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">远景</view>
+    <view class="tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav">近景</view>
+    <view class="tab-item {{currentTab==4?'active':''}}" data-current="4" bindtap="swichNav">细节</view>
+  </scroll-view>
+  <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab">
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的全车现场照片</text>
+        <image src='../../images/one240230.png' style='width:480rpx;'></image>
+        <text>请距车3-5米，与车头约45度角拍出事故现场全貌保证车牌清晰，全车入镜</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的车架号照片</text>
+        <image src='../../images/two315175.png' style='width:720rpx;'></image>
+        <text>请拍摄车架号部位整体照片，例：车门剐蹭请拍摄整个车门，可多角度拍摄</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的远景照片</text>
+        <image src='../../images/three318230.png' style='width:636rpx;'></image>
+        <text>请以车损部位为中心，拍摄整体轮廓，例：车门</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的近景照片</text>
+        <image src='../../images/four.png' style='width:636rpx;'></image>
+        <text>请拍摄车损部位整体照片，例：车门剐蹭请拍摄整个车门，可多角度拍摄</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的细节照片</text>
+        <image src='../../images/five.png' style='width:630rpx;'></image>
+        <text>请距车损部位10-30cm拍摄，可多角度拍摄</text>
+      </view>
+    </swiper-item>
+  </swiper>
+  <!-- 图片上传 与 预览 -->
+  <view class='imagePre'>
+    <view style='padding: {{url[index] == null ? "20rpx" : "0rpx"}}' wx:for='{{5}}' wx:key='{{index}}'>
+      <view wx:if='{{url[index] == null}}'>图片预览</view>
+      <image wx:else src='{{url[index]}}' catchtap='lookImage' data-id='{{index}}' mode='aspectFill'></image>
+    </view>
+  </view>
+  <button bindtap="Tophoto" class="page-body-button" class='{{url.length == 5 ? "unTophoto" : "Tophoto"}}'>拍照</button>
+  <text class='allUpload' catchtap='allUpload'>已拍过照？点我批量上传^ ^</text>
+  <view class='blank10'></view>
+  <view class='adrress'>
+    <text class='leftAdress'>{{region[2]}}</text>
+    <image src='../../images/right2.png' class='right2' catchtap='test'></image>
+    <view class="section">
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <view class="picker1">
+          <!-- 选择城市：{{region[0]}}，{{region[1]}}，{{region[2]}} -->
+        </view>
+      </picker>
+    </view>
+    <view class='writeCont'>
+        <input type='text' class='searchP' bindinput='inputChange' bindfocus='bindfocus' value='{{inputVal}}' style='border-top:{{!!inputVal == true ? "none" : "1rpx solid #ccc"}}' placeholder='请输入品牌查询'></input>
+    </view>
+    <view class='lookInfo' catchtap='lookInfo'>查看</view>
+  </view>
+  <button class='isSearch' catchtap='Order'>下单</button>
+  <!-- <view class='cont' style='margin-top:{{inputVal && isShow ? "-442rpx" : "-142rpx"}}' wx:if='{{inputVal}}'> -->
+  <view class='cont' hidden='{{inputVal && isShow ? false : true}}'>
+    <view class='close' catchtap='close'>确定</view>
+    <!-- <scroll-view scroll-y class='fourInfo' wx:if='{{inputVal && isShow}}'> -->
+    <scroll-view scroll-y class='fourInfo' wx:if='{{inputVal && isShow}}'>
+      <checkbox-group>
+        <label class="checkbox" wx:for="{{items}}" wx:key='{{index}}'>
+          <view class='fourInfos'>
+            <view catchtap='goFoursInfo'>
+              <image src='../../images/my.png' class='Introduction' mode='aspectFill'></image>
+              <view class='jsInfo'>
+                宝马汽车有限公司宝马汽车有限公司
+              </view>
+              <text class='jL'>(0.5km)</text>
+            </view>
+            <checkbox value="{{item.name}}" checked="{{item.checked}}" class='chooseS' data-id='{{index}}' catchtap="checkboxChange" disabled='{{ item.disable }}' />
+          </view>
+        </label>
+      </checkbox-group>
+    </scroll-view>
+  </view>
+</view>

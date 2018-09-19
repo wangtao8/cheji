@@ -1,0 +1,74 @@
+var app = getApp()
+var api = app.globalData.api
+Page({
+  data: {
+  },
+  onLoad: function(){
+  },
+  onShow: function () {
+  },
+  getPhoneNumber: function (e) {
+  },
+  goInfo: function(e){//跳转到理赔详情页
+    var _this = this
+    var id = e.currentTarget.dataset.id
+    if (id == 1) {
+      wx.navigateTo({
+        url: '/pages/peifuorderList/index?ids=' + id
+      })
+    } else if (id == 2) {
+      wx.navigateTo({
+        url: '/pages/peifuorder/index?ids=' + id
+      })
+    } else if (id == 3) {
+      wx.navigateTo({
+        url: '/pages/peifuorderList/index?ids=' + id
+      })
+    } else {
+      wx.navigateTo({
+        url: '../registered/index?ids=' + id
+      })
+    }
+  },
+  lookMoney: function(){
+    // wx.navigateTo({
+    //   url: '../zhangdan/index',
+    // })
+    var userId = app.globalData.sessionId
+    wx.request({
+      url: api + 'api/v1/wx/open/wxpay/unifiedOrder',
+      data: {
+        "thirdSessionKey" : userId,
+        "amount": 0.01
+      },
+      header: {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      method: 'POST',
+      success: function(e){
+        console.log('充值接口返回的参数：', e.data.data)
+        var needData = e.data.data
+        var nonceStr = needData.nonceStr
+        var prepay_id = 'prepay_id=' + needData.prepay_id
+        var sign = needData.sign
+        var signType = needData.signType
+        var timeStamp = new Date().getTime().toString()
+        // 支付接口
+        wx.requestPayment({
+          'timeStamp': timeStamp,
+          'nonceStr': nonceStr,
+          'package': prepay_id,
+          'signType': 'MD5',
+          'paySign': sign,
+          'success': function (res) {
+              console.log('支付成功返回的信息：', res)
+           },
+          'fail': function (res) {
+              console.log('支付失败返回的信息：', res)
+           },
+          'complete': function (res) { }
+        })
+      }
+    })
+  }
+})

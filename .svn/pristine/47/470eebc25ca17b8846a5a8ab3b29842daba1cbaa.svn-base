@@ -1,0 +1,20 @@
+首页： pages/index/index
+上传成功： pages/vedeoInfo/index
+我的： pages/my/index
+发现：pages/find/index
+资讯：pages/news/index
+登录：pages/login/index
+收取现场图片： pages/tab/index
+获取修理厂地址： pages/tab2/index
+售后服务协议： pages/xieyi/index
+收集用户信息图片： pages/paperwork/index
+汽车美容：pages/meirong/index
+汽车理赔：pages/lipei/index
+上报理赔订单（不是现场）：pages/lipeiInfo/index
+上报理赔订单（是现场）：
+提报规则：pages/role/index
+我的提交（理赔订单--我的红包）：pages/mySubmit/index
+我的提交订单详情（理赔订单--我的红包）：pages/myorder/index
+查看我上报的理赔订单：pages/mySubmit/index
+查看我接收的理赔订单：pages/mySubmit/index
+

@@ -1,0 +1,7 @@
+/* pages/liPeiNews/index.wxss */
+image{
+  width: 100%!important;
+}
+.newInfo{
+  text-align: center;
+}

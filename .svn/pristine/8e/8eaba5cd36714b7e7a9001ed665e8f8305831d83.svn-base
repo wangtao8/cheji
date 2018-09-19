@@ -1,0 +1,42 @@
+<!--pages/lipei/index.wxml-->
+<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true" indicator-dots="true">
+  <block wx:for="{{allPpt}}" wx:key='{{index}}'>
+    <swiper-item>
+      <image src="{{item.homePageImgUrl}}" class="slide-image" width="355" height="150" mode='aspectFill' catchtap='goPptInfo' data-value='{{item}}'/>
+    </swiper-item>
+  </block>
+</swiper>
+<view class='huodong'>
+  <view class='hD' catchtap='goInfo' data-id='9'>
+    <image src='../../images/zx.png' mode='aspectFill'></image>
+    <text></text>
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='0'>
+    <image src='../../images/cl.png' mode='aspectFill'></image>
+    <text></text>
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='1'>
+    <image src='../../images/pf.png' mode='aspectFill'></image>
+    <text></text>
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='2'>
+    <image src='../../images/fk.png' mode='aspectFill'></image>
+    <text></text>
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='3'>
+    <image src='../../images/cx.png' mode='aspectFill'></image>
+    <text></text>
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='4'>
+    <image src='../../images/fl.png' mode='aspectFill'></image>
+    <text></text>
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='5'>
+    <image src='../../images/07.png' mode='aspectFill'></image>
+    <text>我的提交</text>
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='6'>
+    <image src='../../images/xm.png' mode='aspectFill'></image>
+    <text>我的订单</text>
+  </view>
+</view>

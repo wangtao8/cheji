@@ -1,0 +1,68 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/peifu/index",
+    "pages/zhangdan/index",
+    "pages/my/index",
+    "pages/lipei/index",
+    "pages/recharge/index",
+    "pages/peifuAllOrder/index",
+    "pages/lipeiInfo/index",
+    "pages/peifuorderList/index",
+    "pages/peifuorder/index",
+    "pages/registered/index",
+    "pages/sumitInfo/index",
+    "pages/fourSInfo/index",
+    "pages/paperwork/index",
+    "pages/tab2/index",
+    "pages/tab/index",
+    "pages/test/index",
+    "pages/meirong/index",
+    "pages/myCase/index",
+    "pages/news/index",
+    "pages/role/index",
+    "pages/mySubmit/index",
+    "pages/find/index",
+    "pages/vedeoInfo/index",
+    "pages/xieyi/index",
+    "pages/myorder/index",
+    "pages/liPeiNews/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ec7c03",
+    "navigationBarTitleText": "让汽车生活更美好",
+    "navigationBarTextStyle": "#fff"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "selectedIconPath": "images/index1.png",
+        "iconPath": "images/index2.png"
+      },
+      {
+        "pagePath": "pages/find/index",
+        "selectedIconPath": "images/find1.png",
+        "iconPath": "images/find2.png",
+        "text": "发现"
+      },
+      {
+        "pagePath": "pages/news/index",
+        "selectedIconPath": "images/news1.png",
+        "iconPath": "images/news2.png",
+        "text": "资讯"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "selectedIconPath": "images/my1.png",
+        "iconPath": "images/my2.png",
+        "text": "我的"
+      }
+    ],
+    "color": "#8B4513",
+    "selectedColor": "#FF6347",
+    "animation": true
+  }
+}

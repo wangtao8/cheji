@@ -1,0 +1,166 @@
+<!--pages/lipeiInfo/index.wxml-->
+<!-- <image src='http://img.mp.itc.cn/upload/20170417/7eb5aca5f7cd47e0b576e0f0457263e4_th.jpg' class='AnLiImg' mode='aspectFill'></image> -->
+
+<!-- <view class='AnLiText' wx:if='{{ids == 9}}'>
+  <view class='titles'>爱车士 · 让汽车生活更美好</view>
+  <view class='miaoshu'>
+    社会上习惯于把科学和技术连在一起，统称为“科技”。实际二者既有密切联系，又有重要区别。科学要解决的问题，是发现自然界中确凿的事实与现象之间的关系，并建立理论把事实与现象联系起来；技术的任务则是把科学的成果应用到实际问题中去。科学主要是和未知的领域打交道，其进展，尤其是重大的突破，是难以预料的；技术是在相对成熟的领域内工作，可以做比较准确的规划。一般认为，高科技是一种人才密集、知识密集、技术密集、资金密集、风险密集、信息密集、产业密集、竞争性和渗透性强，对人类社会的发展进步具有重大影响的前沿科学技术。这将是推动各行各业发展的关键因素。
+  </view>
+  <view class='callPhone'>联系电话：18888888888
+    <image src='../../images/phones.png' class='callImg' catchtap='callImg'></image>
+  </view>
+</view> -->
+
+<!-- <view class='containers' wx:for='{{allData}}' wx:key='{{index}}' catchtap='goPptInfo' data-value='{{item}}'>
+    <view class='topTime'>案例时间：{{item.createtime}}</view>
+    <view class='bottomCont'>
+        <view class='leftImg'>
+            <image src='{{item.homePageImgUrl}}' mode='aspectFill'></image>
+        </view>
+        <view class='rightJS'>
+            <view>{{item.title}}</view>
+        </view>
+    </view>
+</view> -->
+
+
+<!-- <view wx:else>
+  <view class='anli'>
+    <image src='../../images/al.png' mode='aspectFit'></image>
+  </view>
+  <view class='containers' catchtap='goPptInfo' data-value='{{allData[0]}}'>
+    <view class='topTime'>{{allData[0].title}} <image src='../../images/newicon.png' class='news'></image></view>
+    <view class='bottomCont'>
+      <view class='leftImg'>
+        <image src='{{allData[0].homePageImgUrl}}' mode='aspectFill'></image>
+      </view>
+    </view>
+    <view class='bottomFont'>
+      <view>
+        <image src='../../images/yan.png' mode='aspectFill' class='yan'></image>
+        <text>
+            9999
+          </text>
+      </view>
+      <text>
+           {{allData[0].createtime}}
+        </text>
+    </view>
+  </view>
+  <view class='containers2' catchtap='goPptInfo' wx:for='{{allData}}' wx:key='{{index}}' data-value='{{item}}' hidden='{{index == 0}}'>
+    <view class='topTime2'>{{item.title}}</view>
+    <view class='bottomCont2'>
+      <view class='leftImg2'>
+        <image src='{{item.homePageImgUrl}}' mode='aspectFill'></image>
+      </view>
+    </view>
+    <view style='clear:both;'></view>
+    <view class='bottomFont2' style='border-bottom:{{allData.length-1 == index ? "none" : "1rpx solid rgb(230,230,230)" }}'>
+      <view>
+        <image src='../../images/yan.png' mode='aspectFill' class='yan2'></image>
+        <text>
+            9999
+          </text>
+      </view>
+      <text>
+           {{item.createtime}}
+        </text>
+    </view>
+  </view>
+</view> -->
+
+<!-- 事故咨询 -->
+<view wx:if='{{ids == 9 || ids == 1 || ids == 2}}' style='width:100%'>
+  <view style='width:100%;text-align:center'>
+    <image src='https://chejiqiche.com/video/notice/sgzx.png' class='xc' wx:if='{{ids == 9}}' mode='aspectFill' style='height:834rpx'></image>
+    <image src='https://chejiqiche.com/video/notice/wspf.png' class='xc' wx:elif='{{ids == 1}}' mode='aspectFill' style='height:766rpx'></image>
+    <image src='https://chejiqiche.com/video/notice/rs.png' class='xc' wx:elif='{{ids == 2}}' mode='aspectFill' style='height:766rpx'></image>
+    <view class='callPhone'>联系电话：18888888888
+      <image src='../../images/phones.png' class='callImg' catchtap='callImg'></image>
+    </view>
+  </view>
+  <view class='blank10'></view>
+  <view class='bottoms'>
+    <!-- <view class='tishi'>如有需要 · 请留下您的联系方式</view> -->
+    <form bindsubmit='formSubmit'>
+      <view class='userName'>
+        <text>您的姓名：</text>
+        <input type='text' name='userName'></input>
+      </view>
+      <view class='userPhone'>
+        <text>联系电话：</text>
+        <input type='number' name='userPhone' maxlength='11'></input>
+      </view>
+      <!-- <view class='message'>
+      <text>贴心留言：</text>
+      <textarea name='message'></textarea>
+    </view> -->
+      <button formType='submit'>提交</button>
+    </form>
+  </view>
+</view>
+
+<!-- 事故代办 -->
+<view wx:elif='{{ids == 0}}' style='padding:0 24rpx;'>
+  <view class='topDB'>
+    <view>车己事故代办</view>
+    <image src='../../images/huo.png'></image>
+    <view>传统事故处理</view>
+  </view>
+  <view class='cont'>
+    <view class='duibi'>
+      <view class='our'>
+        <view>理赔顾问</view>
+        <view>优选，方案一对一</view>
+        <view>托付，全流程委托</view>
+        <view>全面，救援理赔一站式</view>
+      </view>
+      <view class='they'>
+        <view>自行处理</view>
+        <view>怄气，报交警罚款扣分</view>
+        <view>责任不明，协商难</view>
+        <view>保险理赔难，售后不完善</view>
+      </view>
+    </view>
+  </view>
+  <view class='cont'>
+    <view class='duibi'>
+      <view class='our'>
+        <view>保姆式服务</view>
+        <view>贴心服务，全程陪同检查</view>
+        <view>细心服务，完善理赔手续</view>
+        <view>用心服务，垫付医药费用</view>
+      </view>
+      <view class='they'>
+        <view>人伤没人管</view>
+        <view>自己检查，不知道去哪</view>
+        <view>无人陪同，不清楚手续</view>
+        <view>独自承担，费用没人管</view>
+      </view>
+    </view>
+  </view>
+  <view class='cont'>
+    <view class='duibi'>
+      <view class='our'>
+        <view>省时省力省钱</view>
+        <view>最优方案，节约宝贵时间</view>
+        <view>最优团队，解决关键问题</view>
+        <view>最优谈判，省去多余开销</view>
+      </view>
+      <view class='they'>
+        <view>费时费心费钱</view>
+        <view>东奔西跑，碌碌无为</view>
+        <view>进退两难，茫然不知</view>
+        <view>东拼西凑，钱财两空</view>
+      </view>
+    </view>
+  </view>
+  <view class='botCZ'>
+    <view class='callPhones' catchtap='callPhones'>
+      <image src='../../images/dH.png'></image>
+      <text>18888888888</text>
+    </view>
+    <button open-type="contact" class='btn'>立即咨询</button>
+    <!-- <view class='btn'>立即咨询</view> -->
+  </view>
+</view>

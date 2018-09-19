@@ -1,0 +1,21 @@
+/* pages/myorder/index.wxss */
+.buttoms{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+button{
+  width: 46%;
+  height: 80rpx;
+  font-size: 32rpx;
+  line-height: 80rpx;
+  display: inline-block;
+  background: #00b2dc;
+  color: #fff;
+  margin-top: 20rpx;
+}
+/* .buttoms>button:last-child{
+  display: none;
+} */

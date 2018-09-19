@@ -1,0 +1,106 @@
+<!--pages/mySubmit/index.wxml-->
+
+<!--导航条-->
+<view class="navbar" wx:if='{{ids !== "0"}}'>
+  <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
+</view>
+
+<!--事故订单-->
+<view hidden="{{currentTab!==0}}" class='sGoder'>
+  <view wx:if='{{ids == 1}}'>
+    <view class='xXx' wx:for='{{dataAll}}' wx:key='{{index}}' catchtap='goInfo' data-id='1' data-video='{{item.video}}' data-curid='{{item.id}}' data-lng='{{item.lng}}' data-lat='{{item.lat}}' data-reason='{{item.reason}}'>
+      <!-- <image src='../../images/hong.png'></image> -->
+      <view>{{item.address}}</view>
+      <view>{{item.createTime}}</view>
+      <view class='zhuangtai'>{{item.statusName == '未审核' ? '正在审核' : item.statusName}}</view>
+      <image src='../../images/right.png' class='lookImg'></image>
+    </view>
+  </view>
+  <view wx:elif='{{ids == 0}}'>
+    <view class='myMoney xX' wx:for='{{dataAll}}' wx:key='{{index}}' catchtap='goInfo' data-id='0' data-money='{{item.amount}}'>
+      <!-- <text>我的红包（已拆6.60元）</text> -->
+      <text>{{index+1}}. 红包已在{{item.payTime}}发放!点我查看详情~</text>
+      <!-- <image src='../../images/right.png'></image> -->
+    </view>
+  </view>
+  <view wx:else>
+    <view class='xX' wx:for='{{dataAll}}' wx:key='{{index}}' catchtap='goInfo' data-id='3' data-video='{{item.video}}' data-curid='{{item.id}}' data-lng='{{item.lng}}' data-lat='{{item.lat}}' data-unread='{{item.status}}' data-phone='{{item.phone}}' data-realness='{{item.realness}}' data-sgid='{{item.accid}}'>
+      <!-- <text>{{item.address}}</text>
+    <text class='biaoji' wx:if='{{item.status == "未查看"}}'></text> -->
+      <view class='fontStlye'>
+        <text>{{index+1}}.{{item.address}}</text>
+        <text class='biaoji' wx:if='{{item.status == "未查看"}}'></text>
+      </view>
+      <image src='../../images/right.png'></image>
+    </view>
+  </view>
+  <view class='tishi' wx:if='{{dataAll.length == 0}}'>啊哦！暂时没有记录哦~</view>
+  <!-- 红包展示 -->
+  <view class='layer' wx:if='{{layer}}'>
+    <view class='money' catchtap='close'>
+      <icon type='clear' size='20' class='close'></icon>
+      <view class='bcg'>
+        <image src='../../images/20.png' class='myImage'></image>
+      </view>
+      <view class='company'>
+        <view class='companyName'>车己汽车</view>
+        <view class='companySay'>恭喜发财！大吉大利！</view>
+      </view>
+      <view class='moneyNum'>{{money}}元</view>
+      <view class='notice'>已存入零钱，请通过“我的--钱包”进行查看！</view>
+    </view>
+  </view>
+</view>
+
+<!--理赔订单-->
+<view hidden="{{currentTab!==1}}" wx:if='{{ids !== 0}}'>
+  <view wx:if='{{ids == 1}}'>
+    <view class='accident' wx:for='{{allData}}' wx:key='{{index}}' style='height:300rpx'>
+      <view class='contentTop'>
+        <view class='Numbers'>{{index+1}}.</view>
+        <view class='accidentInfo'>
+          <view>车牌号：{{item.cph}}</view>
+          <view>事故类型：{{sGType[item.type]}}</view>
+          <view>描述：{{item.desc}}</view>
+          <view>理赔老师姓名：{{item.claimerName}}</view>
+          <view>理赔创建时间：{{item.createtime}}</view>
+          <view wx:if='{{item.status == 0}}'>订单状态：已下单</view>
+          <view wx:elif='{{item.status == 1}}'>订单状态：理赔中</view>
+          <view wx:else='{{item.status == 2}}'>订单状态：完成</view>
+        </view>
+      </view>
+      <view class='contentBto1'>
+        <button type='primary' data-id='{{item.id}}' catchtap='lookOrder'>查看订单</button>
+        <button type='default' data-phone='{{item.claimerPhone}}' catchtap='goPhone' wx:if='{{item.claimerPhone !== undefined }}'>联系理赔老师</button>
+      </view>
+    </view>
+  </view>
+  <view wx:else>
+      <view class='accident' wx:for='{{allData}}' wx:key='{{index}}' style='height:350rpx'>
+      <view class='contentTop'>
+        <view class='Numbers'>{{index+1}}.</view>
+        <view class='accidentInfo'>
+          <view>车牌号：{{item.cph}}</view>
+          <view>事故类型：{{sGType[item.type]}}</view>
+          <view>上传地址：{{item.address}}</view>
+          <view>描述：{{item.desc}}</view>
+          <view>客户姓名：{{item.name}}</view>
+          <view>理赔创建时间：{{item.createtime}}</view>
+          <view wx:if='{{item.status == 0}}'>订单状态：已下单</view>
+          <view wx:elif='{{item.status == 1}}'>订单状态：理赔中</view>
+          <view wx:else='{{item.status == 2}}'>订单状态：完成</view>
+          <view></view>
+        </view>
+      </view>
+      <view class='contentBto2'>
+        <button type='primary' catchtap='clearOrder' data-id='{{item.id}}'>处理订单</button>
+        <button type='default' data-phone='{{item.phone}}' catchtap='goPhone'>联系客户</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!--我-->
+<!-- <view hidden="{{currentTab!==2}}">
+  tab_03
+</view> -->

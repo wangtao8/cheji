@@ -1,0 +1,115 @@
+Page({
+  data: {
+    signImage: null
+  },
+  onLoad: function(){
+    
+  },
+  onShow: function(){
+    const ctx = wx.createCanvasContext('myCanvas')
+
+    // Draw coordinates
+    ctx.arc(100, 75, 50, 0, 2 * Math.PI)
+    ctx.setFillStyle('#ccc')//设置填充色
+    ctx.fill()//对当前路径中的内容进行填充。默认的填充色为黑色
+
+    ctx.beginPath()//开始创建一个路径，需要调用fill或者stroke才会使用路径进行填充或描边
+    ctx.moveTo(40, 75)//把路径移动到画布中的指定点，不创建线条
+    ctx.lineTo(160, 75)//画线条
+    ctx.moveTo(100, 15)
+    ctx.lineTo(100, 135)
+    ctx.setStrokeStyle('#AAAAAA')//设置边框颜色
+    ctx.stroke()//画出当前路径的边框。默认颜色色为黑色。
+
+    ctx.setFontSize(12)//设置字体的字号
+    ctx.setFillStyle('black')
+    ctx.fillText('0', 165, 78)//在画布上绘制被填充的文本
+    ctx.fillText('0.5*PI', 83, 145)
+    ctx.fillText('1*PI', 15, 78)
+    ctx.fillText('1.5*PI', 83, 10)
+
+    // Draw points
+    ctx.beginPath()
+    ctx.arc(100, 125, 2, 0, 2 * Math.PI)//画一条弧线
+    ctx.setFillStyle('lightgreen')
+    ctx.fill()//对当前路径中的内容进行填充。默认的填充色为黑色
+
+    ctx.beginPath()
+    ctx.arc(100, 25, 2, 0, 2 * Math.PI)
+    ctx.setFillStyle('blue')
+    ctx.fill()
+
+    ctx.beginPath()
+    ctx.arc(150, 75, 2, 0, 2 * Math.PI)
+    ctx.setFillStyle('red')
+    ctx.fill()
+
+    ctx.beginPath()
+    ctx.arc(50, 75, 2, 0, 2 * Math.PI)
+    ctx.setFillStyle('yellow')
+    ctx.fill()
+
+    // Draw arc
+    ctx.beginPath()
+    ctx.arc(100, 75, 50, 0, 1 * Math.PI)
+    ctx.setStrokeStyle('#333333')
+    ctx.stroke()//画出当前路径的边框。默认颜色色为黑色。
+
+    //1.先绘制一个完整的空心圆
+    ctx.beginPath();
+    ctx.arc(250,75,50,0,Math.PI*2);
+    ctx.stroke();
+ 
+     //2.绘制半黑半白  默认为黑色
+    ctx.beginPath();
+    ctx.arc(250,75,50,Math.PI*3/2,Math.PI/2,true);
+    ctx.setFillStyle('#000')
+    ctx.fill();
+ 
+     //3.绘制一黑一白两个半圆
+    ctx.fillStyle="white";
+    ctx.beginPath();
+    ctx.arc(250,50,25,0,Math.PI*2);
+    ctx.fill();
+ 
+    ctx.fillStyle="black";
+    ctx.beginPath();
+    ctx.arc(250,100,25,0,Math.PI*2);
+    ctx.fill();
+     
+     //4.绘制两个小圆
+    ctx.fillStyle="black";
+    ctx.beginPath();
+    ctx.arc(250,45,15,0,Math.PI*2);
+    ctx.fill();
+ 
+    ctx.fillStyle="white";
+    ctx.beginPath();
+    ctx.arc(250,100,15,0,Math.PI*2);
+    ctx.fill();
+
+    ctx.draw()//将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中
+  },
+  //保存图片
+  saveClick: function () {
+    var that = this
+    wx.canvasToTempFilePath({
+      canvasId: 'myCanvas',
+      success: function (res) {
+        //打印图片路径
+        console.log(res.tempFilePath)
+        //设置保存的图片
+        that.setData({ signImage: res.tempFilePath })
+      }
+    })
+  },
+  lookImage: function () {
+    var signImage = this.data.signImage
+    var useUrls = []
+    useUrls.push(signImage)
+    wx.previewImage({
+      current: signImage, // 当前显示图片的http链接
+      urls: useUrls // 需要预览的图片http链接列表
+    })
+  }
+})

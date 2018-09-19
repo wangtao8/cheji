@@ -1,0 +1,44 @@
+<!--pages/mySubmit/index.wxml-->
+<view wx:if='{{ids == 1}}'>
+  <view class='xXx' wx:for='{{dataAll}}' wx:key='{{index}}' catchtap='goInfo' data-id='1' data-video='{{item.video}}' data-curid='{{item.id}}' data-lng='{{item.lng}}' data-lat='{{item.lat}}'>
+    <!-- <image src='../../images/hong.png'></image> -->
+    <view>{{item.address}}</view>
+    <view>{{item.createTime}}</view>
+    <view class='zhuangtai'>{{item.statusName == '未审核' ? '正在审核' : item.statusName}}</view>
+    <image src='../../images/right.png' class='lookImg'></image>
+  </view>
+</view>
+<view wx:elif='{{ids == 0}}'>
+  <view class='myMoney xX' wx:for='{{dataAll}}' wx:key='{{index}}' catchtap='goInfo' data-id='0' data-money='{{item.prizeAmount}}'>
+    <!-- <text>我的红包（已拆6.60元）</text> -->
+    <text>{{index+1}}. 红包已在{{item.payTime}}发放!点我查看详情~</text>
+    <!-- <image src='../../images/right.png'></image> -->
+  </view>
+</view>
+<view wx:else>
+  <view class='xX' wx:for='{{dataAll}}' wx:key='{{index}}' catchtap='goInfo' data-id='3' data-video='{{item.video}}' data-curid='{{item.id}}' data-lng='{{item.lng}}' data-lat='{{item.lat}}' data-unread='{{item.status}}'>
+    <!-- <text>{{item.address}}</text>
+    <text class='biaoji' wx:if='{{item.status == "未查看"}}'></text> -->
+    <view class='fontStlye'>
+    <text>{{index+1}}.{{item.address}}</text>
+    <text class='biaoji' wx:if='{{item.status == "未查看"}}'></text>
+    </view>
+    <image src='../../images/right.png'></image>
+  </view>
+</view>
+
+<!-- 红包展示 -->
+<view class='layer' wx:if='{{layer}}'>
+  <view class='money' catchtap='close'>
+    <icon type='clear' size='20' class='close'></icon>
+    <view class='bcg'>
+      <image src='../../images/7.png' class='myImage'></image>
+    </view>
+    <view class='company'>
+      <view class='companyName'>车己汽车</view>
+      <view class='companySay'>恭喜发财！大吉大利！</view>
+    </view>
+    <view class='moneyNum'>{{money}}元</view>
+    <view class='notice'>已存入支付宝，请通过“我的--余额--明细”进行查看！</view>
+  </view>
+</view>

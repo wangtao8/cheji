@@ -1,0 +1,31 @@
+<!--pages/lipei/index.wxml-->
+<view class='topCont'>
+    <view class='yuan'>
+       <image src='https://chejiqiche.com/video/notice/rmb.png' class='rmb'></image>
+       <view class='money'>8.888.88</view>
+       <view class='lipeiFont'>理赔佣金(元)</view>
+    </view>
+    <image src='https://chejiqiche.com/video/notice/anniu.png' class='btn' catchtap='lookMoney'></image>
+</view>
+<view class='huodong'>
+  <view class='hD' catchtap='goInfo' data-id='2'>
+    <image src='https://chejiqiche.com/video/notice/tjs.png' mode='aspectFill' class='icons'></image>
+    <text>新建订单</text>
+    <image src='https://chejiqiche.com/video/notice/jiantou.png' class='rights'></image>
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='1'>
+    <image src='https://chejiqiche.com/video/notice/wss.png' mode='aspectFill' class='icons'></image>
+    <text>完善订单</text>
+    <image src='https://chejiqiche.com/video/notice/jiantou.png' class='rights'></image>
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='3'>
+    <image src='https://chejiqiche.com/video/notice/tss.png' mode='aspectFill' class='icons'></image>
+    <text>事故推送</text>
+    <image src='https://chejiqiche.com/video/notice/jiantou.png' class='rights'></image>
+  </view>
+  <!-- <view class='hD' catchtap='goInfo' data-id='4'>
+    <image src='../../images/zhuce.png' mode='aspectFill' class='icons'></image>
+    <text>注册</text>
+    <image src='https://chejiqiche.com/video/notice/jiantou.png' class='rights'></image>
+  </view> -->
+</view>

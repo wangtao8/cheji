@@ -1,0 +1,3 @@
+<!--pages/testMap/index.wxml-->
+<map latitude='{{latitude}}' longitude='{{longitude}}' markers='{{markers}}' show-location style='width:100%; height:400rpx;' id='myMap'></map>
+<button type='primary' catchtap='chooseLocation'>重新选择位置</button>

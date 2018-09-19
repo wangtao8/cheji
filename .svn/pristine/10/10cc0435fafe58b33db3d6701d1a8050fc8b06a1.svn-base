@@ -1,0 +1,242 @@
+// pages/vedioInfo/index.js
+var wxError = require("../../utils/error.js")
+var app = getApp()
+var api = app.globalData.api
+var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    srcs: null,
+    isShow: true,
+    latitude: null,
+    longitude: null,
+    markers: []
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var _this = this
+    var tempFilePaths = options.tempFilePath
+    _this.setData({ srcs: tempFilePaths })
+    wx.getLocation({
+      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
+      success: function (res) {
+        var latitudes = parseFloat(res.latitude)
+        var longitudes = parseFloat(res.longitude)
+        var speed = res.speed
+        var accuracy = res.accuracy
+        var tempFilePaths = _this.data.srcs
+        var userId = app.globalData.sessionId
+        console.log('上传时的经纬度：', latitudes, longitudes)
+        var qqmapsdk = new QQMapWX({
+          key: 'E6OBZ-I2YK6-QWESQ-MH3TB-OZUKO-THBPD' // 必填
+        });
+        qqmapsdk.reverseGeocoder({//逆地址解析
+          location: {
+            latitude: latitudes,
+            longitude: longitudes
+          },
+          success: function (addressRes) {
+            var address1 = addressRes.result.formatted_addresses.recommend//需要的地址
+            var component = addressRes.result.address_component
+            var province = component.province
+            var city = component.city
+            var district = component.district
+            var street_number = component.street_number
+            // console.log('省：', component.province)
+            // console.log('市：', component.city)
+            // console.log('区：', component.district)
+            // console.log('街道：', component.street_number)
+            // console.log('所有信息：', addressRes)
+            var address = province + city + address1//未处理的地址
+            // var address = '四川省成都市龙泉驿区保利玫瑰花语& #40;金桉路南& #41;'//最开始未处理的地址
+            _this.getNewAddres(address)
+            console.log('处理后的地址:', _this.data.address, tempFilePaths)
+            //上传视频 地理坐标 实际地址
+            _this.upLoadInfo(longitudes, latitudes, userId, _this.data.address, tempFilePaths)
+          },
+          fail: function (e) {
+            console.log('错误：', e)
+          }
+        })
+        console.log(latitudes, longitudes)
+        //地图定位的图标显示
+        var markers = [{
+          id: 1,
+          iconPath: "/images/location.png",
+          longitude: longitudes,
+          latitude: latitudes,
+          width: 15,
+          height: 15
+        }]
+        _this.setData({ latitude: latitudes, longitude: longitudes, markers: markers, isShow: false })
+      }
+    })
+  },
+  upLoadInfo: function (longitudes, latitudes, userId, address, tempFilePaths) {//上传视频 地理坐标 实际地址
+    console.log('上传视频 地理坐标 实际地址:', longitudes, latitudes, userId, address)
+    wx.uploadFile({
+      url: api + 'api/v1/wx/accid/add',
+      filePath: tempFilePaths,
+      name: 'file',
+      formData: {
+        'lng': longitudes,
+        'lat': latitudes,
+        'thirdSessionKey': userId,
+        'address': address
+      },
+      success: function (res) {
+        console.log('上传信息成功!')
+        var data = res.data
+        if (res.data.errorCode == 5001) {
+          wx.login({
+            success: function (res) {
+              if (res.code) {
+                // console.log(res)
+                // 发起网络请求
+                console.log('重新获得jsCode333:', res.code)
+                wx.request({
+                  url: api + 'api/v1/wx/getSession?code=' + res.code,
+                  success: function (ress) {
+                    app.globalData.sessionId = ress.data.data.sessionId
+                    // _this.upLoadInfo()
+                  }
+                })
+              }
+            }
+          })
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '上传成功！确定后，点击“我的”可领取红包奖励哦^ ^',
+            success: function (res) {
+              if (res.confirm) {
+                console.log('用户点击了确定')
+                wx.navigateBack({
+                  delta: 1
+                })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            },
+            fail: function (e) {
+              console.log('上传失败:', e)
+            }
+          })
+          console.log('上传结果：', res.data)
+        }
+      }
+    })
+  },
+  getNewAddres: function(e){//处理地址中的特殊字符串
+    var _this = this
+    var Arr = e.split('')//处理成为数组
+    var index = e.indexOf('&')//特殊符号的位置
+    if (index == -1) {//如果不存在特殊符号
+      _this.data.address = Arr.join('')
+      return
+    } else {
+      Arr.splice(index, 6)//去除该特殊符号
+      var NewArr = Arr.join('')//还原成为字符串继续查找
+      _this.getNewAddres(NewArr)
+    }
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function (e) {
+    var _this = this
+    _this.mapCtx = wx.createMapContext('myMap')
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    wx.hideShareMenu()
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
+  moveToLocation: function () {
+    var _this = this
+    wx.getLocation({
+      type: 'gcj02',
+      success: function (res) {
+        var latitudes = res.latitude
+        var longitudes = res.longitude
+        var marker = [{
+          id: 1,
+          iconPath: "/images/location.png",
+          longitude: longitudes,
+          latitude: latitudes,
+          width: 15,
+          height: 15
+        }]
+        _this.setData({ latitude: latitudes, longitude: longitudes, markers: marker })
+        _this.mapCtx.moveToLocation()
+      }
+    })
+  },
+  sendInfo: function () {
+    var _this = this
+    var tempFilePaths = _this.data.srcs
+    var latitudes = _this.data.latitude
+    var longitudes = _this.data.longitude
+    var userId = app.globalData.sessionId
+    wx.uploadFile({
+      url: api + 'api/v1/wx/accid/add',
+      filePath: tempFilePaths,
+      name: 'file',
+      formData: {
+        'lng': longitudes,
+        'lat': latitudes,
+        'thirdSessionKey': userId
+      },
+      success: function (res) {
+        var data = res.data
+        _this.setData({ isShow: false })
+        console.log('上传结果：', res.data)
+        //do something
+      }
+    })
+    console.log(latitude, longitude)
+  }
+})

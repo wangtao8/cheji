@@ -1,0 +1,14 @@
+<!--pages/recharge/index.wxml-->
+<view>
+  <view class='recharge'>请输入充值金额：</view>
+  <view class='wirteMoney'>
+      <input type='number' value='{{moneyYes}}' bindinput='chooseVal'></input>
+      <text>元</text>
+  </view>
+  <view class='chooseMoneys'>
+      <view wx:for='{{money}}' wx:key='{{index}}' catchtap='chooseM' class='{{k == index ? "isChooseMoney" : ""}}' data-id='{{index}}'>{{item}}元</view>
+  </view>
+  <!-- <view class='blank16'></view> -->
+  <!-- <view></view> -->
+  <button type='primary' class='rechargeBtn' catchtap='rechargeBtn'>立即充值</button>
+</view>

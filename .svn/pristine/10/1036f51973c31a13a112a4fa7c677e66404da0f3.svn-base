@@ -1,0 +1,2 @@
+<!--pages/role/index.wxml-->
+<image wx:for='{{4}}' wx:key='{{index}}' src='https://chejiqiche.com/video/notice/sg{{index+1}}.jpg' mode='aspectFit' catchtap='lookImg' data-id='{{index}}'></image>

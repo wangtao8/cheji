@@ -1,0 +1,116 @@
+/* pages/peifuorderList/index.wxss */
+.sGoder{
+  padding: 0 20rpx;
+}
+.xXx{
+  position: relative;
+  height: 80rpx;
+  padding: 20rpx 0rpx;
+  border-bottom: 1rpx dashed #f3f3f3;
+  font-size: 24rpx;
+}
+.xXx>image{
+  /* border-radius: 30rpx;
+  line-height: 60rpx; */
+  /* margin-left: 10rpx; */
+  /* vertical-align: middle;
+  margin-top: 10rpx; */
+}
+.xXx>text{
+  display: inline-block;
+  width: calc(100% - 120rpx);
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 28rpx;
+  /* position: absolute;
+  left: 100rpx;
+  top: 20rpx; */
+  border-bottom: 1rpx solid #f3f3f3;
+  text-indent: 24rpx;
+  padding-right: 30rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.xXx>.biaoji{
+  display: inline-block;
+  width: 20rpx;
+  height: 20rpx;
+  background-color: red;
+  border-radius: 10rpx;
+  padding: 0;
+  position: absolute;
+  right: 50rpx;
+  top: 50rpx;
+}
+.xXx>image:last-child{
+  width: 32rpx;
+  height: 32rpx;
+  position: absolute;
+  right: 10rpx;
+  top: 42rpx;
+}
+.xXx>view.zhuangtai{
+  display: inline-block;
+  position: absolute;
+  right: 50rpx;
+  top: 38rpx;
+  color: red;
+  font-size: 26rpx;
+  padding: 0;
+  margin: 0;
+}
+.xXx> .isOk{
+  width: 36rpx;
+  height: 80rpx;
+  position: absolute;
+  left: -44rpx;
+  top: 0rpx;
+  background: rgb(237,124,4);
+  color: #fff;
+  text-align: center;
+  padding: 10rpx 0;
+  border-radius: 40rpx;
+  font-size: 20rpx;
+}
+.xXx> .isNo{
+  width: 36rpx;
+  height: 80rpx;
+  position: absolute;
+  left: -44rpx;
+  top: 0rpx;
+  background: rgb(204,204,204);
+  color: #fff;
+  text-align: center;
+  padding: 10rpx 0;
+  border-radius: 40rpx;
+  font-size: 20rpx;
+}
+.orderInfo>view:first-child{
+  margin-bottom: 20rpx;
+}
+.xXx>view{
+  font-size: 24rpx;
+  margin-top: 10rpx;
+  width: 60%;
+  margin-left: 40rpx;
+  display: inline-block;
+}
+.xXx>view:nth-child(3){
+  width: initial;
+  margin-left: initial;
+}
+.xXx>view:nth-child(2){
+  width: 60%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-left: 70rpx;
+  margin-top: -2rpx;
+}
+.tishi{
+  font-size: 26rpx;
+  text-align: center;
+  height: 600rpx;
+  line-height: 600rpx;
+}

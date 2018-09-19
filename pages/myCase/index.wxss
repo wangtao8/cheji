@@ -1,0 +1,253 @@
+/* pages/myCase/index.wxss */
+page{
+  width: 100%;
+  height: 100%;
+}
+.layer{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0rpx;
+  top: 0rpx;
+  background: rgba(0, 0, 0, .5);
+}
+.money{
+  width: 80%;
+  height: 70%;
+  background: #f3f3f3;
+  margin: 20rpx auto;
+  position: fixed;
+  left: 10%;
+  top: 10%;
+}
+.close{
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  z-index: 999;
+}
+.bcg{
+  width: 100%;
+  height: 36%;
+  border-bottom-left-radius: 40%;
+  border-bottom-right-radius: 40%;
+  position: relative;
+  background: red;
+}
+.myImage{
+  width: 150rpx;
+  height: 150rpx;
+  position: absolute;
+  left: calc(50% - 75rpx);
+  bottom: -75rpx;
+  border-radius: 75rpx;
+  display: inline-block;
+}
+.company{
+  margin-top: 116rpx;
+  text-align: center;
+  font-size: 32rpx;
+}
+.companyName{
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.moneyNum{
+  margin-top: 40rpx;
+  font-size: 64rpx;
+  text-align: center;
+  font-weight: bold;
+}
+.notice{
+  position: absolute;
+  bottom: 60rpx;
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 24rpx;
+  background: #d0c9c9;
+  color: #5b82a0;
+}
+.tishi{
+  font-size: 26rpx;
+  text-align: center;
+  height: 600rpx;
+  line-height: 600rpx;
+}
+/* 理赔列表布局 */
+.accident{
+  width: 100%;
+  font-size: 24rpx;
+  position: relative;
+  box-sizing: border-box;
+  border-bottom: 1px solid #fff;
+  /* margin-top: 20rpx; */
+}
+.Numbers{
+  width: 10%;
+  height: 100%;
+  text-align: center;
+  float: left;
+  line-height: 250rpx;
+}
+.accidentInfo{
+  width: 90%;
+  float: right;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.accidentInfo>view{
+  width: 46%;
+  margin-top: 20rpx;
+}
+.contentTop{
+  width: 100%;
+  height: 80%;
+  background: #f3f3f3;
+  /* background: red; */
+}
+.contentBto1, .contentBto2{
+  width: 100%;
+  height: 20%;
+  background: #f3f3f3;
+  padding-bottom: 20rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+.contentBto1>button{
+  width:34%;
+  height:100%;
+  line-height:56rpx;
+  font-size:28rpx;
+}
+.contentBto2>button{
+  width:34%;
+  height:100%;
+  line-height:56rpx;
+  font-size:28rpx;
+}
+
+
+
+.section {
+  width: 100%;
+  margin-top: 60rpx;
+}
+.body-view{
+  width: 100%;
+}
+.jindu{
+  position: relative;
+  padding-bottom: 80rpx;
+}
+.jindu>view{
+  width: 80rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  font-size: 20rpx;
+}
+.jindu>view:nth-child(1){
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+ .jindu>view:nth-child(2){
+  position: absolute;
+  left: calc(50% - 40rpx);
+  bottom: 0;
+}
+.jindu>view:nth-child(3){
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+
+.ziLiao{
+  margin-top: 20rpx;
+}
+.imgShow{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.imgShow>image{
+  width: 45%;
+  margin-top: 20rpx;
+}
+
+
+
+.content{
+  margin-top: 20rpx;
+}
+.uploadImg{
+  width: 100%;
+  /* display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around; */
+}
+.uploadImg::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.upLoadContent{
+  width: 30%;
+  height: 210rpx;
+  margin-top: 20rpx;
+  background: #f3f3f3;
+  float: left;
+  margin-left: 2.5%;
+  position: relative;
+}
+progress{
+  width: 100%;
+  height: 10rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.upLoadContent>view{
+  font-size: 68rpx;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  line-height: 200rpx;
+  color: #ccc;
+}
+.upLoadContent>image{
+  width: 100%;
+  height: 100%;
+}
+.upLoadContent>icon{
+  position: absolute;
+  right: 0rpx;
+  top: 0rpx;
+}
+.botomButtom{
+  width: 100%;
+  margin-top: 20rpx;
+}
+.schedule{
+  width: 32rpx;
+  height: 32rpx;
+  display: inline-block;
+  margin-left: 20rpx;
+  /* vertical-align: middle; */
+}
+.picker{
+  width: calc(100% - 72rpx);
+  float: right;
+  font-size: 32rpx;
+}

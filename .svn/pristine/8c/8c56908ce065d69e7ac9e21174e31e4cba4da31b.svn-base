@@ -1,0 +1,212 @@
+<!--pages/sumitInfo/index.wxml-->
+<view class='title' style='margin:0;padding-bottom:16rpx;'>--{{!!dataAll.accType == true ? '事故现场展示' : '事故现场完善'}}--</view>
+<view class='topCont'>
+  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+    <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">全车现场</view>
+    <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">车架号</view>
+    <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">远景</view>
+    <view class="tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav">近景</view>
+    <view class="tab-item {{currentTab==4?'active':''}}" data-current="4" bindtap="swichNav">细节</view>
+  </scroll-view>
+  <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab">
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的全车现场照片</text>
+        <image src='../../images/one240230.png' style='width:480rpx;'></image>
+        <text>请距车3-5米，与车头约45度角拍出事故现场全貌保证车牌清晰，全车入镜</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的车架号照片</text>
+        <image src='../../images/two315175.png' style='width:720rpx;'></image>
+        <text>请拍摄车架号部位整体照片，例：车门剐蹭请拍摄整个车门，可多角度拍摄</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的远景照片</text>
+        <image src='../../images/three318230.png' style='width:636rpx;'></image>
+        <text>请以车损部位为中心，拍摄整体轮廓，例：车门</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的近景照片</text>
+        <image src='../../images/four.png' style='width:636rpx;'></image>
+        <text>请拍摄车损部位整体照片，例：车门剐蹭请拍摄整个车门，可多角度拍摄</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的细节照片</text>
+        <image src='../../images/five.png' style='width:630rpx;'></image>
+        <text>请距车损部位10-30cm拍摄，可多角度拍摄</text>
+      </view>
+    </swiper-item>
+  </swiper>
+  <!-- 图片上传 与 预览 -->
+  <button bindtap="Tophoto" class="page-body-button" class='{{url2.length == 5 ? "unTophoto" : "Tophoto"}}' animation="{{animationData}}" hidden='{{dataAll.accType}}'>拍照</button>
+  <view class='imagePre'>
+    <view style='padding: {{url2[index] == null ? "20rpx" : "0rpx"}}' wx:for='{{5}}' wx:key='{{index}}'>
+      <view wx:if='{{url2[index] == null}}'>图片预览</view>
+      <image wx:else src='{{url2[index]}}' catchtap='lookImage' data-id='{{index}}' mode='aspectFill'></image>
+    </view>
+  </view>
+  <button bindtap="Tophoto2" class="page-body-button" class='Tophoto2' data-id='{{2}}' hidden='{{dataAll.accType}}'>上传图片</button>
+  <text class='allUpload' catchtap='allUpload' wx:if='{{!dataAll.accType}}'>已拍过照？点我批量上传^ ^</text>
+</view>
+
+<view class='title'>--资料{{!!dataAll.accType == true ? '展示' : '上传'}}--</view>
+<!-- <text class='prompt'>请拍摄<text style='color:red'>事故车主</text>的对应证件照，保证文字清晰</text> -->
+<view class='content' wx:if='{{!dataAll.accType}}'>
+    <view wx:for='{{uploadImg}}' wx:key='{{index}}' class='upload' data-id='{{index}}' catchtap='uploadImg'>
+        <image src='{{url[index]}}' wx:if='{{url[index]}}' class='uploadImg' mode='aspectFill'></image>
+        <image src='https://chejiqiche.com/video/notice/{{(index + 1) >= 7 ? 7 : (index + 1)}}.png' wx:else class='uploadImg' mode='aspectFill'></image>
+    </view>
+    <view class='upload' catchtap='addUploadImg'>
+      <view class='add'>+</view>
+      <view>添加上传框</view>
+    </view>
+    <view class='upload' wx:if='{{uploadImg%2 == 0}}'>
+      
+    </view>
+    <button bindtap="Tophoto2" class="page-body-button" class="Tophoto3" data-id='{{3}}' hidden='{{dataAll.accType}}'>上传图片</button>
+</view>
+<view class='content' wx:else>
+  <view wx:for='{{url}}' wx:key='{{index}}' class='upload' data-id='{{index}}'>
+      <image src='{{item}}' class='uploadImg' mode='aspectFill' catchtap='lookImage2' data-id='{{index}}'></image>
+  </view>
+  <view class='upload' hidden='{{url.length%2 == 0}}'></view>
+</view>
+<view class='title'>--车主信息--</view>
+<view class='forms'>
+    <form bindsubmit="formSubmit">
+    <view class='conten'>
+        <text>创建日期：</text>
+        <view>{{dataAll.createtime}}</view>
+        <!-- <input type='text' name='time' value='{{dataAll.createtime}}' disabled='true'></input> -->
+    </view>
+    <view class='conten'>
+        <text>订单号：</text>
+        <view>{{dataAll.orderno}}</view>
+        <!-- <input type='text' name='orderNum' value='{{dataAll.orderno}}' disabled='true'></input> -->
+    </view>
+    <view class='conten'>
+        <text>客户姓名：</text>
+        <input type='text' name='name' wx:if='{{!dataAll.name}}'></input>
+        <view wx:else>{{dataAll.name}}</view>
+    </view>
+    <view class='conten'>
+        <text>车牌：</text>
+        <input type='text' name='cph' wx:if='{{!dataAll.cph}}'></input>
+        <view wx:else>{{dataAll.cph}}</view>
+    </view>
+    <view class='conten'>
+        <text>品牌：</text>
+        <input type='text' name='qcpp' wx:if='{{!dataAll.qcpp}}'></input>
+        <view wx:else>{{dataAll.qcpp}}</view>
+    </view>
+    <view class='conten'>
+        <text>电话：</text>
+        <input type='text' name='phone' wx:if='{{!dataAll.phone}}'></input>
+        <view wx:else>{{dataAll.phone}}</view>
+    </view>
+    <view class='conten' wx:if='{{!dataAll.accType}}'>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          <view>事故类型：</view><text>{{array[index]}}</text>
+        </view>
+      </picker>
+    </view>
+    <view class='conten' wx:else>
+      <text>事故类型：</text>
+      <view>{{dataAll.accType}}</view>
+    </view>
+    <view class='conten'>
+        <text>事故地点：</text>
+        <view>{{dataAll.address}}</view>
+        <!-- <input type='text' name='address' value='{{dataAll.address}}' disabled='true'></input> -->
+    </view>
+    <view class='conten'>
+        <text>保险公司：</text>
+        <input type='text' name='insurer' wx:if='{{!dataAll.insurer}}'></input>
+        <view wx:else>{{dataAll.insurer}}</view>
+    </view>
+    <view class='conten'>
+        <text>4s店：</text>
+        <view>{{dataAll.fullname}}</view>
+        <!-- <input type='text' name='insurer' value='{{dataAll.fullname}}' disabled='true'></input> -->
+    </view>
+    <view class='conten'>
+        <text>保险渠道：</text>
+        <input type='text' name='insurAccess' wx:if='{{!dataAll.insurAccess}}'></input>
+        <view wx:else>{{dataAll.insurAccess}}</view>
+    </view>
+    <view class='conten'>
+        <text>人伤：</text>
+        <radio-group class="radio-group" bindchange="radioChange">
+          <label class="radio" wx:for="{{items}}" wx:key='{{index}}'>
+            <radio value="{{item.name}}" checked="{{item.checked}}" name='renshang' color='#ccc' disabled='{{!!dataAll.rescue}}'/>{{item.value}}
+          </label>
+        </radio-group>
+        <!-- <input type='text' name='personHurts'></input> -->
+    </view>
+    <view class='conten'>
+        <text>物损：</text>
+        <radio-group class="radio-group" bindchange="radioChange2">
+          <label class="radio" wx:for="{{items2}}" wx:key='{{index}}'>
+            <radio value="{{item.name}}" checked="{{item.checked}}" name='renshang' color='#ccc' disabled='{{!!dataAll.rescue}}'/>{{item.value}}
+          </label>
+        </radio-group>
+        <!-- <input type='text' name='goodsHurts'></input> -->
+    </view>
+    <view class='conten'>
+        <text>施救公司：</text>
+        <input type='text' name='rescue' wx:if='{{!dataAll.rescue}}'></input>
+        <view wx:else>{{dataAll.rescue}}</view>
+    </view>
+    <view class='conten'>
+        <text>施救费用：</text>
+        <input type='text' name='rescueFee' wx:if='{{!dataAll.rescueFee}}'></input>
+        <view wx:else>{{dataAll.rescueFee}}</view>
+    </view>
+    <view class='conten'>
+        <text>施救收款：</text>
+        <input type='text' name='rescueFeeSettleType' wx:if='{{!dataAll.rescueFeeSettleType}}'></input>
+        <view wx:else>{{dataAll.rescueFeeSettleType}}</view>
+    </view>
+    <view class='conten' wx:if='{{!dataAll.settleType}}'>
+        <picker bindchange="bindPickerChange2" value="{{index2}}" range="{{array2}}">
+          <view class="picker">
+            <view>理赔方式：</view><text>{{array2[index2]}}</text>
+          </view>
+        </picker>
+    </view>
+    <view class='conten' wx:else>
+      <text>理赔方式：</text>
+      <view>{{dataAll.settleType}}</view>
+    </view>
+    <view class='conten'>
+        <text>预估损失：</text>
+        <input type='text' name='preFee' wx:if='{{!dataAll.preFee}}'></input>
+        <view wx:else>{{dataAll.preFee}}</view>
+    </view>
+    <view class='conten'>
+        <text>承诺客户：</text>
+        <input type='text' name='promise' wx:if='{{!dataAll.promise}}'></input>
+        <view wx:else>{{dataAll.promise}}</view>
+    </view>
+    <view class='conten'>
+        <text>备注：</text>
+        <input type='text' name='desc' wx:if='{{!dataAll.desc}}'></input>
+        <view wx:else>{{dataAll.desc}}</view>
+    </view>
+    <button formType="submit" class='orderDom' wx:if='{{!dataAll.accType}}'>下单</button>
+</form>
+
+</view>
+<!-- <view class='bottomCont'>
+    <text class='bottomFont'>照片仅用于理赔，我们一定会保护您的个人信息，请放心</text>
+    <view class='bottomBtn' catchtap='goNext'>完成</view>
+</view> -->

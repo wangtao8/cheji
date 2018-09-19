@@ -1,0 +1,10 @@
+<!--pages/loginOut/index.wxml-->
+<view class='logining'>
+  <image src='../../images/10.jpg' mode='aspectFit'></image>
+  <view class='ueserInfo'>
+      <text>佑之以航</text>
+      <text>185******10</text>
+  </view>
+      <text class='status'>已登录</text>
+  <!-- <image src='../../images/right.png'></image> -->
+</view>

@@ -1,0 +1,83 @@
+<!--pages/fourSInfo/index.wxml-->
+<view class='bj' style='background:url({{dataAll.indexImg}}) round'>
+  
+</view>
+<view class='contn'>
+  <image src='{{dataAll.indexImg}}' mode='aspectFit' class='cB' catchtap='lookFirst'></image>
+</view>
+<view class='names'>{{dataAll.fullname}}</view>
+<view class='bZandPh'>
+    <view catchtap='goLocation' data-lat='{{dataAll.lat}}' data-lng='{{dataAll.lng}}'>
+       <image src='../../images/location.png' class='bZ'></image>
+       <view class='locations'>{{dataAll.address}}</view>
+    </view>
+    <view catchtap='callImg'>
+       <image src='../../images/phone.png' class='bZ'></image>
+       <view class='locations'>18888888888</view>
+    </view>
+</view>
+<view></view>
+<!-- <swiper indicator-dots="{{indicatorDots}}" autoplay="true" interval="{{interval}}" duration="{{duration}}" circular="true" vertical='true' id='swiperS'>
+  <block wx:for="{{imgUrls}}" wx:key='{{index}}'>
+    <swiper-item>
+      <text>{{index}}</text>
+    </swiper-item>
+  </block>
+</swiper> -->
+<view class='myFrend'>门店环境</view>
+<scroll-view scroll-x class='hZhB'>
+  <view class='hZbX' wx:for='{{dataAll.detailImg}}' wx:key='{{index}}'>
+    <image src='{{item}}' class='bXImg' mode='aspectFill' catchtap='lookImage' data-id='{{index}}'></image>
+    <view class='{{index%2 == 1 ? "font" : ""}}'>门店环境</view>
+  </view>
+  <!-- <view class='hZbX'>
+    <image src='https://chejiqiche.com/video/notice/timg.jpg' class='bXImg' mode='aspectFill'></image>
+    <view class='font'>施工环境</view>
+  </view>
+  <view class='hZbX'>
+    <image src='https://chejiqiche.com/video/notice/timg12.jpg' class='bXImg' mode='aspectFill'></image>
+    <view>汽车保养</view>
+  </view>
+  <view class='hZbX'>
+    <image src='https://chejiqiche.com/video/notice/timg2.jpg' class='bXImg' mode='aspectFill'></image>
+    <view class='font'>设施设备</view>
+  </view>
+  <view class='hZbX'>
+    <image src='https://chejiqiche.com/video/notice/timg3.jpg' class='bXImg' mode='aspectFill'></image>
+    <view>员工精彩</view>
+  </view>
+  <view class='hZbX'>
+    <image src='https://chejiqiche.com/video/notice/timg11.jpg' class='bXImg' mode='aspectFill'></image>
+    <view class='font'>企业文化</view>
+  </view> -->
+</scroll-view>
+
+<view class='myFrend'>合作伙伴</view>
+<scroll-view scroll-x class='hZhB'>
+  <view class='hZbX' wx:for='{{dataAll.companyUrls}}' wx:key='{{index}}'>
+    <image src='{{item}}' class='bXImg' mode='aspectFill'></image>
+    <view class='{{index%2 == 0 ? "font" : ""}}'>合作伙伴</view>
+  </view>
+  <!-- <view class='hZbX'>
+    <image src='https://chejiqiche.com/video/notice/timg4.jpg' class='bXImg' mode='aspectFill'></image>
+    <view>太平洋车险</view>
+  </view>
+  <view class='hZbX'>
+    <image src='https://chejiqiche.com/video/notice/timg5.jpg' class='bXImg' mode='aspectFill'></image>
+    <view class='font'>平安保险</view>
+  </view>
+  <view class='hZbX'>
+    <image src='https://chejiqiche.com/video/notice/timg6.jpg' class='bXImg' mode='aspectFill'></image>
+    <view>中国人保</view>
+  </view>
+  <view class='hZbX'>
+    <image src='https://chejiqiche.com/video/notice/timg7.jpg' class='bXImg' mode='aspectFill'></image>
+    <view class='font'>中国人寿</view>
+  </view>
+  <view class='hZbX'>
+    <image src='https://chejiqiche.com/video/notice/timg8.jpg' class='bXImg' mode='aspectFill'></image>
+    <view>新华保险</view>
+  </view> -->
+</scroll-view>
+  
+<button open-type="contact" type='primary' class='kf'>客服</button>

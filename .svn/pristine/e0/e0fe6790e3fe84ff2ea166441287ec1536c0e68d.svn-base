@@ -1,0 +1,391 @@
+/* pages/peifuorder/index.wxss */
+image{
+  margin: 0;
+  padding: 0;
+}
+.carNumer{
+  width: 80%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.search{
+  margin-top: 20rpx;
+}
+.fourInfo{
+  width:100%;
+  height:446rpx;
+  float:right;
+  box-sizing:border-box;
+  padding:10rpx;
+  margin-right:calc(10% + 14rpx);
+  position:relative;
+  top:2rpx;
+  background:#fff;
+  left:66rpx;
+}
+.cont{
+  float: right;
+  width: 100%;
+  height: 512rpx;
+  box-sizing: border-box;
+  position: relative;
+  top: -752rpx;
+  background: #fff;
+  border-top-left-radius: 12rpx;
+  border-top-right-radius: 12rpx;
+}
+.close{
+  width:20%;
+  text-align:center;
+  height:60rpx;
+  line-height:60rpx;
+  background:#fff;
+  float:right;
+  margin-right: 10rpx;
+  color: #ed7c04;
+  font-size: 24rpx;
+}
+.fourInfos{
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+  float: right;
+  margin-bottom: 10rpx;
+  position: relative;
+  padding-bottom: 14rpx;
+  font-size: 24rpx;
+}
+.fourInfos>view{
+  margin-left: 24rpx;
+}
+.chooseS{
+  position: absolute;
+  right: 20rpx;
+  top: 0rpx;
+}
+.Introduction{
+  width: 120rpx;
+  height: 120rpx;
+  display: inline-block;
+  float: left;
+}
+.jsInfo{
+  width: 312rpx;
+  height: 80rpx;
+  display: inline-block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 32rpx;
+  color: rgb(42,42,42);
+  margin-left: 18rpx;
+}
+.jL{
+  display: inline-block;
+  position: relative;
+  top: -6rpx;
+  font-size: 26rpx;
+  margin-left: 16rpx;
+  color: rgb(42,42,42);
+}
+.adrress{
+  position: relative;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  margin: 0rpx auto 0rpx;
+  padding-top: 20rpx;
+  font-size: 32rpx;
+}
+.leftAdress{
+  width: 20%;
+  height: calc(100% + 0rpx);
+  display: inline-block;
+  font-size: 32rpx;
+  border-right: none;
+  box-sizing: border-box;
+  /* padding-left: 16rpx; */
+  float: left;
+  margin-top: -6rpx;
+  color: rgb(237,124,4);
+}
+.section{
+  display: inline-block;
+}
+.picker1{
+  position: absolute;
+  left: 0rpx;
+  top: 0rpx;
+  width: 20%;
+  height: 100%;
+  /* background: red; */
+}
+.writeCont{
+  width: calc(69% - 4rpx);
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: 2rpx;
+  background: #fff;
+  box-sizing: border-box;
+  padding-left: 20rpx;
+  float: left;
+  border-top: none;
+}
+.searchP{
+  width: 468rpx;
+  height: 68rpx;
+  border-radius: 34rpx;
+  background: rgb(230,230,230);
+  outline: none;
+  border: none;
+}
+.right2{
+  width: 15rpx;
+  height: 28rpx;
+  position: absolute;
+  left: 140rpx;
+  top: 42rpx;
+}
+.lookInfo{
+  display: inline-block;
+  width: calc(10% + 8rpx);
+  height: calc(100% - 4rpx);
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 32rpx;
+  border-left: none;
+  float: left;
+  margin-top: -4rpx;
+  color: rgb(237,124,4);
+}
+.isSearch{
+  display: inline-block;
+  text-align: center;
+  width: 702rpx;
+  line-height: 80rpx;
+  border: 1rpx solid #ccc;
+  border-left: none;
+  float: left;
+  margin-top: 6rpx;
+  background: #ec7c03;
+  color: #fff;
+  font-size: 32rpx;
+  left: 24rpx;
+  margin-bottom: 40rpx;
+  letter-spacing: 20rpx;
+}
+.tab-h {
+  height: 80rpx;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  line-height: 80rpx;
+  background: #fff;
+  font-size: 28rpx;
+  white-space: nowrap;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.tab-item {
+  width: 20%;
+  /* margin: 0 36rpx; */
+  display: inline-block;
+  text-align: center;
+}
+
+.tab-item.active {
+  color: #467de4;
+  position: relative;
+}
+
+.tab-item.active:after {
+  content: "";
+  display: block;
+  height: 8rpx;
+  width: 100%;
+  background: #467de4;
+  position: absolute;
+  bottom: 0;
+  left: 5rpx;
+  border-radius: 16rpx;
+}
+
+.item-ans {
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  background: #f5f5f9;
+}
+.item-ans>image{
+  width: 300rpx;
+  height: 460rpx;
+  margin: 30rpx 0rpx;
+}
+.item-ans>text{
+  width: 80%;
+  display: inline-block;
+}
+.item-ans>text:first-child{
+  margin-top: 20rpx;
+}
+.item-ans>text:last-child{
+  margin-bottom: 20rpx;
+}
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  position: relative;
+  padding-right: 30rpx;
+}
+
+.avatar .img {
+  width: 100%;
+  height: 100%;
+}
+
+.avatar .doyen {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  bottom: -2px;
+  right: 20rpx;
+}
+
+.expertInfo {
+  font-size: 12px;
+  flex-grow: 2;
+  color: #b0b0b0;
+  line-height: 1.5em;
+}
+
+.expertInfo .name {
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 6px;
+}
+
+.askBtn {
+  width: 120rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 60rpx;
+  border: 1px solid #467de4;
+  color: #467de4;
+}
+
+.tab-content {
+  margin-top: 80rpx;
+  height: 676rpx;
+  background:#f5f5f9;
+}
+
+.scoll-h {
+  height: 100%;
+}
+.imagePre{
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  margin-top: 20rpx;
+}
+.imagePre>view{
+  width: 120rpx;
+  height: 120rpx;
+  background: #fff;
+  color: #ccc;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  border: 2rpx dashed #ccc;
+}
+.imagePre>view>view{
+  width: 80rpx;
+  height: 80rpx;
+  font-size: 30rpx;
+  text-align: center;
+}
+.imagePre>view>image{
+  width: 100%;
+  height: 100%;
+  font-size: 30rpx;
+  text-align: center;
+}
+.unTophoto{
+  width: 80%;
+  margin-bottom: 20rpx;
+  background-color: #f3f3f3;
+  color: #ccc;
+  top: 40rpx;
+  font-size: 32rpx;
+}
+.Tophoto{
+  width: 80%;
+  margin-bottom: 20rpx;
+  background-color: #467de4;
+  color: #fff;
+  top: 40rpx;
+  font-size: 32rpx;
+}
+.goNext{
+  width: 80%;
+  top: 40rpx;
+  background-color: #fff;
+  color: #403d3d;
+  font-size: 32rpx;
+}
+.ungoNext{
+  width: 80%;
+  top: 40rpx;
+  background-color: #f3f3f3;
+  color: #ccc;
+  font-size: 32rpx;
+}
+.allUpload{
+  /* position: absolute; */
+  bottom: 10rpx;
+  width: 100%;
+  display: inline-block;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  color: #467de4;
+  background-color: #fff;
+  font-size: 26rpx;
+  margin-top: 20rpx;
+}
+
+
+.sure{
+  position: absolute;
+  left: 20%;
+  top: 300rpx;
+  background: #fff;
+  border: 1rpx solid #ccc;
+  height: 300rpx;
+  width: 60%;
+  border-radius: 10rpx;
+  z-index: 9999;
+}
+.bottoms{
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 20rpx;
+}
+.blank10{
+  width: 100%;
+  height: 10rpx;
+  background: rgb(240,240,240);
+}

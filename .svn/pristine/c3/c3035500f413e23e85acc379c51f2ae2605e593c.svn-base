@@ -1,0 +1,275 @@
+/* pages/tab/index.wxss */
+
+.tab-h {
+  height: 80rpx;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  line-height: 80rpx;
+  background: #fff;
+  font-size: 28rpx;
+  white-space: nowrap;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.tab-item {
+  width: 20%;
+  /* margin: 0 36rpx; */
+  display: inline-block;
+  text-align: center;
+}
+
+.tab-item.active {
+  color: #467de4;
+  position: relative;
+}
+
+.tab-item.active:after {
+  content: "";
+  display: block;
+  height: 8rpx;
+  width: 100%;
+  background: #467de4;
+  position: absolute;
+  bottom: 0;
+  left: 5rpx;
+  border-radius: 16rpx;
+}
+
+.item-ans {
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  background: #f5f5f9;
+}
+.item-ans>image{
+  width: 300rpx;
+  height: 460rpx;
+  margin: 30rpx 0rpx;
+}
+.item-ans>text{
+  width: 80%;
+  display: inline-block;
+}
+.item-ans>text:first-child{
+  margin-top: 20rpx;
+}
+.item-ans>text:last-child{
+  margin-bottom: 20rpx;
+}
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  position: relative;
+  padding-right: 30rpx;
+}
+
+.avatar .img {
+  width: 100%;
+  height: 100%;
+}
+
+.avatar .doyen {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  bottom: -2px;
+  right: 20rpx;
+}
+
+.expertInfo {
+  font-size: 12px;
+  flex-grow: 2;
+  color: #b0b0b0;
+  line-height: 1.5em;
+}
+
+.expertInfo .name {
+  font-size: 16px;
+  color: #000;
+  margin-bottom: 6px;
+}
+
+.askBtn {
+  width: 120rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 60rpx;
+  border: 1px solid #467de4;
+  color: #467de4;
+}
+
+.tab-content {
+  margin-top: 80rpx;
+  height: 676rpx;
+  background:#f5f5f9;
+}
+
+.scoll-h {
+  height: 100%;
+}
+.imagePre{
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  margin-top: 20rpx;
+}
+.imagePre>view{
+  width: 120rpx;
+  height: 120rpx;
+  background: #fff;
+  color: #ccc;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  border: 2rpx dashed #ccc;
+}
+.imagePre>view>view{
+  width: 80rpx;
+  height: 80rpx;
+  font-size: 30rpx;
+  text-align: center;
+}
+.imagePre>view>image{
+  width: 100%;
+  height: 100%;
+  font-size: 30rpx;
+  text-align: center;
+}
+.unTophoto{
+  width: 80%;
+  margin-bottom: 20rpx;
+  background-color: #f3f3f3;
+  color: #ccc;
+  top: 40rpx;
+  font-size: 32rpx;
+}
+.Tophoto{
+  width: 80%;
+  margin-bottom: 20rpx;
+  background-color: #467de4;
+  color: #fff;
+  top: 40rpx;
+  font-size: 32rpx;
+}
+.goNext{
+  width: 80%;
+  top: 40rpx;
+  background-color: #fff;
+  color: #403d3d;
+  font-size: 32rpx;
+}
+.ungoNext{
+  width: 80%;
+  top: 40rpx;
+  background-color: #f3f3f3;
+  color: #ccc;
+  font-size: 32rpx;
+}
+.allUpload{
+  position: absolute;
+  bottom: 10rpx;
+  width: 100%;
+  display: inline-block;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  color: #467de4;
+  background-color: #fff;
+  font-size: 26rpx;
+}
+
+
+.sure{
+  position: absolute;
+  left: 20%;
+  top: 300rpx;
+  background: #fff;
+  border: 1rpx solid #ccc;
+  height: 300rpx;
+  width: 60%;
+  border-radius: 10rpx;
+  z-index: 9999;
+}
+.bottoms{
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 20rpx;
+}
+.sure>text{
+  display: block;
+  width: 80%;
+  margin: 50rpx auto 0;
+  font-size: 26rpx;
+  text-align: center;
+}
+.sure>input{
+  height: 60rpx;
+  width: 85%;
+  border: 1rpx solid #ccc;
+  font-size: 26rpx;
+  margin: 60rpx auto;
+  border-radius: 6rpx;
+  padding-left: 20rpx;
+}
+.sure>image{
+  width: 128rpx;
+  height: 128rpx;
+  position: absolute;
+  left: calc(50% - 64rpx);
+  top: 40rpx;
+}
+.bottoms>button{
+  width:30%;
+  height:50rpx;
+  font-size:22rpx;
+  line-height:50rpx;
+  margin-bottom:10rpx;
+  display:inline-block;
+  padding:0;
+}
+.sure>button:last-child{
+  background: green;
+  color: #fff;
+}
+.qM{
+  font-size: 32rpx;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 10rpx;
+  padding-left: 40rpx;
+}
+.motai{
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.6);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 99999;
+}
+.close{
+  float: right;
+  display: inline-block;
+  width: 40rpx;
+  height: 34rpx;
+  text-align: center;
+  line-height: 34rpx;
+  background: #ccc;
+  padding: 4rpx;
+  letter-spacing: 0;
+  border-bottom-left-radius: 20rpx;
+  font-size: 16rpx;
+}

@@ -1,0 +1,581 @@
+// pages/mySubmit/index.js
+var app = getApp()
+var api = app.globalData.api
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    ids: null, // 1为提交  0为红包
+    pageIndex: 0, //当前页码
+    pageSize: 10,
+    dataAll: [], //列表数据
+    pageAll: null, //总条数
+    layer: false,//红包展示
+    navbar: ['事故订单', '理赔订单'],
+    currentTab: 0//tab页的下标
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+    var _this = this
+    var ids = options.id
+    console.log('ids:', ids)
+    _this.setData({
+      ids: ids
+    })
+    console.log('ids2:', _this.data.ids)
+  },
+  navbarTap: function (e) {//列表切换
+    var _this = this
+    var index = e.currentTarget.dataset.idx
+    var userId = app.globalData.sessionId
+    var ids = _this.data.ids
+    if (index == 0) {
+      if (ids == 1) {
+        _this.myUpload(0)
+      } else {
+        _this.carAccident(0)
+      }
+    } else {
+      if (ids == 1) {
+        _this.mySgUpload(0)
+      } else {
+        _this.carSgAccident(0)
+      }
+      
+    }
+    this.setData({
+      currentTab: e.currentTarget.dataset.idx
+    })
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
+    var _this = this
+    var ids = _this.data.ids
+    var userId = app.globalData.sessionId
+    wx.showLoading({
+      title: '加载中'
+    })
+    wx.hideShareMenu()
+    console.log('事故推送需求信息：', ids, userId)
+    if (ids == 3) { //事故推送列表
+      _this.carAccident(0)
+    } else if (ids == 1) { //我的上传记录
+      _this.myUpload(0)
+    } else { //我的红包记录
+      _this.myMoney(0)
+    }
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function() {
+
+  },
+  mySgUpload: function (e) { //我的上传记录
+    var _this = this
+    var userId = app.globalData.sessionId
+    var pageIndex = _this.data.pageIndex + 1
+    var pageSizes = 10 + 10 * pageIndex
+
+    wx.showNavigationBarLoading()
+    wx.request({
+      url: api + 'api/v1/wx/claim/user/get',
+      data: {
+        'thirdSessionKey': userId,
+        'limit': e == 1 ? 10 : 20,
+        'offset': e == 1 ? pageSizes : 0
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        // console.log('我的事故上传记录:', res.data.data.records)
+        if (res.data.errorCode == 5001) {
+          wx.login({
+            success: function (res) {
+              if (res.code) {
+                // console.log(res)
+                // 发起网络请求
+                // console.log('重新获得jsCode:', res.code)
+                wx.request({
+                  url: api + 'api/v1/wx/getSession?code=' + res.code,
+                  success: function (ress) {
+                    app.globalData.sessionId = ress.data.data.sessionId
+                    _this.mySgUpload()
+                  }
+                })
+              }
+            }
+          })
+        } else {
+          if (e == 0) {//刷新的情况
+            var content = res.data.data.records
+            var pageAll = res.data.data.total
+            // console.log('点击时得到的数据：', content)
+            _this.setData({
+              allData: content,
+              pageAll: pageAll,
+              pageIndex: 0
+            })
+          } else {//上拉的情况
+            console.log('我的理赔订单上拉加载:', res.data)
+            var pageAll = res.data.data.total
+            var nowData = res.data.data.records
+            var dataList = _this.data.allData
+            for (var i = 0; i < nowData.length; i++) {
+              dataList.push(nowData[i])
+            }
+            _this.setData({
+              allData: dataList,
+              pageAll: pageAll,
+              pageIndex: pageIndex,
+              pageSize: pageSizes
+            })
+          }
+
+          wx.hideLoading()
+          wx.hideNavigationBarLoading()
+          wx.stopPullDownRefresh()
+        }
+      }
+    })
+  },
+  carSgAccident: function (e) { //事故推送列表
+    var _this = this
+    var userId = app.globalData.sessionId
+    var pageIndex = _this.data.pageIndex + 1
+    var pageSizes = 10 + 10 * pageIndex
+    wx.request({
+      url: api + 'api/v1/wx/claim/claimer/get',
+      data: {
+        'thirdSessionKey': userId,
+        'limit': e == 1 ? 10 : 20,
+        'offset': e == 1 ? pageSizes : 0
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log('理赔订单推送列表:', res.data)
+        if (res.data.errorCode == 5001) {
+          wx.login({
+            success: function (res) {
+              if (res.code) {
+                // console.log(res)
+                // 发起网络请求
+                console.log('重新获得jsCode:', res.code)
+                wx.request({
+                  url: api + 'api/v1/wx/getSession?code=' + res.code,
+                  success: function (ress) {
+                    app.globalData.sessionId = ress.data.data.sessionId
+                    _this.carAccident()
+                  }
+                })
+              }
+            }
+          })
+        } else { //sessionId有效
+          if (e == 0) {
+            console.log('我是理赔订单下拉刷新或者页面初次加载')
+            var content = res.data.data.records
+            var pageAll = res.data.data.total
+            _this.setData({
+              allData: content,
+              pageAll: pageAll,
+              pageIndex: 0
+            })
+          } else {
+            var pageAll = res.data.data.total
+            var nowData = res.data.data.records
+            var dataList = _this.data.allData
+            console.log('理赔订单下拉加载列表:', pageAll, pageSizes)
+            for (var i = 0; i < nowData.length; i++) {
+              dataList.push(nowData[i])
+            }
+            _this.setData({
+              allData: dataList,
+              pageAll: pageAll,
+              pageIndex: pageIndex,
+              pageSize: pageSizes
+            })
+          }
+          wx.hideLoading()
+          wx.hideNavigationBarLoading()
+          wx.stopPullDownRefresh()
+        }
+      }
+    })
+  },
+  carAccident: function(e) { //事故推送列表
+    var _this = this
+    var userId = app.globalData.sessionId
+    var pageIndex = _this.data.pageIndex + 1
+    var pageSizes = 10 + 10 * pageIndex
+    wx.request({
+      url: api + 'api/v1/wx/accids/pushRecord/get',
+      data: {
+        'thirdSessionKey': userId,
+        'limit': e == 1 ? 10 : 20,
+        'offset': e == 1 ? pageSizes : 0
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function(res) {
+        console.log('事故推送列表:', res.data)
+        if (res.data.errorCode == 5001) {
+          wx.login({
+            success: function(res) {
+              if (res.code) {
+                // console.log(res)
+                // 发起网络请求
+                console.log('重新获得jsCode:', res.code)
+                wx.request({
+                  url: api + 'api/v1/wx/getSession?code=' + res.code,
+                  success: function(ress) {
+                    app.globalData.sessionId = ress.data.data.sessionId
+                    _this.carAccident()
+                  }
+                })
+              }
+            }
+          })
+        } else { //sessionId有效
+          if (e == 0) {
+            console.log('我是下拉刷新或者页面初次加载')
+            var content = res.data.data.records
+            var pageAll = res.data.data.total
+            _this.setData({
+              dataAll: content,
+              pageAll: pageAll,
+              pageIndex: 0
+            })
+          } else {
+              var pageAll = res.data.data.total
+              var nowData = res.data.data.records
+              var dataList = _this.data.dataAll
+              console.log('事故数据下拉加载列表:', pageAll, pageSizes)
+              for (var i = 0; i < nowData.length; i++) {
+                dataList.push(nowData[i])
+              }
+              _this.setData({
+                dataAll: dataList,
+                pageAll: pageAll,
+                pageIndex: pageIndex,
+                pageSize: pageSizes
+              })
+          }
+          wx.hideLoading()
+          wx.hideNavigationBarLoading()
+          wx.stopPullDownRefresh()
+        }
+      }
+    })
+  },
+  myUpload: function(e) { //我的上传记录
+    var _this = this
+    var userId = app.globalData.sessionId
+    var pageIndex = _this.data.pageIndex + 1
+    var pageSizes = 10 + 10 * pageIndex
+
+    wx.showNavigationBarLoading()
+    wx.request({
+      url: api + 'api/v1/wx/accids/get',
+      data: {
+        'thirdSessionKey': userId,
+        'limit': e == 1 ? 10 : 20,
+        'offset': e == 1 ? pageSizes : 0
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function(res) {
+        console.log('我的上传记录:', res.data.data.records)
+        if (res.data.errorCode == 5001) {
+          wx.login({
+            success: function(res) {
+              if (res.code) {
+                // console.log(res)
+                // 发起网络请求
+                console.log('重新获得jsCode:', res.code)
+                wx.request({
+                  url: api + 'api/v1/wx/getSession?code=' + res.code,
+                  success: function(ress) {
+                    app.globalData.sessionId = ress.data.data.sessionId
+                    _this.myUpload()
+                  }
+                })
+              }
+            }
+          })
+        } else {
+          if (e == 0) {
+            var content = res.data.data.records
+            var pageAll = res.data.data.total
+            _this.setData({
+              dataAll: content,
+              pageAll: pageAll,
+              pageIndex: 0
+            })
+          } else {
+            console.log('我的上传记录上拉333:', res.data)
+            var pageAll = res.data.data.total
+            var nowData = res.data.data.records
+            var dataList = _this.data.dataAll
+            for (var i = 0; i < nowData.length; i++) {
+              dataList.push(nowData[i])
+            }
+            _this.setData({
+              dataAll: dataList,
+              pageAll: pageAll,
+              pageIndex: pageIndex,
+              pageSize: pageSizes
+            }) 
+          }
+
+          wx.hideLoading()
+          wx.hideNavigationBarLoading()
+          wx.stopPullDownRefresh()
+        }
+      }
+    })
+  },
+  myMoney: function(e) { //我的红包记录
+    var _this = this
+    var userId = app.globalData.sessionId
+    var pageIndex = _this.data.pageIndex + 1
+    var pageSizes = 10 + 10 * pageIndex
+    wx.showNavigationBarLoading()
+
+    wx.request({
+      url: api + 'api/v1/wx/redPay/get',
+      data: {
+        'thirdSessionKey': userId,
+        'limit': e == 1 ? 10 : 20,
+        'offset': e == 1 ? pageSizes : 0
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function(res) {
+        console.log('我的红包记录:', res.data)
+        if (res.data.errorCode == 5001) {
+          wx.login({
+            success: function(res) {
+              if (res.code) {
+                // console.log(res)
+                // 发起网络请求
+                console.log('重新获得jsCode:', res.code)
+                wx.request({
+                  url: api + 'api/v1/wx/getSession?code=' + res.code,
+                  success: function(ress) {
+                    app.globalData.sessionId = ress.data.data.sessionId
+                    _this.myMoney(0)
+                  }
+                })
+              }
+            }
+          })
+        } else {
+          if (e == 0) {
+            var content = res.data.data.records
+            var pageAll = res.data.data.total
+            _this.setData({
+              dataAll: content,
+              pageAll: pageAll,
+              pageIndex: 0
+            })
+          } else {
+            console.log('我的红包列表上拉:', res.data.data.total)
+            //要在这里进行赋值 不然赋值失败
+            wx.showLoading({
+              title: '加载中...',
+            })
+            var pageAll = res.data.data.total
+            var nowData = res.data.data.records
+            var dataList = _this.data.dataAll
+            for (var i = 0; i < nowData.length; i++) {
+              dataList.push(nowData[i])
+            }
+            _this.setData({
+              dataAll: dataList,
+              pageAll: pageAll,
+              pageIndex: pageIndex,
+              pageSize: pageSizes
+            })
+          }
+          
+          wx.hideLoading()
+          wx.hideNavigationBarLoading()
+          wx.stopPullDownRefresh()
+        }
+      }
+    })
+  },
+  goPhone: function(e){//拨打理赔老师电话
+    var phone = e.currentTarget.dataset.phone
+    wx.makePhoneCall({
+      phoneNumber: phone
+    })
+  },
+  lookOrder: function(e){//用户查看订单
+    var id = e.currentTarget.dataset.id
+    console.log('id:', id)
+  },
+  clearOrder: function(e){//理赔老师处理订单
+    var id = e.currentTarget.dataset.id
+    console.log('id:', id)
+  },
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
+    var _this = this
+    var userId = app.globalData.sessionId
+    var currentTab = _this.data.currentTab
+    var ids = _this.data.ids
+    console.log('下拉了')
+    wx.showNavigationBarLoading()
+    wx.showLoading({
+      title: '加载中...',
+    })
+    if (currentTab == 0) {
+      if (ids == 3) {
+        console.log('下拉了推送给我的消息列表')
+        _this.carAccident(0)
+      } else if (ids == 1) {
+        console.log('下拉了我的提交列表')
+        _this.myUpload(0)
+      } else {
+        _this.myMoney(0)
+      }
+    } else {
+      if (ids == 3) {
+        console.log('下拉了推送给我的理赔订单列表')
+        _this.carSgAccident(0)
+      } else if (ids == 1) {
+        console.log('下拉了我的理赔订单列表')
+        _this.mySgUpload(0)
+      } else {
+        _this.myMoney(0)
+      }
+    }
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {
+    var _this = this
+    var currentTab = _this.data.currentTab
+    var ids = _this.data.ids
+    var pageIndex = _this.data.pageIndex + 1
+    var pageSizes = 10 + 10 * pageIndex
+    var pageAll = _this.data.pageAll
+    // wx.showNavigationBarLoading()
+    wx.showLoading({
+      title: '加载中...',
+    })
+    console.log('上拉加载更多的页数：', pageSizes, pageAll)
+    if (currentTab == 0) {
+      if (pageSizes < pageAll) {
+        if (ids == 3) {// 推送给我的事故列表上拉
+          _this.carAccident(1)
+        } else if (ids == 1) {// 我上传的事故列表上拉
+          _this.myUpload(1)
+        } else if (ids == 0) {//我的红包列表
+          _this.myMoney(1)
+        }
+      } else {
+        wx.showToast({
+          title: '没有更多了哦~',
+          icon: 'none'
+        })
+      }
+    } else {
+      if (pageSizes < pageAll) {
+        if (ids == 3) {// 推送给我的事故列表上拉
+          _this.carSgAccident(1)
+        } else if (ids == 1) {// 我上传的事故列表上拉
+          _this.mySgUpload(1);
+        } else if (ids == 0) {//我的红包列表
+          _this.myMoney(1)
+        }
+      } else {
+        wx.showToast({
+          title: '没有更多了哦~',
+          icon: 'none'
+        })
+      }
+    }
+    
+    console.log('上拉了')
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function() {
+
+  },
+  goInfo: function(e) {
+    var _this = this
+    var ids = e.currentTarget.dataset.id // 1提交详细信息  0为红包详细信息   3我的理赔订单详情
+    // console.log(e)
+    var curId = e.currentTarget.dataset.curid
+    var videoSrc = e.currentTarget.dataset.video
+    var lng = e.currentTarget.dataset.lng
+    var lat = e.currentTarget.dataset.lat
+    var unread = e.currentTarget.dataset.unread
+    var reason = e.currentTarget.dataset.reason
+    var phone = e.currentTarget.dataset.phone
+    console.log('跳转时的videoSrc:', videoSrc)
+    if (ids == 3) {
+      wx.navigateTo({
+        url: '/pages/myorder/index?curId=' + curId + '&videoSrc=' + videoSrc + '&lat=' + lat + '&lng=' + lng + '&id=' + ids + '&unread=' + unread + '&phone=' + phone
+      })
+    } else if (ids == 1) {
+      wx.navigateTo({
+        url: '/pages/myorder/index?curId=' + curId + '&videoSrc=' + videoSrc + '&lat=' + lat + '&lng=' + lng + '&id=' + ids + '&reason=' + reason
+      })
+    } else {
+      var money = e.currentTarget.dataset.money
+      const innerAudioContext = wx.createInnerAudioContext()
+      innerAudioContext.autoplay = true //播放提醒音乐
+      innerAudioContext.loop = false
+      innerAudioContext.volume = 1
+      innerAudioContext.src = api + 'video/notice/money.mp3'
+      _this.setData({
+        layer: true,
+        money: money
+      })
+    }
+    console.log('详细信息:', ids)
+  },
+  close: function() {
+    this.setData({
+      layer: false
+    })
+  }
+})

@@ -1,0 +1,82 @@
+/* pages/vedioInfo/index.wxss */
+page{
+  width: 100%;
+  height: 100%;
+}
+.sure{
+  position: absolute;
+  left: 10%;
+  top: 300rpx;
+  background: #fff;
+  border: 1rpx solid #ccc;
+  height: 400rpx;
+  width: 80%;
+  border-radius: 10rpx;
+}
+.bottoms{
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 20rpx;
+}
+.sure>text{
+  display: block;
+  width: 80%;
+  margin: 50rpx auto 0;
+  font-size: 34rpx;
+  text-align: center;
+}
+.sure>image{
+  width: 128rpx;
+  height: 128rpx;
+  position: absolute;
+  left: calc(50% - 64rpx);
+  top: 40rpx;
+}
+button{
+  width:36%;
+  height:70rpx;
+  font-size:30rpx;
+  line-height:70rpx;
+  margin-bottom:10rpx;
+  display:inline-block;
+  padding:0;
+}
+.sure>button:last-child{
+  background: green;
+  color: #fff;
+}
+.qM{
+  font-size: 32rpx;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 10rpx;
+  padding-left: 40rpx;
+}
+.motai{
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.4);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 99999;
+  /* background: url('https://chejiqiche.com/video/timg.png') round 0 0; */
+}
+.close{
+  float: right;
+  display: inline-block;
+  width: 40rpx;
+  height: 34rpx;
+  text-align: center;
+  line-height: 34rpx;
+  background: #ccc;
+  padding: 4rpx;
+  letter-spacing: 0;
+  border-bottom-left-radius: 20rpx;
+  font-size: 16rpx;
+}

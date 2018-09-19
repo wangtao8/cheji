@@ -1,0 +1,57 @@
+<!--pages/peifuAllOrder/index.wxml-->
+<!--导航条-->
+<scroll-view scroll-x class="navbar" wx:if='{{ids !== "0"}}' style='width: 100%;'>
+  <view wx:for="{{navbar}}" data-idx="{{index}}" data-status='{{status[index]}}' class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">
+    {{item}}
+  </view>
+</scroll-view>
+<view wx:if='{{allData.length>0}}'>
+  <view class='orderInfo' wx:for='{{allData}}' wx:key='{{index}}' catchtap='goInfo' data-item='{{item}}'>
+    <view class='topOrderInfo'>
+    <text class='orderNum'>订单号：{{item.orderno}}</text>
+    <text class='orderStaus'>{{item.statusName}}</text>
+    </view>
+    <view class='botOrderInfo'>
+      <image src='{{item.claimImgList[0]}}' class='botLetImg' mode='aspectFill'></image>
+      <view class='botRightCont'>
+        <view class='botTopCont'>
+            <text class='foursName'>{{item.fullname}}</text>
+            <text class='orIsMoney' wx:if='{{item.rebateForEmp}}'>￥ {{item.rebateForEmp}}</text>
+        </view>
+        <view class='isAddres'>
+            {{item.address}}
+        </view>
+        <view class='allStaus'>
+          <!-- <text class='isStaus'>未接车</text> -->
+          <text class='isOk' wx:if='{{item.cph}}'>已完善</text>
+          <text class='isNo' wx:else>未完善</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view wx:else class='noCont'>这个分类暂时没有内容，换一个看吧^ ^</view>
+<!-- <view hidden="{{currentTab!==0}}">
+  <view class='orderInfo' wx:for='{{allData}}' wx:key='{{index}}'>
+     <view class='topOrderInfo'>
+      <text class='orderNum'>订单号：{{item.orderno}}</text>
+      <text class='orderStaus'>{{item.statusName}}</text>
+     </view>
+     <view class='botOrderInfo'>
+       <image src='{{item.claimImgList[0]}}' class='botLetImg'></image>
+       <view class='botRightCont'>
+          <view>
+             <text class='foursName'>{{item.fullname}}</text>
+             <text class='orIsMoney' wx:if='{{item.rebateForEmp}}'>￥ {{item.rebateForEmp}}</text>
+          </view>
+          <view class='isAddres'>
+             {{item.address}}
+          </view>
+          <view class='allStaus'>
+            <text class='isOk' wx:if='{{item.cph}}'>已完善</text>
+            <text class='isNo' wx:else>未完善</text>
+          </view>
+       </view>
+     </view>
+  </view>
+</view> -->

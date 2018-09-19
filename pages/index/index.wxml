@@ -1,0 +1,56 @@
+<!--pages/index/index.wxml-->
+<image src='../../images/bg.png' class='bgImage' mode='aspectFill'></image>
+<view class='font-infor'>
+  <image src='../../images/99.png' mode='aspectFit'></image>
+  <view>Own car</view>
+  <!-- <view>事故救援理赔体验中心</view> -->
+  <view>发交通事故奖励120红包</view>
+</view>
+<!-- <view class='font-infor'>
+  <view>小马</view>
+  <view>事故救援理赔</view>
+</view> -->
+<image src='../../images/photo.png' class='photos' catchtap='goPhoto'></image>
+<view class='head-image' catchtap='goPhoto'>
+  <image src='../../images/dong.gif' mode='aspectFit'></image>
+  <text>立即摄像</text>
+</view>
+
+<view class='classification'>
+  <!-- <view class='mR' catchtap='prompt' data-id='0'>
+    <image src='../../images/meirong.png' mode='aspectFit'></image>
+    <text>洗车美容</text>
+  </view> -->
+  <view class='lP' catchtap='prompt' data-id='2'>
+    <image src='../../images/lipei.png' mode='aspectFit'></image>
+    <text>爱车赔</text>
+  </view>
+  <view class='mR' catchtap='prompt'>
+    <image src='../../images/meirong.png' mode='aspectFit'></image>
+    <text>合伙人</text>
+  </view>
+  <view class='xC' catchtap='prompt'>
+    <image src='../../images/xinche.png' mode='aspectFit'></image>
+    <text>吃回扣</text>
+  </view>
+  <view class='bY' catchtap='prompt'>
+    <image src='../../images/weixiu.png' mode='aspectFit'></image>
+    <text>闪救援</text>
+  </view>
+  <view class='jY' catchtap='prompt'>
+    <image src='../../images/jiuyuan.png' mode='aspectFit'></image>
+    <text>148保养维修</text>
+  </view>
+  <view class='cX' catchtap='prompt'>
+    <image src='../../images/peifu.png' mode='aspectFit'></image>
+    <text>158钣金油漆</text>
+  </view>
+  <view class='mR' catchtap='prompt'>
+    <image src='../../images/shenhe.png' mode='aspectFit'></image>
+    <text>158全车抛光</text>
+  </view>
+  <view class='eS' catchtap='prompt'>
+    <image src='../../images/ershou.png' mode='aspectFit'></image>
+    <text>188全车贴膜</text>
+  </view>
+</view>

@@ -1,0 +1,59 @@
+<!--pages/my/index.wxml-->
+<view class='logining'  wx:if="{{!hasUserInfo && canIUse}}">
+  <image src='../../images/my2.png' mode='aspectFill' style='padding:20rpx'></image>
+  <text class='status2'>Hi,游客</text>
+  <image src='../../images/right.png'></image>
+</view>
+  <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='btns' style=""> 获取头像昵称 </button>
+<view class='logining' wx:else>
+  <image src='{{userInfo.avatarUrl}}' mode='aspectFit' style='padding:0rpx'></image>
+  <view class='ueserInfo'>
+      <text>{{userInfo.nickName}}</text>
+  </view>
+  <text class='status'>已授权</text>
+</view>
+
+<!-- <button open-type="getUserInfo" style="top: -140rpx;left: -18rpx;opacity:0;" catchtap='goLogins'>获取用户信息</button> -->
+<!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">未登录</button> -->
+<!-- <view class='xX'>
+  <image src='../../images/zhifu.png'></image>
+  <view>
+      <input placeholder='绑定支付宝' class='bindZhi' value='{{zhiVal}}' bindinput='changeZhiVal' type='text' confirm-type="done" bindfocus='bindfocus' bindblur='bindblur' data-num='{{zhiNum}}' focus='{{isFocus}}' bindconfirm='define'></input>
+      <text class='bingzhiT' catchtap='define' wx:if='{{defineOrchange && zhiVal}}'>确定</text>
+  </view>
+</view> -->
+<view class='xX'>
+  <image src='../../images/phone.png'></image>
+  <view>
+      <input placeholder='{{placeholder || "会员认证"}}' value='{{shouji}}' bindinput='changeZhiVal' type='text' placeholder-style='color:#000' disabled='true'></input>
+  </view>
+  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" class='renzhen' wx:if='{{!placeholder}}'>会员认证</button>
+</view>
+<!-- <view class='xX'>
+  <image src='../../images/yuangong.png'></image>
+  <text catchtap='goLogin'>员工登陆</text>
+  <image src='../../images/right.png'></image>
+</view> -->
+<view class='xX' wx:if='{{userType == 1 || userType == 3}}'>
+  <image src='../../images/order.png'></image>
+  <text catchtap='goMyOrder' data-id='3'>理赔订单</text>
+  <text class='zT' wx:if='{{unread}}'></text>
+  <image src='../../images/right.png'></image>
+</view>
+<view class='xX'>
+  <image src='../../images/tijiao.png'></image>
+  <text catchtap='goMySubmit' data-id='1'>我的提交</text>
+  <image src='../../images/right.png'></image>
+</view>
+<view class='xX'>
+  <image src='../../images/hong.png'></image>
+  <text catchtap='myMoney' data-id='0'>我的红包</text>
+  <image src='../../images/right.png'></image>
+</view>
+<view class='xX'>
+  <image src='../../images/kefu.png'></image>
+  <text>客服中心</text>
+  <image src='../../images/right.png'></image>
+</view>
+ 
+<button open-type="contact" class='btn' style="top: -68rpx;opacity: 0;">客服中心</button>

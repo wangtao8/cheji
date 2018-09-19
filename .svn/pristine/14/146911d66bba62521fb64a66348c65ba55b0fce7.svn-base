@@ -1,0 +1,50 @@
+/* pages/loginOut/index.wxss */
+page{
+  padding: 0rpx 20rpx;
+}
+.logining{
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 32rpx;
+  position: relative;
+  margin: 40rpx 0rpx;
+}
+.logining::after{
+  display: block;
+  content: '';
+  height: 40rpx;
+  background: #f3f3f3;
+  position: relative;
+  left: -18rpx;
+  margin: 20rpx 0rpx;
+}
+.logining>image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  background: #ff5400;
+  vertical-align: middle;
+}
+/* .logining>image:last-child{
+  width: 32rpx;
+  height: 32rpx;
+  position: absolute;
+  background: #fff;
+  right: 80rpx;
+  top: 38rpx;
+} */
+.status{
+  float: right;
+  margin-right: 40rpx;
+}
+.ueserInfo{
+    position: absolute;
+    height: 80rpx;
+    left: 120rpx;
+    top: -12rpx;
+}
+.ueserInfo>text:last-child{
+  position: absolute;
+  left: 0rpx;
+  top: 42rpx;
+}

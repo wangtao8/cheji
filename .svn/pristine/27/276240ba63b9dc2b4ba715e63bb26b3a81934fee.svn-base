@@ -1,0 +1,100 @@
+<!--pages/xieyi/index.wxml-->
+<form bindsubmit="formSubmit">
+  <view bindlongtap='longSend'>
+    <view class='shouhou'>
+      售后服务委托协议
+    </view>
+    <view class='fuwushang'>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" class='choosef' name='fuwushang'>
+        <view class="picker">
+          服务商：{{array[indexs]}}
+        </view>
+      </picker>
+    </view>
+
+    <view class='tianxie'>
+      <view>
+        <text>兹有牌照：</text>
+        <input type='text' name='chepai'></input>
+      </view>
+
+      <view>
+        <text>车主：</text>
+        <input type='text' name='chezhu'></input>
+      </view>
+
+      <view>
+        <text>电话：</text>
+        <input type='number' name='dianhua' maxlength='11'></input>
+      </view>
+
+      <view>
+        <text>被保险人：</text>
+        <input type='text' name='baoxianren'></input>
+      </view>
+
+    </view>
+    <view class='chejia' hidden='{{isNone || sure}}'>
+      <text>车架号：</text>
+      <input type='text' name='chejiahao'></input>
+    </view>
+    <view class='times' hidden='{{isNone || sure}}'>
+      于 {{nowDate}} 在
+      <input type='text' value='{{lukou}}' name='lukou' bindinput='changeVal'></input>道路出险，出险情况：
+      <input type='text' name='chuxian'></input>，保险渠道信息：
+      <input type='text' name='qudao'></input>
+    </view>
+    <view class='weit'>
+      <picker bindchange="bindPickerChange2" value="{{index}}" range="{{arrays[indexs]}}" class='choosef' name='weituo'>
+        <view class="picker2">
+          现委托：{{arrays[indexs][index2]}}
+        </view>
+      </picker>
+      <text>全权办理该车拆检、定损、定件及维修事宜，维修换件项目以及费用以保险公司定损为准。如涉及三者理赔，以保险公司赔付为准，如有争议或与保险公司存在经济纠纷，本公司可以协助客户处理。修复完成后，以现金方式结算完后，方可取车。</text>
+      <hr></hr>
+      <view>如客户不在本公司维修须承担如下费用：</view>
+      <!-- <scroll-view scroll-y class='scrolls'>
+        
+      </scroll-view> -->
+      <view>
+          <text class='titles'>车辆已拆检完成</text>
+          <view>1、拆检费用：按我店总报价费用的5%收取拆检费（含报价费。)</view>
+          <view> 2、如零件已定货客户不在本公司维修，该车零件由客户全部购买</view>
+          <text class='titles'>车辆未拆检</text>
+          <view>1、报价费：按我店总报价费用的2%收取。</view>
+          <view> 2、如零件已定货客户不在本公司维修，该车零件由客户全部购买</view>
+          <view>接送车以及车辆维修试车过程中如发生道路交事故，车主方应全力配合，对于事故后果（包括财产损失和人身伤害后果）的处理，在事故各方协商不能达成一致的情况下，贵我双方之间如有争议，仅选择请求交通事故损害赔偿的方式，按照道路交通安全法的规定来解决争议，在我店人员对交通事故无责任的情况下，本店不承担任何由事故产生的直接或间接损失的赔偿责任，亦不接受任何换车，退车的请求。本公司前期垫付的款项，客户须在收到保险理赔款后60日内还清，逾期我公司可以拍卖其车辆，所得款项优先偿还垫付款及利息。如涉及到物损等垫付款金额与保险公司定损金额存在差价的，差价由客户承担。</view>
+        </view>
+    </view>
+    <view class='shenmin'>
+      以上协议一式两份，委托人签字后即刻生效并认可同意。
+    </view>
+    <view class='qianzi'>
+      <view class='qianM' catchtap='goqian'>客户签字：
+        <image src='{{signImage}}' id='signatureImg' mode='aspectFit'></image>
+      </view>
+      <text class='nowDate'>日期：{{nowDate}}</text>
+    </view>
+    <view class='motai' wx:if='{{userMotai}}'>
+      <view class='content' wx:if='{{isNone}}'>
+        <view class='qM'>请签名
+          <text class='close' catchtap='close'>X</text>
+        </view>
+        <canvas class='firstCanvas' canvas-id="firstCanvas" bindtouchmove='move' style='width:100%' bindtouchstart='start' bindtouchend='end' bindtouchcancel='cancel' bindlongtap='tap' disable-scroll='true' binderror='error'>
+        </canvas>
+        <view class='bottoms'>
+          <button bindtap='clearClick'>清除</button>
+          <button bindtap='saveClick'>确定</button>
+        </view>
+      </view>
+      <view class='sure' wx:if='{{sure}}'>
+            <image src='../../images/smile.png'></image>
+            <view class='bottoms'>
+              <view catchtap='close'>取消</view>
+              <button form-type='submit' catchtap='goBack'>确定提交</button>
+              <!-- <view catchtap='goBack'>确定提交?</view> -->
+            </view>
+        </view>
+    </view>
+  </view>
+</form>

@@ -1,0 +1,12 @@
+<!--pages/myorder/index.wxml-->
+<video src='{{videoSrc}}' style="width: 100%; height: 200px;" wx:if='{{isHuaWei}}'></video>
+<image src='{{videoSrc}}' wx:else style="width: 100%; height: 200px;" mode='aspectFit' catchtap='lookImg'></image>
+<map id="myMap" style="width: 100%; height: 200px;" latitude="{{lat}}" longitude="{{lng}}" covers="{{covers}}" scale="18" show-location bindupdated='bindupdated' markers='{{markers}}'></map>
+<view wx:if='{{reason !== "undefined" && reason !== undefined}}' class='failure'>审核未通过原因：{{reason}}
+    <text class='tishi'>注：以上审核均为人工审核，如有疑问请联系客服</text>
+</view>
+<view class='buttoms'>
+  <button catchtap='makePhoneCall' wx:if='{{id == 3 && phones !== "undefined"}}'>现场电话</button>
+  <button catchtap='daohang' wx:if='{{id == 3}}'>导航到现场</button>
+  <button catchtap='goNext' wx:if='{{id == 3}}'>收取现场资料</button>
+</view>

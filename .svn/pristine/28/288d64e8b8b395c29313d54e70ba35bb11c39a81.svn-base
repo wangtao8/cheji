@@ -1,0 +1,12 @@
+<!--pages/paperwork/index.wxml-->
+<text class='prompt'>请根据理赔员指引或页面指引拍摄<text style='color:red'>事故车主</text>的对应证件照，保证文字清晰</text>
+<view class='content'>
+    <view wx:for='{{6}}' wx:key='{{index}}' class='upload' data-id='{{index}}' catchtap='uploadImg'>
+        <image src='{{url[index]}}' wx:if='{{url[index]}}' class='uploadImg' mode='aspectFill'></image>
+        <image src='../../images/{{index + 1}}.png' wx:else class='uploadImg' mode='aspectFill'></image>
+    </view>
+</view>
+<view class='bottomCont'>
+    <text class='bottomFont'>照片仅用于理赔，我们一定会保护您的个人信息，请放心</text>
+    <view class='bottomBtn' catchtap='goNext'>完成</view>
+</view>

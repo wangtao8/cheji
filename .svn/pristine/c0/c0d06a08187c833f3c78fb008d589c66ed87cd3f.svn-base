@@ -1,0 +1,21 @@
+<!--pages/login/index.wxml-->
+<view class='header'>
+  <image src='../../images/99.png'></image>
+</view>
+<view class='login'>
+    <label>
+      <text>账号:</text>
+      <view class='inputBox'>
+        <input type='text' value='{{zhanghao}}' bindinput='valueChange' data-id='0'/>
+        <icon type='clear' size="{{16}}" catchtap='clearValue' data-id='0' wx:if='{{zhanghao}}'></icon>
+      </view>
+    </label>
+    <label>
+      <text>密码:</text>
+      <view class='inputBox'>
+        <input password value='{{mima}}' bindinput='valueChange' data-id='1'/>
+        <icon type='clear' size="{{16}}" catchtap='clearValue' data-id='1' wx:if='{{mima}}'></icon>
+      </view>
+    </label>
+    <view class='loginBtn' catchtap='login'>登录</view>
+</view>

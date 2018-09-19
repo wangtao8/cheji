@@ -1,0 +1,139 @@
+<!--pages/sumitInfo/index.wxml-->
+<view class='title' style='margin:0;padding-bottom:16rpx;'>--事故现场完善--</view>
+<view class='topCont'>
+  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+    <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">全车现场</view>
+    <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">车架号</view>
+    <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">远景</view>
+    <view class="tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav">近景</view>
+    <view class="tab-item {{currentTab==4?'active':''}}" data-current="4" bindtap="swichNav">细节</view>
+  </scroll-view>
+  <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab">
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的全车现场照片</text>
+        <image src='../../images/one240230.png' style='width:480rpx;'></image>
+        <text>请距车3-5米，与车头约45度角拍出事故现场全貌保证车牌清晰，全车入镜</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的车架号照片</text>
+        <image src='../../images/two315175.png' style='width:720rpx;'></image>
+        <text>请拍摄车架号部位整体照片，例：车门剐蹭请拍摄整个车门，可多角度拍摄</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的远景照片</text>
+        <image src='../../images/three318230.png' style='width:636rpx;'></image>
+        <text>请以车损部位为中心，拍摄整体轮廓，例：车门</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的近景照片</text>
+        <image src='../../images/four.png' style='width:636rpx;'></image>
+        <text>请拍摄车损部位整体照片，例：车门剐蹭请拍摄整个车门，可多角度拍摄</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的细节照片</text>
+        <image src='../../images/five.png' style='width:630rpx;'></image>
+        <text>请距车损部位10-30cm拍摄，可多角度拍摄</text>
+      </view>
+    </swiper-item>
+  </swiper>
+  <!-- 图片上传 与 预览 -->
+  <view class='imagePre'>
+    <view style='padding: {{url2[index] == null ? "20rpx" : "0rpx"}}' wx:for='{{5}}' wx:key='{{index}}'>
+      <view wx:if='{{url2[index] == null}}'>图片预览</view>
+      <image wx:else src='{{url2[index]}}' catchtap='lookImage' data-id='{{index}}' mode='aspectFill'></image>
+    </view>
+  </view>
+  <button bindtap="Tophoto" class="page-body-button" class='{{url2.length == 5 ? "unTophoto" : "Tophoto"}}'>拍照</button>
+  <text class='allUpload' catchtap='allUpload'>已拍过照？点我批量上传^ ^</text>
+</view>
+
+<view class='title'>--资料上传--</view>
+<!-- <text class='prompt'>请拍摄<text style='color:red'>事故车主</text>的对应证件照，保证文字清晰</text> -->
+<view class='content'>
+    <view wx:for='{{9}}' wx:key='{{index}}' class='upload' data-id='{{index}}' catchtap='uploadImg'>
+        <image src='{{url[index]}}' wx:if='{{url[index]}}' class='uploadImg' mode='aspectFill'></image>
+        <image src='https://chejiqiche.com/video/notice/{{index + 1}}.png' wx:else class='uploadImg' mode='aspectFill'></image>
+    </view>
+    <view class='upload'>
+    </view>
+</view>
+
+<view class='title'>--事故类型--</view>
+<picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      <view>选择事故：</view><text>{{array[index]}}</text>
+    </view>
+  </picker>
+
+<view class='title'>--车主信息--</view>
+<view class='forms'>
+    <form bindsubmit="formSubmit">
+    <view class='conten'>
+        <text>订单号：</text>
+        <input type='text' name='orderNum'></input>
+    </view>
+    <view class='conten'>
+        <text>客户姓名：</text>
+        <input type='text' name='name'></input>
+    </view>
+    <view class='conten'>
+        <text>车牌：</text>
+        <input type='text' name='carNum'></input>
+    </view>
+    <view class='conten'>
+        <text>品牌：</text>
+        <input type='text' name='carType'></input>
+    </view>
+    <view class='conten'>
+        <text>电话：</text>
+        <input type='text' name='phone'></input>
+    </view>
+    <view class='conten'>
+        <text>事故情况：</text>
+        <input type='text' name='description'></input>
+    </view>
+    <view class='conten'>
+        <text>事故地点：</text>
+        <input type='text' name='address'></input>
+    </view>
+    <view class='conten'>
+        <text>保险公司：</text>
+        <input type='text' name='firm'></input>
+    </view>
+    <view class='conten'>
+        <text>保险渠道：</text>
+        <input type='text' name='channel'></input>
+    </view>
+    <view class='conten'>
+        <text>施救公司：</text>
+        <input type='text' name='rescue'></input>
+    </view>
+    <view class='conten'>
+        <text>施救费用：</text>
+        <input type='text' name='cost'></input>
+    </view>
+    <view class='conten'>
+        <text>承诺客户：</text>
+        <input type='text' name='client'></input>
+    </view>
+    <view class='conten'>
+        <text>备注：</text>
+        <input type='text' name='remarks'></input>
+    </view>
+    <button formType="submit" class='orderDom'>下单</button>
+</form>
+
+</view>
+<!-- <view class='bottomCont'>
+    <text class='bottomFont'>照片仅用于理赔，我们一定会保护您的个人信息，请放心</text>
+    <view class='bottomBtn' catchtap='goNext'>完成</view>
+</view> -->

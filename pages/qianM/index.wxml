@@ -1,0 +1,18 @@
+<view class='content'>
+
+<canvas class='firstCanvas'
+canvas-id="firstCanvas"
+bindtouchmove='move'
+bindtouchstart='start'
+bindtouchend='end'
+bindtouchcancel='cancel'
+bindlongtap='tap'
+disable-scroll='true'
+binderror='error'>
+</canvas>
+
+<button bindtap='clearClick'>清除</button>
+<button bindtap='saveClick' >保存图片</button>
+<image id='signatureImg' src='{{signImage}}'></image>
+
+</view>

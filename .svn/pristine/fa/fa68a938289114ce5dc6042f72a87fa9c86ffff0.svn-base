@@ -1,0 +1,281 @@
+/* pages/mySubmit/index.wxss */
+page{
+  /* padding: 0rpx 20rpx; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.sGoder{
+  padding: 0 20rpx;
+}
+.navbar{
+  flex: none;
+  display: flex;
+  background: #fff;
+}
+.navbar .item{
+  position: relative;
+  flex: auto;
+  text-align: center;
+  line-height: 80rpx;
+}
+.navbar .item.active{
+  color: #FFCC00;
+}
+.navbar .item.active:after{
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4rpx;
+  background: #FFCC00;
+}
+
+
+.xX{
+  position: relative;
+}
+.xXx{
+  position: relative;
+  height: 80rpx;
+  padding: 20rpx 0rpx;
+  border-bottom: 1rpx dashed #f3f3f3;
+  font-size: 24rpx;
+}
+.xX>image, .xXx>image{
+  /* border-radius: 30rpx;
+  line-height: 60rpx; */
+  /* margin-left: 10rpx; */
+  /* vertical-align: middle;
+  margin-top: 10rpx; */
+}
+.xXx>text{
+  display: inline-block;
+  width: calc(100% - 120rpx);
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 28rpx;
+  /* position: absolute;
+  left: 100rpx;
+  top: 20rpx; */
+  border-bottom: 1rpx solid #f3f3f3;
+  text-indent: 24rpx;
+  padding-right: 30rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.xX>view>text:nth-child(1){
+  display: block;
+  width: calc(100% - 60rpx);
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 26rpx;
+  /* position: absolute;
+  left: 100rpx;
+  top: 20rpx; */
+  border-bottom: 1rpx solid #f3f3f3;
+  /* text-indent: 24rpx; */
+  padding-right: 30rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.myMoney>text{
+  display: inline-block;
+  width: calc(100% - 40rpx);
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 24rpx;
+  border-bottom: 1rpx dashed #f3f3f3;
+  text-indent: 24rpx;
+  color: #545252;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.xX>view, .xXx>view{
+  font-size: 24rpx;
+  margin-top: 10rpx;
+}
+.xX>view>view:nth-child(1),.xXx>view:nth-child(1){
+  width: 64%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.fontStlye{
+  width: 100%;
+  position: relative;
+}
+.xX>view.zhuangtai,.xXx>view.zhuangtai{
+  display: inline-block;
+  position: absolute;
+  right: 60rpx;
+  top: 38rpx;
+  color: red;
+  font-size: 26rpx;
+  padding: 0;
+  margin: 0;
+}
+.xX>image:last-child,.xXx>image:last-child{
+  width: 32rpx;
+  height: 32rpx;
+  position: absolute;
+  right: 24rpx;
+  top: 44rpx;
+}
+.xX>.lookImg,.xXx>.lookImg{
+  top: 42rpx!important;
+}
+.xX>.fontStlye>.biaoji{
+  display: inline-block;
+  width: 20rpx;
+  height: 20rpx;
+  background-color: red;
+  border-radius: 10rpx;
+  padding: 0;
+  position: absolute;
+  right: 50rpx;
+  top: 50rpx;
+}
+
+/* pages/money/index.wxss */
+.layer{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0rpx;
+  top: 0rpx;
+  background: rgba(0, 0, 0, .5);
+}
+.money{
+  width: 80%;
+  height: 70%;
+  background: #f3f3f3;
+  margin: 20rpx auto;
+  position: fixed;
+  left: 10%;
+  top: 10%;
+}
+.close{
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  z-index: 999;
+}
+.bcg{
+  width: 100%;
+  height: 36%;
+  border-bottom-left-radius: 40%;
+  border-bottom-right-radius: 40%;
+  position: relative;
+  background: red;
+}
+.myImage{
+  width: 150rpx;
+  height: 150rpx;
+  position: absolute;
+  left: calc(50% - 75rpx);
+  bottom: -75rpx;
+  border-radius: 75rpx;
+  display: inline-block;
+}
+.company{
+  margin-top: 116rpx;
+  text-align: center;
+  font-size: 32rpx;
+}
+.companyName{
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.moneyNum{
+  margin-top: 40rpx;
+  font-size: 64rpx;
+  text-align: center;
+  font-weight: bold;
+}
+.notice{
+  position: absolute;
+  bottom: 60rpx;
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 24rpx;
+  background: #d0c9c9;
+  color: #5b82a0;
+}
+.tishi{
+  font-size: 26rpx;
+  text-align: center;
+  height: 600rpx;
+  line-height: 600rpx;
+}
+/* 理赔列表布局 */
+.accident{
+  width: 100%;
+  font-size: 24rpx;
+  position: relative;
+  /* height: 300rpx; */
+  box-sizing: border-box;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #fff;
+  /* margin-top: 20rpx; */
+}
+.Numbers{
+  width: 10%;
+  height: 100%;
+  text-align: center;
+  float: left;
+  line-height: 250rpx;
+}
+.accidentInfo{
+  width: 90%;
+  float: right;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.accidentInfo>view{
+  width: 46%;
+  margin-top: 20rpx;
+}
+.contentTop{
+  width: 100%;
+  height: 80%;
+  background: #f3f3f3;
+  /* background: red; */
+}
+.contentBto1, .contentBto2{
+  width: 100%;
+  height: 20%;
+  background: #f3f3f3;
+  padding-bottom: 20rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+.contentBto1>button{
+  width:34%;
+  height:100%;
+  line-height:56rpx;
+  font-size:28rpx;
+}
+.contentBto2>button{
+  width:34%;
+  height:100%;
+  line-height:66rpx;
+  font-size:28rpx;
+}
+/* .accident>view:last-child{
+  position: absolute;
+  right: 90rpx;
+  top: 70rpx;
+} */

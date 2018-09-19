@@ -1,0 +1,173 @@
+// pages/zhifubao/index.js
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    x: 0,
+    y: 0,
+    hidden: true
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+
+  },
+  start: function (e) {
+    this.setData({
+      hidden: false,
+      x: e.touches[0].x,
+      y: e.touches[0].y
+    })
+  },
+  move: function (e) {
+    this.setData({
+      x: e.touches[0].x,
+      y: e.touches[0].y
+    })
+  },
+  end: function (e) {
+    this.setData({
+      hidden: true
+    })
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function(e) {
+
+    // var cxt_rotate = wx.createContext();//创建并返回绘图上下文context对象。
+
+    // var rotate = 0;//默认旋转角度为为0
+
+    // setInterval(function () { //无限循环定时函数    
+
+    //   cxt_rotate.translate(150, 100);//设置坐标系坐标
+
+    //   rotate++;//旋转角度自增1
+
+    //   cxt_rotate.rotate(rotate * Math.PI / 180)//设置旋转的角度
+
+    //   cxt_rotate.rect(0, 0, 50, 50)//设置坐标(0,0)，相对于坐标系坐标，边长为为50px的正方形
+
+    //   cxt_rotate.stroke();//对当前路径进行描边
+
+    //   wx.drawCanvas({
+
+    //     canvasId: 'myCanvas',//画布标识，对应
+
+    //     actions: cxt_rotate.getActions()//导出context绘制的直线并显示到页面
+
+    //   });
+
+    // }, 1)
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
+    var roate = 0
+    var ctx = wx.createCanvasContext('myCanvas')
+    // setInterval(function(){
+    //先绘制一个黑色大圆
+    // roate++
+    ctx.beginPath()
+    ctx.arc(0, 0, 50, 0, 2 * Math.PI)
+    ctx.translate(100, 75)
+    ctx.rotate(roate * Math.PI / 180)
+    ctx.setFillStyle('#000')
+    ctx.fill()
+    ctx.stroke()
+
+    //再绘制一半白色圆
+    ctx.beginPath()
+    ctx.arc(0, 0, 50, Math.PI * 1.5, Math.PI / 2, true)
+    ctx.setFillStyle('#fff')
+    ctx.fill()
+
+    //下面白色中圆
+    ctx.beginPath()
+    ctx.arc(0, -25, 25, 0, Math.PI * 2)
+    ctx.setFillStyle('#fff')
+    ctx.fill()
+
+    //上面黑色中圆
+    ctx.beginPath()
+    ctx.arc(0, 25, 25, 0, Math.PI * 2)
+    ctx.setFillStyle('#000')
+    ctx.fill()
+
+    //下面黑色小圆
+    ctx.beginPath()
+    ctx.arc(0, -25, 10, Math.PI * 2)
+    ctx.setFillStyle('#000')
+    ctx.fill()
+
+    //上面白色小圆
+    ctx.beginPath()
+    ctx.arc(0, 25, 10, 0, Math.PI * 2)
+    ctx.setFillStyle('#fff')
+    ctx.fill()
+
+    ctx.beginPath()
+    var grd = ctx.createCircularGradient(125, 0, 40)
+    grd.addColorStop(0, 'red')
+    grd.addColorStop(0.16, 'orange')
+    grd.addColorStop(0.33, 'yellow')
+    grd.addColorStop(0.5, 'green')
+    grd.addColorStop(0.66, 'cyan')
+    grd.addColorStop(0.83, 'blue')
+    grd.addColorStop(1, 'purple')
+
+
+    ctx.setFillStyle(grd)
+    ctx.setShadow(4, 4, 10, '#000')
+    ctx.fillRect(50, -40, 150, 80)
+
+    // ctx.fillRect(10, 10, 150, 75)
+    ctx.draw()
+    // },5)
+
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function() {
+
+  }
+})

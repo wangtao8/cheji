@@ -1,0 +1,13 @@
+<!--pages/zhifubao/index.wxml-->
+<view class='money' catchtap='close'>
+  <icon type='clear' size='20' class='close'></icon>
+  <view class='bcg'>
+    <image src='../../images/7.png' class='myImage'></image>
+  </view>
+  <view class='company'>
+    <view class='companyName'>车己汽车</view>
+    <view class='companySay'>恭喜发财！大吉大利！</view>
+  </view>
+  <view class='moneyNum'>{{money}}元</view>
+  <view class='notice'>已存入零钱，请通过“我的--钱包”进行查看！</view>
+</view>

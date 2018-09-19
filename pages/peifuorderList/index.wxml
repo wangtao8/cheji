@@ -1,0 +1,26 @@
+<!--pages/peifuorderList/index.wxml-->
+<!--事故订单-->
+<view class='sGoder'>
+  <view wx:if='{{ids == 1}}'>
+    <view class='xXx' wx:for='{{dataAll}}' wx:key='{{index}}' catchtap='goInfo' data-item='{{item}}'>
+      <view class='isOk' wx:if='{{item.settleType}}'>已完善</view>
+      <view class='isNo' wx:else>未完善</view>
+      <view class='orderInfo'>
+          <view>订单号： {{item.orderno}}</view>
+          <view>提交日期： {{item.createtime}}</view>
+      </view>
+      <view class='zhuangtai'>{{item.statusName}}</view>
+      <image src='../../images/right.png' class='lookImg'></image>
+    </view>
+  </view>
+  <view wx:else>
+    <view class='xX' wx:for='{{dataAll}}' wx:key='{{index}}' catchtap='goInfo' data-item='{{item}}' data-video='{{item.video}}' data-curid='{{item.id}}' data-lng='{{item.lng}}' data-lat='{{item.lat}}' data-unread='{{item.status}}' data-phone='{{item.phone}}' data-realness='{{item.realness}}' data-sgid='{{item.accid}}'>
+      <view>{{item.address}}</view>
+      <view>{{item.createTime}}</view>
+      <!-- <view class='zhuangtai'>{{item.statusName == '未审核' ? '正在审核' : item.statusName}}</view> -->
+      <text class='biaoji' wx:if='{{item.status == "未查看"}}'></text>
+      <image src='../../images/right.png' class='lookImg'></image>
+    </view>
+  </view>
+  <view class='tishi' wx:if='{{dataAll.length == 0 || dataAll.length == undefined}}'>啊哦！暂时没有记录哦~</view>
+</view>

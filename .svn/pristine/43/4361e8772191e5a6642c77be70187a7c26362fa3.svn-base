@@ -1,0 +1,66 @@
+<!--pages/myCase/index.wxml-->
+<view class='accident' style='height:280rpx'>
+  <view class='contentTop'>
+    <!-- <view class='Numbers'>{{index+1}}.</view> -->
+    <view class='accidentInfo' wx:if='{{ids == 1}}'>
+      <view>车牌号：{{allData[0].cph}}</view>
+      <view>事故类型：{{allData[0].type}}</view>
+      <view>描述：{{allData[0].desc}}</view>
+      <view>理赔老师姓名：{{allData[0].claimerName}}</view>
+      <view>理赔创建时间：{{allData[0].createtime}}</view>
+      <view></view>
+    </view>
+    <view class='accidentInfo' wx:elif='{{ids == 3}}'>
+          <view>车牌号：{{allData[0].cph}}</view>
+          <view>事故类型：{{allData[0].type}}</view>
+          <view>上传地址：{{allData[0].address}}</view>
+          <view>描述：{{allData[0].desc}}</view>
+          <view>客户姓名：{{allData[0].name}}</view>
+          <view>理赔创建时间：{{allData[0].createtime}}</view>
+          <view></view>
+        </view>
+  </view>
+  <view class='contentBto2'>
+        <button type='primary' catchtap='goPhone' data-phone='{{allData[0].claimerPhone}}' wx:if='{{ids == 1 && allData[0].claimerPhone}}'>联系理赔专员</button>
+        <button type='primary' catchtap='goPhone' data-phone='{{allData[0].phone}}' wx:elif='{{ids == 3 && allData[0].phone}}'>联系客户</button>
+        <!-- <button type='default' data-phone='{{item.phone}}' catchtap='goPhone'>联系客户</button> -->
+  </view>
+</view>
+<view class="section section_gap">
+    <text class="section__title" wx:if='{{ids == 1}}'>案件进度</text>
+    <picker bindchange="bindPickerChange" value="{{status}}" range="{{array}}" wx:elif='{{ids == 3}}'>
+      <view class="picker">
+        案件进度：{{array[index]}}
+      </view>
+    </picker>
+    <view class="body-view">
+        <slider bindchange="slider1change" value='{{isVal}}' step='5' disabled='true' left-icon="cancel" right-icon="success_no_circle"/>
+        <view class='jindu'>
+            <view style='color:{{isVal == 0 ? "#44B549" : "black"}}'>已下单</view>
+            <view style='color:{{isVal == 50 ? "#44B549" : "black"}}'>理赔中</view>
+            <view style='color:{{isVal == 100 ? "#44B549" : "black"}}'>完成</view>
+        </view>
+    </view>
+</view>
+<view class='ziLiao' wx:if='{{urls.length !== 0}}'>
+    <view>理赔资料展示</view>
+    <view class='imgShow'>
+        <image wx:for='{{urls}}' wx:key='{{index}}' src='{{item}}' catchtap='lookImg' data-id='{{index}}' mode='aspectFill'></image>
+        <image wx:if='{{urls.length % 2 !== 0}}'></image>
+    </view>
+</view>
+<view class='content' wx:if='{{ids == 3}}'>
+  <view>上传资料</view>
+  <view class='uploadImg'>
+      <view class='upLoadContent' wx:if='{{readyUploadUrls}}' wx:for='{{readyUploadUrls}}' wx:key='{{index}}'>
+          <image src='{{item}}' mode='aspectFill'></image>
+          <icon type='clear' size='24' catchtap='closeImg' data-id='{{index}}'></icon>
+          <!-- <progress percent="{{schedule}}" active active-mode='forwards' hidden='{{index == 0 || uploadIng !== index}}'/> -->
+      </view>
+      <view class='upLoadContent' catchtap='chooseImg' wx:if='{{readyUploadUrls.length !== 9}}'>
+          <view>+</view>
+      </view>
+  </view>
+  <button type='primary' catchtap='uploadImg' class='botomButtom'>上传图片</button>
+</view>
+

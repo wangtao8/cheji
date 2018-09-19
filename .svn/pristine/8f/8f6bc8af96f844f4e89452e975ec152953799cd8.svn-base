@@ -1,0 +1,25 @@
+<!--pages/zhangdan/index.wxml-->
+<view class='topCont'> 
+  <view class='topTime'>
+    <!-- <text>09</text>
+    月/2018 -->
+    账单
+  </view>
+  <view class='goAddMoney' catchtap='goAddMoney'>
+     <image src='../../images/qcz.png' class='topImg'></image>
+     <text>去充值</text>
+  </view>
+</view>
+<view class='centerCont'>
+   <view class='cont' wx:for='{{allData}}' wx:key='{{index}}'>
+      <view class='centerTime'>
+         <view>{{item.dataBefore}}</view>
+         <view>{{item.dataAfter}}</view>
+      </view>
+      <image src='../../images/{{item.detailType==0?"shouru":"zhichu"}}.png' class='shouru'></image>
+      <view class='centerMoney'>
+          <view>{{item.amount}}</view>
+          <view>{{item.detailTypeName}}</view>
+      </view>
+   </view>
+</view>

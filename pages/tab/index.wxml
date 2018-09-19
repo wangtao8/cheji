@@ -1,0 +1,68 @@
+<!--pages/tab/index.wxml-->
+<view>
+  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
+    <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichNav">全车现场</view>
+    <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">车架号</view>
+    <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">远景</view>
+    <view class="tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav">近景</view>
+    <view class="tab-item {{currentTab==4?'active':''}}" data-current="4" bindtap="swichNav">细节</view>
+  </scroll-view>
+  <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab">
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的全车现场照片</text>
+        <image src='../../images/one240230.png' style='width:480rpx;'></image>
+        <text>请距车3-5米，与车头约45度角拍出事故现场全貌保证车牌清晰，全车入镜</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的车架号照片</text>
+        <image src='../../images/two315175.png' style='width:720rpx;'></image>
+        <text>请拍摄车架号部位整体照片，例：车门剐蹭请拍摄整个车门，可多角度拍摄</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的远景照片</text>
+        <image src='../../images/three318230.png' style='width:636rpx;'></image>
+        <text>请以车损部位为中心，拍摄整体轮廓，例：车门</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的近景照片</text>
+        <image src='../../images/four.png' style='width:636rpx;'></image>
+        <text>请拍摄车损部位整体照片，例：车门剐蹭请拍摄整个车门，可多角度拍摄</text>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="item-ans">
+        <text>请按照以下示意图拍摄您的细节照片</text>
+        <image src='../../images/five.png' style='width:630rpx;'></image>
+        <text>请距车损部位10-30cm拍摄，可多角度拍摄</text>
+      </view>
+    </swiper-item>
+  </swiper>
+  <!-- 图片上传 与 预览 -->
+  <view class='imagePre'>
+    <view style='padding: {{url[index] == null ? "20rpx" : "0rpx"}}' wx:for='{{5}}' wx:key='{{index}}'>
+      <view wx:if='{{url[index] == null}}'>图片预览</view>
+      <image wx:else src='{{url[index]}}' catchtap='lookImage' data-id='{{index}}' mode='aspectFill'></image>
+    </view>
+  </view>
+  <button bindtap="Tophoto" class="page-body-button" class='{{url.length == 5 ? "unTophoto" : "Tophoto"}}'>拍照</button>
+  <button bindtap="goNext" class="page-body-button" class='{{url.length == 5 ? "goNext" : "ungoNext"}}'>下一步</button>
+  <text class='allUpload' catchtap='allUpload'>已拍过照？点我批量上传^ ^</text>
+  <!-- 弹出框 -->
+  <view class='motai' wx:if='{{userMotai}}'>
+    <view class='sure' wx:if='{{sure}}'>
+      <!-- <text>上传成功！因为有您，我们的城市不再拥堵，因为有您，我们的出行更加美好，谢谢您的参与，请等待红包^ ^</text> -->
+      <input type='text' placeholder='未成交原因？'></input>
+      <view class='bottoms'>
+        <!-- <button catchtap='close'>取消</button> -->
+        <button catchtap='sure' type='primary' class='renzhen'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,21 @@
+<!--pages/zhangdan/index.wxml-->
+<view class='topCont'> 
+  <view class='topTime'>
+    <text>09</text>
+    月/2018
+  </view>
+  <image src='../../images/rili.png' class='topImg'></image>
+</view>
+<view class='centerCont'>
+   <view class='cont' wx:for='{{5}}'>
+      <view class='centerTime'>
+         <view>周六</view>
+         <view>09-08</view>
+      </view>
+      <image src='../../images/shouru.png' class='shouru'></image>
+      <view class='centerMoney'>
+          <view>+3600.00</view>
+          <view>因长相怪异，收入3600元</view>
+      </view>
+   </view>
+</view>

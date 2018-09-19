@@ -1,0 +1,200 @@
+/* pages/lipeiInfo/index.wxss */
+page{
+  width: 100%;
+  height: 100%;
+  padding: 0rpx 20rpx;
+  background: rgb(240,240,240);
+}
+.AnLiImg{
+  width: 100%;
+}
+.AnLiText{
+  width: 100%;
+  margin-left: -20rpx;
+  box-sizing: border-box;
+  padding: 48rpx 20rpx ;
+  margin-top: -46rpx;
+  background: #fff;
+}
+.bottoms{
+  width: 100%;
+  background: #fff;
+  margin-left: -20rpx;
+  margin-top: 16rpx;
+  padding: 50rpx 20rpx;
+}
+.tishi{
+  padding-bottom: 20rpx;
+  font-size: 36rpx;
+  color: rgb(51,51,51);
+  font-weight: bold;
+  margin-bottom: 39rpx;
+}
+form>view{
+  color: #1AAD16;
+}
+.userName, .userPhone, .message{
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  color: rgb(77,77,77);
+}
+input{
+  margin: 20rpx 0;
+  box-sizing: border-box;
+  padding-left: 20rpx;
+  width: 702rpx;
+  height: 80rpx;
+  background: rgb(230,230,230);
+  border-radius: 6rpx;
+}
+.message>textarea{
+  height: 200rpx;
+  width: 702rpx;
+  background: rgb(230,230,230);
+  border-radius: 6rpx;
+  margin-top: 20rpx;
+  box-sizing: border-box;
+  padding-left: 20rpx;
+}
+button{
+  margin-left: 0;
+  top: 20rpx;
+  width: 702rpx;
+  background: #ec7c03;
+  color: #fff;
+}
+.containers{
+  width: 100%;
+  position: relative;
+  background: #fff;
+  margin-left: -20rpx;
+  padding-top: 30rpx;
+}
+.containers2{
+  width: 100%;
+  background: #fff;
+  margin-left: -20rpx;
+  padding: 30rpx 20rpx 0;
+  box-sizing: border-box;
+}
+.leftImg2>image{
+  width: 220rpx;
+  height: 168rpx;
+}
+.topTime2{
+  width: 400rpx;
+  float: left;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.bottomCont2{
+  float: right;
+}
+.bottomFont2{
+  padding: 10rpx 0 30rpx;
+  font-size: 24rpx;
+  color: rgb(102,102,102);
+  border-bottom: 1rpx solid rgb(230,230,230);
+}
+.bottomFont2>view{
+  display: inline-block;
+}
+.yan2{
+  display: inline-block;
+  width: 34rpx;
+  height: 24rpx;
+  margin-right: 16rpx
+}
+.topTime{
+  width: 100%;
+  font-size: 30rpx;
+  text-align: left;
+  color: rgb(50,50,50);
+  font-weight: bold;
+  text-indent: 24rpx;
+  margin-bottom: 40rpx;
+}
+.news{
+  width: 50rpx;
+  height: 90rpx;
+  float: right;
+  margin-right: 24rpx;
+  margin-top: -30rpx;
+}
+.miaoshu{
+  text-indent: 48rpx;
+  font-size: 26rpx;
+  color: rgb(102,102,102);
+  font-weight: 500;
+}
+.bottomCont{
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 28rpx;
+}
+.bottomFont{
+  width: 702rpx;
+  padding: 10rpx 0 30rpx;
+  margin: 0 auto;
+  border-bottom: 1rpx solid rgb(230,230,230);
+}
+.yan{
+  display: inline-block;
+  margin-right: 16rpx;
+  width: 34rpx;
+  height: 24rpx;
+}
+.bottomFont>view{
+  display: inline-block;
+}
+.bottomFont>view>text,.bottomFont2>view>text{
+  display: inline-block;
+  font-size: 24rpx;
+  color: rgb(102,102,102);
+}
+.bottomFont>text,.bottomFont2>text{
+  font-size: 24rpx;
+  color: rgb(102,102,102);
+  float: right;
+}
+.leftImg{
+  width: 702rpx;
+  height: 360rpx;
+  margin-left: 24rpx;
+}
+.leftImg>image{
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+}
+.callPhone{
+  text-align: left;
+  margin: 34rpx 0 0;
+  font-size: 22rpx;
+  color: rgb(102,102,102);
+}
+.callImg{
+  display: inline-block;
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 10rpx;
+}
+.titles{
+  font-size: 36rpx;
+  font-weight: bold;
+  margin: 48rpx 0 38rpx;
+}
+.anli{
+  width: 100%;
+  height: 80rpx;
+  padding-top: 40rpx;
+  margin-left: -20rpx;
+  padding-bottom: 32rpx;
+  border-bottom: 1rpx solid rgb(230,230,230);
+  background: #fff;
+}
+.anli>image{
+  width: 200rpx;
+  height: 80rpx;
+  margin: 0 0 0 20rpx;
+}

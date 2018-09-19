@@ -1,0 +1,108 @@
+var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
+var qqmapsdk;
+Page({
+  data: {
+    borderRadius: 5,
+    latitude: 0,
+    longitude: 0,
+    markers: [],
+    mobileLocation: {//移动选择位置数据
+      longitude: 0,
+      latitude: 0,
+      address: '',
+    }
+  },
+  onLoad: function () {
+    // 实例化API核心类
+    qqmapsdk = new QQMapWX({
+      key: 'E6OBZ-I2YK6-QWESQ-MH3TB-OZUKO-THBPD'
+    });
+    var that = this;
+    //获取位置
+    wx.getLocation({
+      type: 'gcj02',//默认为 wgs84 返回 gps 坐标，gcj02 返回可用于wx.openLocation的坐标
+      success: function (res) {
+        console.log(res);
+        var marker = [{
+          id: 0,
+          latitude: res.latitude,
+          longitude: res.longitude
+        }];
+        var mobileLocation = {
+          latitude: res.latitude,
+          longitude: res.longitude,
+        };
+        that.setData({
+          latitude: res.latitude,
+          longitude: res.longitude,
+          markers: marker,
+        });
+        //根据坐标获取当前位置名称，显示在顶部:腾讯地图逆地址解析
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: res.latitude,
+            longitude: res.longitude
+          },
+          success: function (addressRes) {
+            var address = addressRes.result.formatted_addresses.recommend;
+            mobileLocation.address = address;
+            console.log(address)
+            //当前位置信息
+            that.setData({
+              mobileLocation: mobileLocation,
+            });
+          }
+        });
+      },
+      fail: function(e){
+        console.log('错误信息：', e)
+        wx.getLocation({
+          fail: 'gcj02',
+          success: function(res){
+            console.log('再次需求授权后的结果：', res)
+          }
+        })
+      }
+    });
+
+    this.mapCtx = wx.createMapContext('qqMap');
+  },
+
+  //移动选点
+  moveToLocation: function () {
+    var that = this;
+    wx.chooseLocation({
+      success: function (res) {
+        console.log('移动选点的结果：', res)
+        let mobileLocation = {
+          longitude: res.longitude,
+          latitude: res.latitude,
+          address: res.address,
+        };
+        var marker = [{
+          id: 0,
+          latitude: res.latitude,
+          longitude: res.longitude
+        }];
+        that.setData({
+          mobileLocation: mobileLocation, 
+          latitude: res.latitude,
+          longitude: res.longitude,
+          markers: marker
+        });
+      },
+      fail: function (err) {
+        console.log(err)
+      }
+    });
+  },
+  locationTo: function () {
+    var latitude = this.data.latitude
+    var longitude = this.data.longitude
+    wx.openLocation({
+      latitude: latitude,
+      longitude: longitude,
+      scale: 28
+    })
+  }
+});

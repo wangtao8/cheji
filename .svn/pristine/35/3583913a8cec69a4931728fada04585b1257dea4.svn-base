@@ -1,0 +1,5 @@
+<!-- 组件模板 -->
+<canvas style='width:100%; height:360rpx;' canvas-id='myCanvas'></canvas>
+
+<image src='{{signImage}}' mode='aspectFit' style='width:400rpx;height:400rpx' catchtap='lookImage'></image>
+<button bindtap='saveClick'>确定</button>

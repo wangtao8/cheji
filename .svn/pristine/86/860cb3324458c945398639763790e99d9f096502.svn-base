@@ -1,0 +1,48 @@
+/* pages/myorder/index.wxss */
+page{
+  height: 100%;
+}
+.buttoms{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+button{
+  width: 30%;
+  height: 80rpx;
+  font-size: 32rpx;
+  line-height: 80rpx;
+  display: inline-block;
+  background: #00b2dc;
+  color: #fff;
+  margin-top: 20rpx;
+}
+.failure{
+  height: 200rpx;
+  width: 80%;
+  box-sizing: border-box;
+  padding: 80rpx 5rpx;
+  text-indent: 24rpx;
+  text-align: left;
+  font-size: 26rpx;
+  color: red;
+  background: #f3f3f3;
+  word-break: break-all;
+  border: 1rpx dashed #000;
+  margin: 20rpx auto;
+  position: relative;
+  border-radius: 20rpx;
+}
+.tishi{
+  position: absolute;
+  bottom: 5rpx;
+  left: 5rpx;
+  font-size: 24rpx;
+  color: #ccc;
+  text-shadow: 1rpx 2rpx 1rpx #fff;
+}
+/* .buttoms>button:last-child{
+  display: none;
+} */

@@ -1,0 +1,200 @@
+/* pages/my/index.wxss */
+page {
+  /* padding: 0rpx 20rpx; */
+  /* background: rgb(240,240,240); */
+}
+
+.btns {
+  top: 500rpx;
+  left: calc(50% - 106rpx);
+  opacity: 0;
+  width: 214rpx;
+  height: 64rpx;
+  position: absolute;
+}
+.blank10{
+  height: 16rpx;
+  width: 100%;
+  background: rgb(240,240,240);
+  position: absolute;
+  top: 610rpx;
+  left: 0;
+}
+.renzhen{
+  position: absolute;
+  left: 0rpx;
+  top: -4rpx;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 9999999999;
+}
+.logining {
+  height: 410rpx;
+  line-height: 50rpx;
+  font-size: 32rpx;
+  position: relative;
+  background: url('https://chejiqiche.com/video/notice/bg.png') round;
+  /* margin: 40rpx 0rpx; */
+}
+
+/* .logining::after {
+  display: block;
+  content: '';
+  height: 40rpx;
+  background: #f3f3f3;
+  position: relative;
+  left: -18rpx;
+  margin: 20rpx 0rpx;
+} */
+
+.logining>image {
+  width: 186rpx;
+  height: 186rpx;
+  border-radius: 93rpx;
+  background: #f3f3f3;
+  vertical-align: middle;
+  box-sizing: border-box;
+  padding: 20rpx;
+  margin: 0 auto;
+  position: absolute;
+  top: 270rpx;
+  left: calc(50% - 93rpx);
+}
+
+.logining>image:last-child {
+  width: 32rpx;
+  height: 32rpx;
+  position: absolute;
+  background: #fff;
+  right: 178rpx;
+  top: 38rpx;
+}
+
+.status {
+  float: right;
+  margin-right: 90rpx;
+  font-size: 28rpx;
+  margin-top: 14rpx;
+}
+
+.status2 {
+  top: 500rpx;
+  left: calc(50% - 106rpx);
+  width: 214rpx;
+  height: 64rpx;
+  position: absolute;
+  text-align: center;
+  line-height: 64rpx;
+  border-radius: 50rpx;
+  background: #fff;
+  color: #ec7c03;
+  border: 2rpx solid #ec7c03;
+}
+
+.ueserInfo {
+  position:absolute;
+  /* width:214rpx; */
+  width: 100%;
+  height:32px;
+  line-height:64rpx;
+  text-align:center;
+  left:0;
+  top:500rpx;
+}
+
+.ueserInfo>text:last-child {
+  display:inline-block;
+  height:64rpx;
+  width:100%;
+  background:#fff;
+  border-radius:50rpx;
+  color:#ec7c03;
+  /* border:2rpx solid #ec7c03; */
+}
+
+.business{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  position: relative;
+  top: 270rpx;
+}
+
+.xX {
+  margin-bottom: 14rpx;
+  position: relative;
+  top: 20rpx;
+  margin-top: 20rpx;
+  height: 130rpx;
+  width: 22%
+}
+
+.xX>image {
+  width: 70rpx;
+  height: 70rpx;
+  /* border-radius: 30rpx; */
+  line-height: 70rpx;
+  margin-left: 10rpx;
+  vertical-align: middle;
+  margin-top: 10rpx;
+  margin: 0 50rpx;
+  display: block;
+}
+
+.xX>text:nth-child(2), .xX>view:nth-child(2) {
+  display: block;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  width: 100%;
+  font-size: 26rpx;
+}
+
+.bindZhi {
+  width: 80%;
+  height: 100%;
+  display: inline-block;
+}
+
+.bingzhiT {
+  display: inline-block;
+  width: 18%;
+  height: 100%;
+  float: right;
+  text-align: center;
+  line-height: 80rpx;
+  padding-right: 20rpx;
+  box-sizing: border-box;
+}
+
+.xX>image:last-child {
+  width: 32rpx;
+  height: 32rpx;
+  position: absolute;
+  right: 80rpx;
+  top: 28rpx;
+  margin: 0rpx;
+  padding: 0rpx;
+}
+
+.zT {
+  display: inline-block;
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 10rpx;
+  position: absolute;
+  right: 32rpx;
+  top: 0rpx;
+  background: red;
+}
+
+.btn{
+  width: 150rpx;
+  height: 150rpx;
+  position: absolute;
+  left: 16rpx;
+  bottom: 2rpx;
+  opacity: 0;
+}
