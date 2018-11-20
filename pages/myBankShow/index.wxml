@@ -1,7 +1,0 @@
-<!--pages/myBankShow/index.wxml-->
-<view class='bankCont'>
-   <view class='name'>持卡人：<text wx:if='{{bankUserName !== "无"}}'>*{{bankUserName}}</text><text wx:else>未绑定</text></view>
-   <view class='card'>银行卡：<text wx:if='{{bankcard !== "无"}}'>**** **** **** {{bankcard}}</text> <text wx:else>未绑定任何银行卡</text></view>
-</view>
-<button class='eidtBank' type='primary' catchtap='editBank' wx:if='{{bankUserName !== "无"}}' data-id='0'>修改银行卡</button>
-<button class='eidtBank' type='primary' catchtap='editBank' wx:else data-id='1'>绑定银行卡</button>

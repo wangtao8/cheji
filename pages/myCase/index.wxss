@@ -92,8 +92,10 @@ page{
   line-height: 250rpx;
 }
 .accidentInfo{
-  width: 90%;
-  float: right;
+  /* width: 90%;
+  float: right; */
+  box-sizing: border-box;
+  padding: 0 24rpx;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -105,7 +107,7 @@ page{
 }
 .contentTop{
   width: 100%;
-  height: 80%;
+  /* height: 80%; */
   background: #f3f3f3;
   /* background: red; */
 }
@@ -250,4 +252,17 @@ progress{
   width: calc(100% - 72rpx);
   float: right;
   font-size: 32rpx;
+}
+.chooseIng{
+  display: inline-block;
+  width: 200rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 30rpx;
+  background: rgb(240,240,240);
+  color: rgb(118,118,118);
+  text-align: center;
+  border-radius: 8rpx;
+  text-shadow: -1rpx 1rpx #fff,1rpx 1rpx #fff;
+  padding: 6rpx 0;
 }

@@ -1,8 +1,10 @@
 /* pages/lipeiInfo/index.wxss */
 page{
   width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
+  background: #fafafa;
   /* height: 100%; */
   /* background: rgb(240,240,240); */
 }
@@ -17,13 +19,26 @@ page{
   margin-top: -46rpx;
   background: #fff;
 }
+
 .bottoms{
   width: 100%;
-  background: #fff;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
   box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
   /* position: absolute; */
   /* bottom: 0; */
   /* left: 0; */
+}
+.bottoms>view{
+  width: 100%;
+  background: #fff;
+  position: absolute;
+  /* top: 400rpx; */
+  left: 0;
 }
 .tishi{
   padding-bottom: 20rpx;
@@ -35,21 +50,60 @@ page{
 form>view{
   color: #1AAD16;
 }
+.topYd{
+  text-align: center;
+  height: 128rpx;
+  box-sizing: border-box;
+  padding: 14rpx 0;
+  border-bottom: 1rpx solid #efefef;
+  position: relative;
+}
+.topYd>image{
+  display: inline-block;
+  width: 28rpx;
+  height: 28rpx;
+  position: absolute;
+  right: 24rpx;
+  top: 24rpx;
+}
+.contYd>view:first-child{
+  font-size: 34rpx;
+  font-weight: bold;
+  color: rgb(104,104,104);
+}
+.contYd>view:last-child{
+  font-size: 24rpx;
+  font-weight: bold;
+  color: rgb(66,66,64);
+  margin: 20rpx 0;
+}
 .userName, .userPhone, .message{
   /* margin-top: 20rpx; */
-  width: 702rpx;
+  /* width: 702rpx; */
   font-size: 26rpx;
   color: rgb(77,77,77);
   margin: 20rpx auto 0;
+  border-bottom: 1rpx solid #efefef;
+  box-sizing: border-box;
+  padding: 0 24rpx;
+}
+.userName>text, .userPhone>text{
+  display: inline-block;
+  height: 80rpx;
+  line-height: 80rpx;
+  float: left;
+  font-size: 30rpx;
 }
 input{
-  margin: 20rpx 0;
+  /* margin: 20rpx 0; */
   box-sizing: border-box;
   padding-left: 20rpx;
-  width: 702rpx;
+  width: 500rpx;
   height: 80rpx;
-  background: rgb(230,230,230);
+  /* background: rgb(230,230,230); */
   border-radius: 6rpx;
+  display: inline-block;
+  font-size: 26rpx;
 }
 .message>textarea{
   height: 200rpx;
@@ -59,13 +113,17 @@ input{
   margin-top: 20rpx;
   box-sizing: border-box;
   padding-left: 20rpx;
+  float: right;
 }
 button{
   margin-left: 0;
-  width: 702rpx;
+  width: 600rpx;
   background: #ec7c03;
+  border-radius: 80rpx;
   color: #fff;
-  margin: 20rpx auto;
+  margin: 22rpx auto 0;
+  letter-spacing: 20rpx;
+  font-size: 36rpx;
 }
 .containers{
   width: 100%;
@@ -173,11 +231,12 @@ button{
 }
 .callPhone{
   text-align: left;
-  margin: 12rpx 0;
+  /* margin: 12rpx 0; */
   font-size: 22rpx;
   color: rgb(102,102,102);
   box-sizing: border-box;
-  padding: 0 24rpx;
+  padding: 10rpx 24rpx;
+  background: #fafafa;
 }
 .callImg{
   display: inline-block;
@@ -214,7 +273,7 @@ button{
   position: relative;
   overflow: hidden;
   color: rgb(128,128,128);
-  margin-top: 74rpx;
+  margin-top: 40rpx;
 }
 .topDB>view{
   width: 50%;
@@ -275,10 +334,16 @@ button{
   margin-bottom: 8rpx;
 }
 .botCZ{
-  width: 702rpx;
-  height: 80rpx;
-  padding: 34rpx 0;
+  width: 100%;
+  padding: 24rpx 24rpx;
+  height: 128rpx;
+  box-sizing: border-box;
   line-height: 80rpx;
+  background: #fff;
+  position: fixed;
+  left: 0;
+  bottom: -128rpx;
+  transition: bottom 0.2s ease-in-out;
 }
 .botCZ>view{
   display: inline-block;
@@ -290,7 +355,7 @@ button{
 }
 .callPhones>text{
   font-size: 30rpx;
-  color: rgb(195,55,55);
+  color: rgb(75,75,75);
   margin: 0 0 0 24rpx;
 }
 .btn{
@@ -303,18 +368,30 @@ button{
   line-height: 80rpx;
   margin-top: 4rpx;
   float: right;
+  letter-spacing: 0;
 }
 
 /* 事故咨询 */
 .xc{
+  display: inline-block;
   width: 100%;
-  height: 834rpx;
+  height: 100%;
   /* position: absolute; */
   /* left: -6rpx; */
   /* top: 0; */
+}
+.xc2{
+  display: inline-block;
+  width: 702rpx;
+  /* height: 3436rpx; */
 }
 .blank10{
   height: 10rpx;
   width: 100%;
   background: rgb(240,240,240);
+}
+.blank128{
+  height: 128rpx;
+  width: 100%;
+  background: #fafafa;
 }

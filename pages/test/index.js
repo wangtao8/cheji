@@ -1,183 +1,229 @@
-var WxParse = require('../../utils/wxParse.js');
-var app = getApp();
-var api = app.globalData.api;
+// pages/lipeiInfo/index.js
+var app = getApp()
+var api = app.globalData.api
+var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
+var wss = app.globalData.wss
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    signImage: null,
-    region: ['四川省', '成都市', '锦江区']
+    imgUrls: [
+      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
+      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+    ],
+    star: 5,//星数
+    indicatorDots: false,
+    autoplay: true,
+    interval: 5000,
+    duration: 1000,
+    userMotai: true,
+    sure: true,
+    allData: null//得到的数据
   },
-  bindRegionChange: function (e) {//改变picker的值
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      region: e.detail.value
-    })
-  },
-  openSetting() { wx.openSetting() },
-  onLoad: function(){
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    // wx.showLoading({
+    //   title: '加载中...',
+    // })
+    app.getUserId = res => {
+
+    }
     var _this = this
-    /**
-      * WxParse.wxParse(bindName , type, data, target,imagePadding)
-      * 1.bindName绑定的数据名(必填)
-      * 2.type可以为html或者md(必填)
-      * 3.data为传入的具体数据(必填)
-      * 4.target为Page对象,一般为this(必填)
-      * 5.imagePadding为当图片自适应是左右的单一padding(默认为0,可选)
-      */
-    /**
-      *  INIT(-1, "未知类型"),
-      *  事故咨询(不要了),
-      *  SGDB(0, "事故代办"),
-      *  WSPF(1, "物损赔付"),
-      *  RSDF(2, "人伤垫付"),
-      *  JDLP(3, "交单理赔"),
-      *  FLFW(4, "法律服务"),
-      *  SGXCLP(5, "现场理赔"),
-      *  DBC(6, "代步车"),
-      *  QTYW(7, "其他业务"),
-      *  GDXW(8, "滚动新闻");
-      */
-    // WxParse.wxParse('article', 'html', htlb, _this, 5);
+    var ids = options.ids//理赔类型
+    console.log('ids:', ids)
+    _this.setData({ ids: ids })
+    // if (ids !== 9){//9自定义的数据  意义为事故咨询
+    //   _this.getAllPtt(ids)
+    // } else {
+    //   _this.getAllPtt(7)
+    // }
+  },
+  getAllPtt: function (e) {//得到对应类型下面的图片信息(富文本)
+    var _this = this
     wx.request({//新闻案例接口
       url: api + 'api/v1/wx/notice/list',
       data: {
-        "newsType": 8
+        "newsType": e
       },
       header: {
         'content-type': 'application/json'
       },
       method: "POST",
       success: function (res) {
-        console.log('富文本：', res.data)
-        // var htlb = res.data[0].content
-        var htlb = ''
-        for(var i = 0; i < res.data.length; i++){
-          htlb += res.data[i].content
-        }
-        WxParse.wxParse('article', 'html', htlb, _this, 5);
+        console.log('富文本2233：', res.data)
+        var allPpts = res.data
+        _this.setData({ allData: allPpts })
+        wx.hideLoading()
       }
     })
   },
-  onReady: function(){
-    // wx.startSoterAuthentication({
-    //   requestAuthModes: ['fingerPrint'],
-    //   challenge: '123456',
-    //   authContent: '请用指纹解锁',
-    //   success(res) {
-    //     console.log('指纹解锁：', res)
-    //   }
-    // })
-    // wx.checkIsSoterEnrolledInDevice({
-    //   checkAuthMode: 'fingerPrint',
-    //   success(res) {
-    //     console.log('验证：', res.isEnrolled)
-    //   }
-    // })
-  },
-  onShow: function(){
-    // const ctx = wx.createCanvasContext('myCanvas')
-
-    // // Draw coordinates
-    // ctx.arc(100, 75, 50, 0, 2 * Math.PI)
-    // ctx.setFillStyle('#ccc')//设置填充色
-    // ctx.fill()//对当前路径中的内容进行填充。默认的填充色为黑色
-
-    // ctx.beginPath()//开始创建一个路径，需要调用fill或者stroke才会使用路径进行填充或描边
-    // ctx.moveTo(40, 75)//把路径移动到画布中的指定点，不创建线条
-    // ctx.lineTo(160, 75)//画线条
-    // ctx.moveTo(100, 15)
-    // ctx.lineTo(100, 135)
-    // ctx.setStrokeStyle('#AAAAAA')//设置边框颜色
-    // ctx.stroke()//画出当前路径的边框。默认颜色色为黑色。
-
-    // ctx.setFontSize(12)//设置字体的字号
-    // ctx.setFillStyle('black')
-    // ctx.fillText('0', 165, 78)//在画布上绘制被填充的文本
-    // ctx.fillText('0.5*PI', 83, 145)
-    // ctx.fillText('1*PI', 15, 78)
-    // ctx.fillText('1.5*PI', 83, 10)
-
-    // // Draw points
-    // ctx.beginPath()
-    // ctx.arc(100, 125, 2, 0, 2 * Math.PI)//画一条弧线
-    // ctx.setFillStyle('lightgreen')
-    // ctx.fill()//对当前路径中的内容进行填充。默认的填充色为黑色
-
-    // ctx.beginPath()
-    // ctx.arc(100, 25, 2, 0, 2 * Math.PI)
-    // ctx.setFillStyle('blue')
-    // ctx.fill()
-
-    // ctx.beginPath()
-    // ctx.arc(150, 75, 2, 0, 2 * Math.PI)
-    // ctx.setFillStyle('red')
-    // ctx.fill()
-
-    // ctx.beginPath()
-    // ctx.arc(50, 75, 2, 0, 2 * Math.PI)
-    // ctx.setFillStyle('yellow')
-    // ctx.fill()
-
-    // // Draw arc
-    // ctx.beginPath()
-    // ctx.arc(100, 75, 50, 0, 1 * Math.PI)
-    // ctx.setStrokeStyle('#333333')
-    // ctx.stroke()//画出当前路径的边框。默认颜色色为黑色。
-
-    // //1.先绘制一个完整的空心圆
-    // ctx.beginPath();
-    // ctx.arc(250,75,50,0,Math.PI*2);
-    // ctx.stroke();
- 
-    //  //2.绘制半黑半白  默认为黑色
-    // ctx.beginPath();
-    // ctx.arc(250,75,50,Math.PI*3/2,Math.PI/2,true);
-    // ctx.setFillStyle('#000')
-    // ctx.fill();
- 
-    //  //3.绘制一黑一白两个半圆
-    // ctx.fillStyle="white";
-    // ctx.beginPath();
-    // ctx.arc(250,50,25,0,Math.PI*2);
-    // ctx.fill();
- 
-    // ctx.fillStyle="black";
-    // ctx.beginPath();
-    // ctx.arc(250,100,25,0,Math.PI*2);
-    // ctx.fill();
-     
-    //  //4.绘制两个小圆
-    // ctx.fillStyle="black";
-    // ctx.beginPath();
-    // ctx.arc(250,45,15,0,Math.PI*2);
-    // ctx.fill();
- 
-    // ctx.fillStyle="white";
-    // ctx.beginPath();
-    // ctx.arc(250,100,15,0,Math.PI*2);
-    // ctx.fill();
-
-    // ctx.draw()//将之前在绘图上下文中的描述（路径、变形、样式）画到 canvas 中
-  },
-  //保存图片
-  saveClick: function () {
-    var that = this
-    wx.canvasToTempFilePath({
-      canvasId: 'myCanvas',
+  getAllPtt2: function (e) {//得到对应类型下面的图片信息(富文本)
+    var _this = this
+    wx.request({//新闻案例接口
+      url: api + 'api/v1/wx/notice/list',
+      data: {
+        "newsType": e
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      method: "POST",
       success: function (res) {
-        //打印图片路径
-        console.log(res.tempFilePath)
-        //设置保存的图片
-        that.setData({ signImage: res.tempFilePath })
+        console.log('富文本2233：', res.data)
+        var allPpts = res.data
+        _this.setData({ allData2: allPpts })
+        wx.hideLoading()
       }
     })
   },
-  lookImage: function () {
-    var signImage = this.data.signImage
-    var useUrls = []
-    useUrls.push(signImage)
-    wx.previewImage({
-      current: signImage, // 当前显示图片的http链接
-      urls: useUrls // 需要预览的图片http链接列表
+  callImg: function (e) {
+    wx.makePhoneCall({
+      phoneNumber: '18888888888'
+    })
+  },
+  callPhones: function (e) {
+    wx.makePhoneCall({
+      phoneNumber: '18888888888'
+    })
+  },
+  goPptInfo: function (e) {//查看单条新闻详情
+    var val = e.currentTarget.dataset.value
+    var newVal = {}
+    for (var nam in val) {
+      // console.log(nam)
+      if (nam == 'content') {
+        console.log(1)
+        val[nam] = encodeURIComponent(val[nam])
+        newVal.content = val[nam]
+      } else {
+        console.log(2)
+        newVal[nam] = val[nam]
+      }
+    }
+    console.log('newVal:', newVal)
+    wx.navigateTo({
+      url: '../liPeiNews/index?val=' + JSON.stringify(newVal)
+    })
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.getAllPtt2(8)
+    this.getAllPtt(9)
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
+  /**
+   * 用户提交表单
+   */
+  formSubmit: function (e) {
+    var _this = this
+    var formValue = e.detail.value
+    var userId = app.globalData.sessionId
+    wx.showLoading({
+      title: '提交中',
+    })
+    wx.getLocation({
+      type: 'gcj02',
+      success: function (res) {
+        var latitudes = parseFloat(res.latitude)
+        var longitudes = parseFloat(res.longitude)
+        console.log(longitudes)
+        var qqmapsdk = new QQMapWX({
+          key: 'E6OBZ-I2YK6-QWESQ-MH3TB-OZUKO-THBPD' // 必填
+        });
+        qqmapsdk.reverseGeocoder({//逆地址解析
+          location: {
+            latitude: latitudes,
+            longitude: longitudes
+          },
+          success: function (addressRes) {
+            var address = addressRes.result.formatted_addresses.recommend//需要的地址
+            console.log('查看逆解析的地址包括所有信息：', formValue.userPhone, formValue.userName, longitudes, latitudes, address)
+            _this.uploadForm(formValue.userPhone, formValue.userName, longitudes, latitudes, address, userId)
+            wx.hideLoading()
+          }
+        })
+      }
+    })
+  },
+  uploadForm: function (userPhone, userName, longitudes, latitudes, address, userId) {
+    /*
+    *type 值=0为事故代办 值=1为无损赔付 值=2为人伤垫付 值=3为交单理赔 值=4为法律服务 值=5为现场理赔
+    */
+    var types = this.data.ids
+    wx.request({
+      url: api + 'api/v1/wx/claim/add',
+      data: {
+        'phone': userPhone,
+        'name': userName,
+        'lng': longitudes,
+        'lat': latitudes,
+        'address': address,
+        'thirdSessionKey': userId,
+        'type': types
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      success: function (e) {
+        console.log('上传用户信息结果：', e)
+        if (e.data.errorCode == 5001) {
+
+        } else {
+          wx.navigateBack({
+            delta: 1
+          })
+        }
+      }
     })
   }
 })

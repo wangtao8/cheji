@@ -55,7 +55,7 @@
 <!--理赔订单-->
 <view hidden="{{currentTab!==1}}" wx:if='{{ids !== 0}}'>
   <view wx:if='{{ids == 1}}'>
-    <view class='accident' wx:for='{{allData}}' wx:key='{{index}}' style='height:300rpx'>
+    <view class='accident' wx:for='{{allData}}' wx:key='{{index}}'>
       <view class='contentTop'>
         <view class='Numbers'>{{index+1}}.</view>
         <view class='accidentInfo'>
@@ -73,10 +73,11 @@
         <button type='primary' data-id='{{item.id}}' catchtap='lookOrder'>查看订单</button>
         <button type='default' data-phone='{{item.claimerPhone}}' catchtap='goPhone' wx:if='{{item.claimerPhone !== undefined }}'>联系理赔老师</button>
       </view>
+      <view class='blank20'></view>
     </view>
   </view>
   <view wx:else>
-      <view class='accident' wx:for='{{allData}}' wx:key='{{index}}' style='height:350rpx'>
+      <view class='accident' wx:for='{{allData}}' wx:key='{{index}}'>
       <view class='contentTop'>
         <view class='Numbers'>{{index+1}}.</view>
         <view class='accidentInfo'>
@@ -96,6 +97,7 @@
         <button type='primary' catchtap='clearOrder' data-id='{{item.id}}'>处理订单</button>
         <button type='default' data-phone='{{item.phone}}' catchtap='goPhone'>联系客户</button>
       </view>
+      <view class='blank20'></view>
     </view>
   </view>
 </view>

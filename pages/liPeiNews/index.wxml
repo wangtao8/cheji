@@ -1,6 +1,6 @@
 <!--pages/liPeiNews/index.wxml-->
 <import src="../../utils/wxParse.wxml"/>
-<view class='newInfo'>
+<view class='newInfo' wx:if='{{newVal.title}}'>
     <view>{{newVal.title}}</view>
     <view>时间：{{newVal.createtime}}</view>
 </view>

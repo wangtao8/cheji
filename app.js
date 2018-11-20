@@ -37,13 +37,14 @@ App({
           // 发起网络请求
           // console.log('jsCode:', res.code)
           console.log('接收的scene值：', _this.globalData.scene)
-          var scene = _this.globalData.scene
+          var scene = _this.globalData.scene == 'undefined' ? '' : _this.globalData.scene
           console.log('api++++++++++++++++++++++++++++++:', api + 'api/v1/wx/getSession?code=' + res.code)
           wx.request({
             url: api + 'api/v1/wx/getSession?code=' + res.code,
             success: function(ress) {
               console.log('接收的值xxxxxxxxxxxxxx:', ress.data.data.sessionId)
               _this.globalData.sessionId = ress.data.data.sessionId
+              _this.getUserId(ress.data.data.sessionId)
               var userId = ress.data.data.sessionId
               
               wx.request({
@@ -55,10 +56,32 @@ App({
                   'content-type': 'application/json'
                 },
                 success: function(res) {
-                  console.log('获得所有信息：', res)
+                  console.log('获得所有信息：', res.data.data)
+                  _this.globalData.allData = res.data.data
+                  if (res.data.data.wxname == ''){
+                    console.log('还没有上传用户头像，但是已经授权的情况')
+                    var userInfo = getApp().globalData.userInfo
+                    var avatarUrl = userInfo.avatarUrl
+                    var nickName = userInfo.nickName
+                    wx.request({
+                      url: api + 'api/v1/wx/userinfo/bind',
+                      header: {
+                        'content-type': 'application/x-www-form-urlencoded'
+                      },
+                      method: 'POST',
+                      data: {
+                        'headImg': avatarUrl,
+                        'wxname': nickName,
+                        'thirdSessionKey': userId
+                      },
+                      success: function (res) {
+                        console.log('上传用户头像情况：', res.data)
+                      }
+                    })
+                  }
                   // console.log('连接websocket的测试:', res.data.data.userType)
                   console.log('二维码没有：', res.data.data.extensionAccount == '')
-                  if (res.data.data.extensionAccount == '') {//如果有二维码
+                  if (res.data.data.extensionAccount == '') {//如果没有二维码
                     wx.request({
                       url: api + 'api/v1/wx/extension/add',
                       data: {
@@ -293,10 +316,10 @@ App({
   globalData: {
     userInfo: null,
     sessionId: null,
-    // api: 'https://chejiqiche.com/',
-    // wss: 'wss://chejiqiche.com/wss',
-    wss: 'ws://118.24.150.197:7397/',
-    api: 'http://118.24.150.197:8080/',
+    api: 'https://chejiqiche.com/',
+    wss: 'wss://chejiqiche.com/wss',
+    // wss: 'ws://118.24.150.197:7397/',
+    // api: 'http://118.24.150.197:8080/',
     // api: 'http://kosan.tunnel.qydev.com/',
     // api: 'http://192.168.11.119:8080/',
     zt: false

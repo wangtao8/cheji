@@ -75,7 +75,7 @@ Page({
       })
     } else {
       wx.showToast({
-        title: '请填写用户名和者手机号！',
+        title: '请填写用户名及手机号！',
         icon: 'none'
       })
     }

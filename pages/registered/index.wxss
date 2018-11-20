@@ -2,81 +2,107 @@
 page{
   width: 100%;
   height: 100%;
-  background: rgb(240,240,240);
+  /* background: rgb(240,240,240); */
+  background: url('https://chejiqiche.com/video/notice/bgs.png') round;
+  box-sizing: border-box;
+  padding-top: 300rpx;
 }
 .logining {
-  height: 500rpx;
+  width: 632rpx;
+  height: 234rpx;
   line-height: 50rpx;
   position: relative;
-  background: url('https://chejiqiche.com/video/notice/bg.png') round;
+  margin: 0 auto;
+  /* background: url('https://chejiqiche.com/video/notice/bg.png') round; */
   /* margin: 40rpx 0rpx; */
 }
 .logining>image {
-  width: 206rpx;
-  height: 186rpx;
-  position: absolute;
-  bottom: 128rpx;
-  left: 272rpx;
+  width: 632rpx;
+  height: 233rpx;
 }
 .register{
-  width: 100%;
-  height: calc(100% - 500rpx);
+  width: 628rpx;
+  height: 824rpx;
+  /* border-radius: 32rpx; */
+  /* background: rgba(250,250,250,0.1); */
+  background: url('https://chejiqiche.com/video/notice/bg3.png') round 0 0rpx;
   position: relative;
-  font-size: 32rpx;
+  font-size: 28rpx;
   color: rgb(51,51,51);
   display: block;
+  margin: 0 auto;
+  padding-top: 150rpx;
+  box-sizing: border-box;
 }
 .userInfo{
-  position: absolute;
-  top: 140rpx;
+  position: relative;
+  /* top: 140rpx; */
   left: calc(50% - 260rpx);
   width: 520rpx;
-  height: 50rpx;
+  height: 140rpx;
+  border-bottom: 1rpx solid rgb(240,240,240);
+  color: rgb(102,102,102);
 }
 .userInfo2{
-  position: absolute;
-  top: 220rpx;
+  position: relative;
+  /* top: 220rpx; */
   left: calc(50% - 260rpx);
   width: 520rpx;
-  height: 50rpx;
+  height: 140rpx;
+  border-bottom: 1rpx solid rgb(240,240,240);
+  color: rgb(102,102,102);
 }
 .userInfo3{
-  position: absolute;
-  top: 300rpx;
+  position: relative;
+  /* top: 300rpx; */
   left: calc(50% - 260rpx);
   width: 520rpx;
-  height: 50rpx;
+  height: 140rpx;
+  border-bottom: 1rpx solid rgb(240,240,240);
+  color:rgb(102,102,102);
+}
+.blank1{
+  width: 2rpx;
+  height: 80rpx;
+  background: rgb(230,230,230);
+  position: absolute;
+  left: 100rpx;
+  top: 30rpx;
 }
 .userInfo>image,.userInfo2>image,.userInfo3>image{
-  width: 50rpx;
-  height: 50rpx;
+  width: 72rpx;
+  height: 62rpx;
   float: left;
+  position: absolute;
+  top: 38rpx;
 }
 .userInfo>input,.userInfo2>input,.userInfo3>picker{
-  width: 408rpx;
+  width: 380rpx;
   height: 100%;
   float: right;
-  border-bottom: 1rpx solid rgb(153,153,153);
 }
 .picker{
   width: 100%;
-  height: 100%;
+  height: 140rpx;
+  line-height: 140rpx;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 .btn{
-  width: 520rpx;
+  width: 568rpx;
   height: 100rpx;
-  font-size: 48rpx;
-  color: rgb(255,255,255);
+  font-size: 36rpx;
   text-align: center;
   line-height: 100rpx;
-  border-radius: 50rpx;
-  background: rgb(237,124,4);
-  position: absolute;
-  bottom: 100rpx;
-  left: calc(50% - 260rpx);
+  border-radius: 10rpx;
+  background: rgb(230,95,31);
+  margin: 74rpx auto 0;
+  color:rgb(255,255,255);
+  letter-spacing: 6rpx;
+  /* position: absolute; */
+  /* bottom: 100rpx; */
+  /* left: calc(50% - 260rpx); */
 }
 .renzhen{
   width: 100%;

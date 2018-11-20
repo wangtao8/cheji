@@ -14,7 +14,7 @@ Page({
     layer: false,//红包展示
     navbar: ['事故订单', '理赔订单'],
     currentTab: 0,//tab页的下标
-    sGType: ['事故代办', '无损赔付', '人伤垫付', '交单理赔', '法律服务', '免费代步车', '其它业务', '我要理赔']
+    sGType: ['事故代办', '物损赔付', '三者垫付', '交单理赔', '法律服务', '免费代步车', '事故咨询', '立即理赔']
   },
 
   /**
@@ -111,8 +111,8 @@ Page({
       url: api + 'api/v1/wx/claim/user/get',
       data: {
         'thirdSessionKey': userId,
-        'limit': e == 1 ? 10 : 20,
-        'offset': e == 1 ? pageSizes : 0
+        'limit': e == 1 ? 10 : 20,//每一页显示多少条
+        'offset': e == 1 ? pageSizes : 0//从当前多少条开始
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'

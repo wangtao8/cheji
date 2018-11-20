@@ -1,5 +1,5 @@
 <!--pages/myCase/index.wxml-->
-<view class='accident' style='height:280rpx'>
+<view class='accident'>
   <view class='contentTop'>
     <!-- <view class='Numbers'>{{index+1}}.</view> -->
     <view class='accidentInfo' wx:if='{{ids == 1}}'>
@@ -32,7 +32,7 @@
     <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" wx:elif='{{ids == 3}}'>
     <image src='../../images/schedule.png' class='schedule'></image>
       <view class="picker">
-        案件进度：{{array[index]}}
+        案件进度：<text class='chooseIng'>{{array[index]}}</text>
       </view>
     </picker>
     <view class="body-view">

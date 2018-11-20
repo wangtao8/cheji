@@ -1,5 +1,4 @@
 // pages/vedioInfo/index.js
-var wxError = require("../../utils/error.js")
 var app = getApp()
 var api = app.globalData.api
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
@@ -30,60 +29,53 @@ Page({
     _this.setData({ srcs: tempFilePaths, isImage: isImage})
     _this.getAllUserInfo()//先获得用户信息，然后再判断是否出现让客户鉴权手机号的窗口
     // console.log('是否是否api定位功能：', wx.canIUse('getLocation'))
-    wx.getLocation({
-      type: 'gcj02', //返回可以用于wx.openLocation的经纬度
-      success: function (res) {
-        var latitudes = parseFloat(res.latitude)
-        var longitudes = parseFloat(res.longitude)
-        var speed = res.speed
-        var accuracy = res.accuracy
-        var tempFilePaths = _this.data.srcs
-        var userId = app.globalData.sessionId
-        console.log('上传时的经纬度：', latitudes, longitudes)
-        var qqmapsdk = new QQMapWX({
-          key: 'E6OBZ-I2YK6-QWESQ-MH3TB-OZUKO-THBPD' // 必填
-        });
-        qqmapsdk.reverseGeocoder({//逆地址解析
-          location: {
-            latitude: latitudes,
-            longitude: longitudes
-          },
-          success: function (addressRes) {
-            var address1 = addressRes.result.formatted_addresses.recommend//需要的地址
-            var component = addressRes.result.address_component
-            var province = component.province
-            var city = component.city
-            var district = component.district
-            var street_number = component.street_number
-            // console.log('省：', component.province)
-            // console.log('市：', component.city)
-            // console.log('区：', component.district)
-            // console.log('街道：', component.street_number)
-            // console.log('所有信息：', addressRes)
-            var address = province + city + address1//未处理的地址
-            // var address = '四川省成都市龙泉驿区保利玫瑰花语& #40;金桉路南& #41;'//最开始未处理的地址
-            _this.getNewAddres(address)
-            console.log('处理后的地址:', _this.data.address, tempFilePaths)
-            //上传视频 地理坐标 实际地址
-            _this.upLoadInfo(longitudes, latitudes, userId, _this.data.address, tempFilePaths, isImage)
-          },
-          fail: function (e) {
-            console.log('错误：', e)
-          }
-        })
-        console.log(latitudes, longitudes)
-        //地图定位的图标显示
-        var markers = [{
-          id: 1,
-          iconPath: "/images/location.png",
-          longitude: longitudes,
-          latitude: latitudes,
-          width: 15,
-          height: 15
-        }]
-        _this.setData({ latitude: latitudes, longitude: longitudes, markers: markers, isShow: false })
+    var latitudes = options.latitudes
+    var longitudes = options.longitudes
+    var tempFilePaths = tempFilePaths
+    var userId = app.globalData.sessionId
+    console.log('上传时的经纬度：', latitudes, longitudes)
+    var qqmapsdk = new QQMapWX({
+      key: 'E6OBZ-I2YK6-QWESQ-MH3TB-OZUKO-THBPD' // 必填
+    });
+    qqmapsdk.reverseGeocoder({//逆地址解析
+      location: {
+        latitude: latitudes,
+        longitude: longitudes
+      },
+      success: function (addressRes) {
+        var address1 = addressRes.result.formatted_addresses.recommend//需要的地址
+        var component = addressRes.result.address_component
+        var province = component.province
+        var city = component.city
+        var district = component.district
+        var street_number = component.street_number
+        // console.log('省：', component.province)
+        // console.log('市：', component.city)
+        // console.log('区：', component.district)
+        // console.log('街道：', component.street_number)
+        // console.log('所有信息：', addressRes)
+        var address = province + city + address1//未处理的地址
+        // var address = '四川省成都市龙泉驿区保利玫瑰花语& #40;金桉路南& #41;'//最开始未处理的地址
+        _this.getNewAddres(address)
+        console.log('处理后的地址:', _this.data.address, tempFilePaths)
+        //上传视频 地理坐标 实际地址
+        _this.upLoadInfo(longitudes, latitudes, userId, _this.data.address, tempFilePaths, isImage)
+      },
+      fail: function (e) {
+        console.log('错误：', e)
       }
     })
+    console.log(latitudes, longitudes)
+    //地图定位的图标显示
+    var markers = [{
+      id: 1,
+      iconPath: "/images/location.png",
+      longitude: longitudes,
+      latitude: latitudes,
+      width: 15,
+      height: 15
+    }]
+    _this.setData({ latitude: latitudes, longitude: longitudes, markers: markers, isShow: false })
   },
   getAllUserInfo: function () {//获得用户所有保存过的信息
     var _this = this
@@ -178,7 +170,6 @@ Page({
             }
           })
         } else {
-          var content = '上传成功！请在主页面点击“我的--会员认证”，我们会对您的个人信息严格保密！'
           _this.setData({
             userMotai: true,
             sure: true
@@ -222,20 +213,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function (e) {
-    var _this = this
-    _this.mapCtx = wx.createMapContext('myMap')
-    wx.getLocation({
-      type: 'wgs84', //返回可以用于wx.openLocation的经纬度
-      success: function (res) {
-        var latitudes = parseFloat(res.latitude)
-        var longitudes = parseFloat(res.longitude)
-        var speed = res.speed
-        var accuracy = res.accuracy
-        var tempFilePaths = _this.data.srcs
-        var userId = app.globalData.sessionId
-        console.log('上传时的经纬度：', latitudes, longitudes)
-      }
-    })
   },
 
   /**

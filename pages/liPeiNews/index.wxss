@@ -1,7 +1,15 @@
 /* pages/liPeiNews/index.wxss */
+page{
+  padding:0 24rpx;
+  box-sizing:border-box;
+  font-size:26rpx;
+}
 image{
   width: 100%!important;
 }
 .newInfo{
   text-align: center;
+}
+.newInfo>view{
+  margin: 20rpx 0;
 }

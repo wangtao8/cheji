@@ -34,6 +34,9 @@ Page({
     wx.showLoading({
       title: '加载中...',
     })
+    app.getUserId = res => {
+      _this.setData({ userId: res, api: api })
+    }
     // 如果已经授权那么直接显示
       if (app.globalData.sessionId && app.globalData.isOk) {
         console.log('拿到了sessionId', app.globalData.sessionId, app.globalData.val, app.globalData.status, 'placeholder:', app.globalData.placeholder)
@@ -72,39 +75,29 @@ Page({
           })
           wx.hideLoading()
         }
-
-        var userType = _this.data.userType
-        console.log('是员工还是师傅userType:', userType)
-        var userId = app.globalData.sessionId
       }
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
+  },
+  /**
+   * 跳转到信息处理页面
+   */
+  processItr: function(){
+    var userAllData = this.data.userAllData
+    var bindAccount = userAllData.bindAccount
+    console.log('跳转时获得的登陆状态：',  bindAccount)
+    if (bindAccount != '' && bindAccount != undefined) {
+      wx.navigateTo({
+        url: '../processItr/pages/peifu/index',
       })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
     } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
+      wx.navigateTo({
+        url: '../login/index',
       })
     }
-
+    
   },
+  /**
+   * 获得用户信息
+   */
   getUserInfo: function(e) {
     console.log('手动获取的参数:', e.detail.rawData)
     var _this = this
@@ -114,16 +107,51 @@ Page({
         userInfo: e.detail.userInfo,
         hasUserInfo: true
       })
+      var avatarUrl = e.detail.userInfo.avatarUrl
+      var nickName = e.detail.userInfo.nickName
+      _this.pullUserInfo(avatarUrl, nickName)
       _this.getAllUserInfo()
     }
   },
-  prompt: function(){//事故赔付
+  /**
+   * 上传用户头像及昵称
+   */
+  pullUserInfo: function (avatarUrl, nickName){
+    var userId = app.globalData.sessionId
+    wx.request({
+      url: api + 'api/v1/wx/userinfo/bind',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      data: {
+        'headImg': avatarUrl,
+        'wxname': nickName,
+        'thirdSessionKey': userId
+      },
+      success: function(res) {
+        console.log('上传用户头像情况：', res.data)
+      }
+    })
+  },
+  /**
+   * 跳转到粉丝页面
+   */
+  goMyFans: function(){
+    wx.navigateTo({
+      url: '../fans2/index'
+    })
+  },
+  /**
+   * 事故赔付
+   */
+  prompt: function(){
     var _this = this
     var userType = this.data.userType
     console.log('usertype333:', userType)
     if (userType == 2) {//跳到理赔页面
       wx.navigateTo({
-        url: '../peifu/index',
+        url: '../peifu/pages/peifu/index',
       })
     } else if (userType == 3) {//提示等候
       _this.getAllUserInfo()
@@ -133,19 +161,22 @@ Page({
       })
     } else {
       wx.navigateTo({//跳到注册页面
-        url: '../registered/index',
+        url: '../peifu/pages/registered/index',
       })
     }
   },
+  /**
+   * 跳转注册页面
+   */
   register: function(){
     wx.navigateTo({
-      url: '../registered/index',
+      url: '../peifu/pages/registered/index',
     })
   },
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 获得用户所有信息
    */
-  getAllUserInfo: function(){//获取用户的所有信息
+  getAllUserInfo: function(){
     var _this = this
     var userId = app.globalData.sessionId
     wx.request({
@@ -205,12 +236,33 @@ Page({
     wx.hideTabBarRedDot({ //隐藏导航栏的小红点
       index: 3,
     })
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+        }
+      })
+    }
     if (userType == 0 || userType == 3 ){
       _this.getAllUserInfo()//如果用户为普通用户 或者待审核用户 每次页面重载时获取自己的用户信息 主要用于判断事故赔付的入口问题
     }
     _this.getUnreadyNums()
+    _this.getAllUserInfo()
   },
-  getUnreadyNums: function(){//获取未读消息条数
+  /**
+   * 获取未读消息条数
+   */
+  getUnreadyNums: function(){
     var _this = this
     var userId = app.globalData.sessionId
     console.log('usertype:', _this.data.userType)
@@ -294,6 +346,7 @@ Page({
       },
       success: function (res) {
         console.log('重新获得所有信息：', res.data.data)
+        _this.setData({ userAllData: res.data.data})
         if (res.data.errorCode == 5001) {
           wx.login({
             success: function (res) {
@@ -353,7 +406,10 @@ Page({
   onShareAppMessage: function() {
 
   },
-  changeZhiVal: function(e) { //改变输入框的值
+  /**
+   * 改变输入框的值
+   */
+  changeZhiVal: function(e) {
     var _this = this
     var val = e.detail.value
     console.log(val)
@@ -362,13 +418,19 @@ Page({
       zhiNum: val
     })
   },
-  bindfocus: function(e) { //判断确定按钮是否显示
+  /**
+   * 判断确定按钮是否显示
+   */
+  bindfocus: function(e) {
     var zhiNum = this.data.zhiNum
     this.setData({
       defineOrchange: 1,
       zhiVal: zhiNum
     })
   },
+  /**
+   * 输入框失去焦点
+   */
   bindblur: function(e) {
     console.log('失去焦点:', e)
     var _this = this
@@ -380,6 +442,9 @@ Page({
       var newVal = ''
     }
   },
+  /**
+   * 会员验证
+   */
   goMySubmit: function(e) {
     var _this = this
     var ids = e.currentTarget.dataset.id // 1为提交  0为红包
@@ -398,6 +463,9 @@ Page({
       })
     }
   },
+  /**
+   * 跳转到订单页面
+   */
   myMoney: function(e) {
     var _this = this
     var ids = e.currentTarget.dataset.id // 1为提交  0为红包
@@ -739,8 +807,12 @@ Page({
     // }) //设置为已登录状态
   },
   lookeRule: function () {
-    wx.navigateTo({
-      url: '/pages/role/index'
+    wx.showToast({
+      title: '敬请期待',
+      icon: 'none'
     })
+    // wx.navigateTo({
+    //   url: '/pages/role/index'
+    // })
   }
 })

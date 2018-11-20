@@ -1,40 +1,83 @@
 {
   "pages": [
+    "pages/package/pages/index/index",
     "pages/index/index",
-    "pages/peifu/index",
-    "pages/lipei/index",
-    "pages/myBankShow/index",
-    "pages/bindBank/index",
-    "pages/meirong/index",
-    "pages/zhangdan/index",
     "pages/my/index",
-    "pages/recharge/index",
-    "pages/peifuAllOrder/index",
-    "pages/lipeiInfo/index",
-    "pages/peifuorderList/index",
-    "pages/peifuorder/index",
-    "pages/registered/index",
-    "pages/sumitInfo/index",
-    "pages/fourSInfo/index",
-    "pages/paperwork/index",
-    "pages/tab2/index",
-    "pages/tab/index",
+    "pages/package/pages/info/index",
     "pages/test/index",
-    "pages/myCase/index",
+    "pages/login/index",
+    "pages/registered/index",
+    "pages/fans2/index",
+    "pages/fans/index",
+    "pages/erweima/index",
+    "pages/lipeis/index",
+    "pages/carCity/index",
+    "pages/vedeoInfo/index",
+    "pages/find/index",
     "pages/news/index",
     "pages/role/index",
     "pages/mySubmit/index",
-    "pages/find/index",
-    "pages/vedeoInfo/index",
-    "pages/xieyi/index",
     "pages/myorder/index",
-    "pages/liPeiNews/index"
+    "pages/myCase/index",
+    "pages/liPeiNews/index",
+    "pages/lipeiInfo/index"
+  ],
+  "subPackages": [
+    {
+      "root": "pages/lipei",
+      "pages": [
+        "pages/lipei/index",
+        "pages/lipeiInfo/index",
+        "pages/liPeiNews/index"
+      ]
+    },
+    {
+      "root": "pages/peifu",
+      "pages": [
+        "pages/peifu/index",
+        "pages/fourSInfo/index",
+        "pages/bindBank/index",
+        "pages/myBankShow/index",
+        "pages/peifuAllOrder/index",
+        "pages/peifuorder/index",
+        "pages/peifuorderList/index",
+        "pages/recharge/index",
+        "pages/registered/index",
+        "pages/zhangdan/index",
+        "pages/sumitInfo/index"
+      ]
+    },
+    {
+      "root": "pages/liuchen",
+      "pages": [
+        "pages/paperwork/index",
+        "pages/tab/index",
+        "pages/tab2/index",
+        "pages/xieyi/index"
+      ]
+    },
+    {
+      "root": "pages/other",
+      "pages": [
+        "pages/meirong/index",
+        "pages/test/index"
+      ]
+    },
+    {
+      "root": "pages/processItr",
+      "pages": [
+        "pages/peifu/index",
+        "pages/processItr/index",
+        "pages/peifuAllOrder/index",
+        "pages/sumitInfo/index"
+      ]
+    }
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
+    "navigationBarTextStyle": "#fff",
     "navigationBarBackgroundColor": "#ec7c03",
-    "navigationBarTitleText": "让汽车生活更美好",
-    "navigationBarTextStyle": "#fff"
+    "navigationBarTitleText": "让汽车生活更美好"
   },
   "tabBar": {
     "list": [

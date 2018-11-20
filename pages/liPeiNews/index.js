@@ -1,5 +1,7 @@
 // pages/liPeiNews/index.js
 var WxParse = require('../../utils/wxParse.js');
+var app = getApp()
+var api = app.globalData.api
 Page({
 
   /**
@@ -14,20 +16,53 @@ Page({
    */
   onLoad: function (options) {
     var _this = this
-    var val = JSON.parse(options.val)
-    var newVal = {}
-    for (var name in val) {
-      if(name == 'content') {
-        newVal.content = decodeURIComponent(val[name])
-      } else {
-        newVal[name] = val[name]
-      }
-    }
-    var htmls = newVal.content
-    _this.setData({ newVal: newVal })
-    WxParse.wxParse('article', 'html', htmls, _this, 5);
+    var id = options.id
+    this.setData({id:id})
+    console.log('接收的id:', id)
+    this.getLiulan()
+    this.getAllPtt(id)
   },
-
+  getAllPtt: function (e) {//得到对应类型下面的图片信息(富文本)
+    var _this = this
+    wx.request({//新闻案例接口
+      url: api + 'api/v1/wx/notice/list',
+      data: {
+        "id": e
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      method: "POST",
+      success: function (res) {
+        // console.log('富文本2233：', res.data[0].content)
+        var allPpts = res.data[0]
+        var htmls = allPpts.content
+        WxParse.wxParse('article', 'html', htmls, _this, 5);
+        _this.setData({ newVal: allPpts})
+        wx.hideLoading()
+      }
+    })
+  },
+  getLiulan: function (e) {//得到浏览量
+    var _this = this
+    var userId = app.globalData.sessionId
+    var id = this.data.id
+    wx.request({//新闻案例接口
+      url: api + 'api/v1/wx/notice/updatepv',
+      data: {
+        "thirdSessionKey": userId,
+        'id': id
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: "POST",
+      success: function (res) {
+        // console.log('更新浏览量状态：', res)
+        // _this.setData({ allData2: allPpts })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -39,7 +74,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    wx.showLoading({
+      title: '加载中',
+    })
   },
 
   /**

@@ -10,8 +10,12 @@ Page({
     srcs: null,
     markers: [],
     phones: null,
-    index: 0,
-    array: ['真实', '不真实', '未判断']
+    indexs: 0,
+    array: [
+      { name: 'NotJudged', value: '真实'},
+      { name: 'Real', value: '不真实'},
+      { name: 'NReal', value: '未判断' }
+    ]
   },
 
   /**
@@ -27,7 +31,7 @@ Page({
     var userId = app.globalData.sessionId
     var userType = app.globalData.userType
     var unread = options.unread
-    var reason = options.reason//审核失败的原因
+    var reason = options.reason || ''//审核失败的原因
     var phone = options.phone//推送爆料人的电话
     var sgId = options.sgId//事故id
     var realness = options.realness == 'undefined' ? 2 : options.realness//事故真实情况
@@ -51,7 +55,7 @@ Page({
       }
     }]
     console.log('是不是视频链接：', isHuaWei)
-    _this.setData({ curId: curId, lat: lat, lng: lng, videoSrc: videoSrc, markers: markers, id: id, reason: reason, phones: phone, isHuaWei: isHuaWei, index: realness, sgId: sgId})
+    _this.setData({ curId: curId, lat: lat, lng: lng, videoSrc: videoSrc, markers: markers, id: id, reason: reason, phones: phone, isHuaWei: isHuaWei, indexs: realness, sgId: sgId})
     // console.log('改变状态所需参数:', userId, curId, unread, unread == '未查看', _this.data.phones)
     if (userType && unread == '未查看') {
       _this.changeReadStauts(curId)
@@ -73,6 +77,12 @@ Page({
       _this.changeStatus(val)
     }
   },
+  radioChange: function (e) {
+    // var index = e.detail.value
+    var index = e.currentTarget.dataset.index
+    this.changeStatus(index)
+    console.log('radio发生change事件，携带value值为：', index)
+  },
   changeStatus: function (e) {//改变事故真实性
     var _this = this
     var userId = app.globalData.sessionId
@@ -90,7 +100,7 @@ Page({
       method: 'POST',
       success: function (res) {
         console.log('改变事故真实情况：', res.data)
-        _this.setData({ index: e })
+        _this.setData({ indexs: e })
         wx.hideLoading()
       }
     })
@@ -211,9 +221,6 @@ Page({
       scale: 28,
       success: function(e){
         console.log('11111:', e)
-      },
-      complete: function(e){
-        console.log('22222:', e)
       }
     })
   },
