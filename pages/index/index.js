@@ -341,7 +341,7 @@ Page({
     } else {
       wx.navigateTo({
         url: '../lipeiInfo/index?ids=' + id
-      })
+      }) 
     }
   },
   /**
