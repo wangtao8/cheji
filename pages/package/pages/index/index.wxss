@@ -1,0 +1,67 @@
+/* pages/package/pages/index/index.wxss */
+.banner{
+  width: 100%;
+  height: 745rpx;
+}
+.topBanner{
+  margin-bottom: -30rpx;
+}
+.content{
+  width: 692rpx;
+  height: 432rpx;
+  background: url('https://chejiqiche.com/video/notice/kuang.png') round;
+  margin: 0 auto;
+  position: relative;
+  margin-top: 60rpx;
+}
+.title{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: rgb(255,255,255);
+  font-size: 36rpx;
+  text-align: center;
+  font-family: '华文行楷';
+}
+.imageLeft{
+  position: absolute;
+  left: 42rpx;
+  bottom: 66rpx;
+  width: 278rpx;
+  height: 260rpx;
+}
+.imageLeft>image{
+  width: 100%;
+  height: 100%;
+}
+.contRight{
+  width: 218rpx;
+  height: 100%;
+  position: absolute;
+  right: 32rpx;
+  top: 60rpx;
+}
+.info{
+  width: 190rpx;
+  height: 154rpx;
+  margin: 18rpx auto 0;
+}
+.fonts{
+  font-size: 24rpx;
+  margin: 8rpx 0;
+  color: rgb(51,51,51);
+}
+.money{
+  width: 176rpx;
+  height: 48rpx;
+  margin: 54rpx auto 0;
+  font-size: 36rpx;
+  color: rgb(255,255,255);
+  line-height: 48rpx;
+}
+.money>text{
+  margin-left: 10rpx;
+}

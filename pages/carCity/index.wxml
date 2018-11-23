@@ -1,0 +1,25 @@
+<!--pages/test/index.wxml-->
+<view class='cont'>
+  <view class='titles'>输入查询：</view>
+  <input type='text' placeholder='请输入您要查询的车牌前两位，如：川a' bindinput='changeVal'></input>
+  <view class='titles'>下拉查询：</view>
+  <view class='chooseCont'>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          请选择简称：{{array[index]}}
+        </view>
+      </picker>
+      <picker bindchange="bindPickerChange2" value="{{index2}}" range="{{array2}}">
+        <view class="picker">
+          请选择字母：{{array2[index2]}}
+        </view>
+      </picker>
+  </view>
+  <view class='result'>您查询的车牌归属地为: <text>{{citys}}</text></view>
+
+  <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+    <view class="picker">
+      当前选择：{{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}
+    </view>
+  </picker>
+</view>

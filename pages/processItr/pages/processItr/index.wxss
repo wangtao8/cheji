@@ -1,0 +1,175 @@
+/* pages/processItr/pages/processItrList/index.wxss */
+page{
+  width: 100%;
+  height: 100%;
+  background: rgb(235,178,23);
+  overflow: hidden;
+}
+.navbar{
+  flex: none;
+  display: flex;
+  background: rgb(235,178,23);
+  color: rgb(77,77,77);
+  font-size: 32rpx;
+}
+.navbar .item{
+  position: relative;
+  flex: auto;
+  text-align: center;
+  line-height: 80rpx;
+}
+.navbar .item.active{
+  color: #fff;
+}
+.navbar .item.active:after{
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4rpx;
+  background: #fff;
+}
+
+.conts{
+  width: 702rpx;
+  height: calc(100% - 260rpx);
+  background: #fff;
+  border-radius: 8rpx;
+  margin: 30rpx auto;
+}
+.el_title{
+  height: 280rpx;
+  border-bottom: 1rpx solid rgb(240,240,240);
+  box-sizing: border-box;
+  padding: 0 38rpx;
+  position: relative;
+}
+.el_images{
+  width: 76rpx;
+  height: 138rpx;
+  background: url('https://chejiqiche.com/video/notice/qizi.png') 0 0 round;
+  position: absolute;
+  right: 28rpx;
+  top: 0rpx;
+  font-size: 28rpx;
+  color: #fff;
+  box-sizing: border-box;
+  padding: 0 24rpx;
+}
+.el_images>text{
+  display: inline-block;
+  width: 28rpx;
+}
+.ex_title{
+  width: 626rpx;
+  color: rgb(77,77,77);
+  font-size: 28rpx;
+  position: absolute;
+  bottom: 132rpx;
+}
+.ex_title>view{
+  width: 140rpx;
+  height: 40rpx;
+  margin: 0 auto;
+}
+.ex_title image{
+  display: inline-block;
+  width: 48rpx;
+  height: 36rpx;
+  vertical-align: middle;
+  margin-right: 8rpx;
+}
+.el_nums{
+  width: 600rpx;
+  height: 72rpx;
+  border-radius: 36rpx;
+  background: rgb(245,245,245);
+  color: rgb(51,51,51);
+  font-size: 30rpx;
+  position: absolute;
+  bottom: 38rpx;
+  left: 51rpx;
+  text-align: center;
+  line-height: 72rpx;
+}
+.xinxi{
+  /* height: 288rpx; */
+  box-sizing: border-box;
+  padding: 38rpx;
+  border-bottom: 1rpx solid rgb(240,240,240);
+  color: rgb(77,77,77);
+  font-size: 28rpx;
+}
+.xinxi>.other:last-child{
+  margin-bottom: 0;
+}
+picker{
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.picker>text{
+  margin-left: 40rpx;
+}
+.other{
+  color: rgb(77,77,77);
+  height: 50rpx;
+  margin: 50rpx 0;
+}
+.other>text{
+  display: inline-block;
+  height: 50rpx;
+  width: 150rpx;
+  line-height: 50rpx;
+  float: left;
+}
+.other>input{
+  display: inline-block;
+  width: calc(100% - 160rpx);
+  height: 40rpx;
+  float: right;
+}
+.other>view{
+  height: 50rpx;
+  width: calc(100% - 170rpx);
+  text-align: left;
+  line-height: 50rpx;
+  float: right;
+  color: rgb(77,77,77);
+}
+.xinxi>view image{
+  width: 48rpx;
+  height: 36rpx;
+  vertical-align: middle;
+  margin-right: 8rpx;
+}
+.images_cont{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 26rpx 24rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.images_cont>view{
+  width: 100%;
+  margin-top: 200rpx;
+  text-align: center;
+  font-size: 32rpx;
+}
+.ex_images{
+  width: 202rpx;
+  height: 202rpx;
+  margin-top: 16rpx;
+  /* background: green; */
+}
+.ex_images2{
+  width: 202rpx;
+  height: 202rpx;
+  margin-top: 16rpx;
+  background: yellow;
+  opacity: 0;
+}

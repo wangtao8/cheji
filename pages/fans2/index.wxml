@@ -1,0 +1,97 @@
+<!--pages/fans/index.wxml-->
+<view class='nav'>
+    <view class='userInfo'>
+        <image class='userPhone' src='{{userInfo.avatarUrl || "/images/tou.jpg"}}'></image>
+        <view class='userInfoRight'>
+            <view class='userName'>{{userInfo.nickName || '游客'}}</view>
+            <view class='signature'>积累人脉赢海量红包，赶快行动！</view>
+        </view>
+        <button wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='btns' style="top: -111rpx;opacity: 0"> 获取头像昵称 </button>
+    </view>
+    <view class='erWeiMa' wx:if='{{userId}}'>
+        <image src="{{ api + 'api/v1/wx/user/user_qrCode/' + userId}}" style='width:120rpx;height:120rpx;' catchtap='lookImage' data-url='{{api + "api/v1/wx/user/user_qrCode/" + userId}}'></image>
+        <view>邀请码</view>
+    </view>
+    <view class='MoneyShow'>
+      <view class='elTop'>
+          <view class='elTop_left'>
+              <image src='../../images/bao.png'></image>
+              <text>粉丝累计奖金</text>
+              <view>{{redpackSum || 0}}</view>
+          </view>
+          <!-- <view class='elTop_right'>
+              <image src='../../images/qian.png'></image>
+              <text>我的提成</text>
+          </view> -->
+      </view>
+      <view class='elBottom'>
+          <view class='elBottom_left'>
+              <view>今日红包</view>
+              <view> {{redPackToday || 0}}</view>
+          </view>
+          <view class='elBottom_center'>
+              <view>今日提成</view>
+              <view> {{redPackPercentage2 || 0}}</view>
+          </view>
+          <view class='elBottom_right'>
+             <view>提成总值</view>
+              <view> {{redPackPercentage || 0}}</view>
+          </view>
+      </view>
+  </view>
+</view>
+<view class='optionNav'>
+    <view class='navInfo' catchtap='checkList' wx:for='{{dataList}}' wx:key='{{index}}' data-id='{{index}}'>
+        <image src='/images/fs{{index}}.png'></image>
+        <view>{{item}}</view>
+    </view>
+</view>
+<view class='fansShow'>
+    <view class='FansInfo' wx:if='{{nowIndex == 0}}'>
+        <!-- <text class='blank2'></text> -->
+        <image src='/images/fs4.png'></image>
+        <text class='allFansNum'>粉丝总数 (<text style='color:red'>{{fansCount || 0}}</text>)</text>
+    </view>
+    <view class='FansInfo' wx:elif='{{nowIndex == 1}}'>
+        <!-- <text class='blank2'></text> -->
+        <image src='/images/fs4.png'></image>
+        <text class='allFansNum'>红包详情</text>
+    </view>
+    <view class='FansInfo' wx:elif='{{nowIndex == 2}}'>
+        <!-- <text class='blank2'></text> -->
+        <image src='/images/fs4.png'></image>
+        <text class='allFansNum'>提成详情</text>
+    </view>
+    <view class='FansInfo' wx:else>
+        <!-- <text class='blank2'></text> -->
+        <image src='/images/fs4.png'></image>
+        <text class='allFansNum'>红包规则</text>
+    </view>
+    <view wx:if='{{nowIndex == 3}}'>
+        <image src='https://chejiqiche.com/video/notice/guize.png' style='width:100%;height:2958rpx;' mode='aspectFit'></image>
+    </view>
+    <scroll-view scroll-y='true' style='height: calc(100% - 74rpx)' bindscrolltolower='scrollBottom' wx:else>
+        
+        <view>
+            <view wx:if='{{records.length}}'>
+              <view class='fansNameAndMoney' wx:for='{{records}}' wx:key='{{index}}'>
+                <view class='fansName'>
+                    <image src='{{item.headImg || "/images/tou.jpg"}}'></image>
+                    <view>
+                        <view class='nickName' style='margin-top:{{nowIndex == 0 ? "20rpx" : 0}}'>微信昵称： {{item.wxname || '游客'}}</view>
+                        <view class='elTime' wx:if='{{nowIndex !== 0}}'>{{item.payment_time}}</view>
+                    </view>
+                </view>
+                <view class='fansMoney' wx:if='{{nowIndex !== 0}}'>
+                    <text>￥</text>
+                    <text>{{item.amount}}</text>
+                </view>
+            </view>
+          </view>
+          <view class='noFans' wx:else>
+              <image src='https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2731900976,3823645494&fm=26&gp=0.jpg'></image>
+              <text>粉丝都偷懒了，一条记录都没有！</text>
+          </view>
+        </view> 
+    </scroll-view>
+</view>

@@ -1,0 +1,97 @@
+<!--pages/peifuAllOrder/index.wxml-->
+<!--导航条-->
+<scroll-view scroll-x class="navbar" wx:if='{{ids !== "0"}}' style='width: 100%;'>
+  <view wx:for="{{navbar}}" data-idx="{{index}}" data-status='{{status[index]}}' class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">
+    {{item}}
+  </view>
+</scroll-view>
+<view wx:if='{{allData.length>0}}'>
+  <view class='orderInfo' wx:for='{{allData}}' wx:key='{{index}}'>
+    <view class='topOrderInfo'>
+    <text class='orderNum'>订单号：{{item.orderno}}</text>
+    </view>
+    <view class='botOrderInfo' catchtap='goInfo' data-allData='{{item}}'>
+      <image src='{{item.claimImgList[0]}}' class='botLetImg' mode='aspectFill' data-item='{{item}}'></image>
+      <!-- <view class='botRightCont' catchtap='gofoursMap' data-deptid='{{item.deptid}}'>
+        <view class='botTopCont'>
+            <text class='foursName'>{{item.fullname}}</text>
+            <text class='orIsMoney' wx:if='{{item.rebateForEmp}}'>￥ {{item.rebateForEmp}}</text>
+        </view>
+        <view class='isAddres'>
+            {{item.address}}
+        </view>
+      </view> -->
+      <!-- <view class='botRightCont' wx:if='{{item.cph == undefined && item.status == -1}}'>
+        <view class='names' catchtouchstart="touchS" catchtouchmove="touchM" catchtouchend="touchE" style="{{item.txtStyle}}" data-index='{{index}}' data-deptid='{{item.deptid}}'>
+            <view class='botTopCont'>
+                <text class='foursName' catchtouchstart="touchS" catchtouchmove="touchM" catchtouchend="touchE" style="{{item.txtStyle}}" data-index='{{index}}' data-deptid='{{item.deptid}}'>{{item.fullname}}</text>
+                <text class='orIsMoney' wx:if='{{item.rebateForEmp}}'>￥ {{item.rebateForEmp}}</text>
+            </view>
+            <view class='isAddres' catchtouchstart="touchS" catchtouchmove="touchM" catchtouchend="touchE" style="{{item.txtStyle}}" data-index='{{index}}' data-deptid='{{item.deptid}}'>
+                {{item.address}}
+            </view>
+            <view class='allStaus'>
+              <text class='isStaus'>未接车</text>
+              <text class='isOk' wx:if='{{item.statusName == "未接车"}}'>{{item.statusName}}</text>
+              <text class='isNo' wx:else>{{item.statusName}}</text>
+              <text class='orderStaus'>{{item.statusName}}</text>
+            </view>
+        </view>
+        <view class='deleteThis' catchtap='deleteThis' data-index='{{index}}' data-id='{{item.id}}'>
+            删除
+        </view>
+      </view> -->
+      <view class='botRightCont' data-deptid='{{item.deptid}}'>
+        <view class='names'>
+            <view class='botTopCont'>
+                <text class='foursName'>{{item.fullname}}</text>
+                <text class='orIsMoney' wx:if='{{item.fixloss}}'>￥ {{item.fixloss}}</text>
+            </view>
+            <view class='isAddres'>
+                {{item.address}}
+            </view>
+            <view class='allStaus'>
+              <!-- <text class='isStaus'>未接车</text> -->
+              <text class='isOk' wx:if='{{item.statusName == "未接车"}}'>{{item.statusName}}</text>
+              <text class='isNo' wx:else>{{item.statusName}}</text>
+              <!-- <text class='orderStaus'>{{item.statusName}}</text> -->
+            </view>
+        </view>
+        <view class='deleteThis'>
+           {{item.status == -1}}
+        </view>
+        <!-- <view class='allStaus'>
+          <text class='isStaus'>未接车</text>
+          <text class='isOk' wx:if='{{item.cph}}'>已完善</text>
+          <text class='isNo' wx:else>未完善</text>
+          <text class='orderStaus'>{{item.statusName}}</text>
+        </view> -->
+      </view>
+    </view>
+  </view>
+</view>
+<view wx:else class='noCont'>这个分类暂时没有内容，换一个看吧^ ^</view>
+<!-- <view hidden="{{currentTab!==0}}">
+  <view class='orderInfo' wx:for='{{allData}}' wx:key='{{index}}'>
+     <view class='topOrderInfo'>
+      <text class='orderNum'>订单号：{{item.orderno}}</text>
+      <text class='orderStaus'>{{item.statusName}}</text>
+     </view>
+     <view class='botOrderInfo'>
+       <image src='{{item.claimImgList[0]}}' class='botLetImg'></image>
+       <view class='botRightCont'>
+          <view>
+             <text class='foursName'>{{item.fullname}}</text>
+             <text class='orIsMoney' wx:if='{{item.rebateForEmp}}'>￥ {{item.rebateForEmp}}</text>
+          </view>
+          <view class='isAddres'>
+             {{item.address}}
+          </view>
+          <view class='allStaus'>
+            <text class='isOk' wx:if='{{item.cph}}'>已完善</text>
+            <text class='isNo' wx:else>未完善</text>
+          </view>
+       </view>
+     </view>
+  </view>
+</view> -->

@@ -1,0 +1,27 @@
+<!--pages/registered/index.wxml-->
+<!-- <view class='logining'>
+  <image src='https://chejiqiche.com/video/notice/bgtop.png' mode='aspectFill'></image>
+</view> -->
+<form bindsubmit="formSubmit" bindreset="formReset" class='register'>
+   <view class='userInfo'>
+      <image src='/images/name.png' mode='aspectFit'></image>
+      <view class='blank1'></view>
+      <input type='text' name='username' placeholder='请输入用户名' placeholder-style='color:rgb(102,102,102)'></input>
+   </view>
+   <view class='userInfo'>
+      <image src='/images/mm.png' mode='aspectFit'></image>
+      <view class='blank1'></view>
+      <input type='password' name='password' placeholder='请输入密码' placeholder-style='color:rgb(102,102,102)'></input>
+   </view>
+   <!-- <view class='userInfo3'>
+      <image src='/images/adds.png' mode='aspectFit'></image>
+      <view class='blank1'></view>
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+      <view class="picker">
+        {{region[0]}} - {{region[1]}} - {{region[2]}}
+        <input value='{{region[0]}}，{{region[1]}}，{{region[2]}}' hidden='false' name='city'></input>
+      </view>
+    </picker>
+   </view> -->
+   <button class='btn' formType="submit">立即登陆</button>
+</form>

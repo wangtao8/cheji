@@ -1,0 +1,64 @@
+<!--pages/fans/index.wxml-->
+<view class='nav'>
+    <view class='userInfo'>
+        <image class='userPhone' src='{{userInfo.avatarUrl || "/images/tou.jpg"}}'></image>
+        <view class='userInfoRight'>
+            <view class='userName'>{{userInfo.nickName || '游客'}}</view>
+            <view class='signature'>积累人脉赢海量红包，赶快行动！</view>
+        </view>
+        <button wx:if="{{!hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='btns' style="top: -111rpx;opacity: 0"> 获取头像昵称 </button>
+    </view>
+    <view class='erWeiMa' wx:if='{{userId}}'>
+        <image src="{{ api + 'api/v1/wx/user/user_qrCode/' + userId}}" style='width:120rpx;height:120rpx;' catchtap='lookImage' data-url='{{api + "api/v1/wx/user/user_qrCode/" + userId}}'></image>
+        <view>邀请码</view>
+    </view>
+</view>
+<view class='blank182'>
+  <view class='MoneyShow'>
+      <view class='elTop'>
+          <view class='elTop_left'>
+              <image src='../../images/bao.png'></image>
+              <text>粉丝累计奖金</text>
+          </view>
+          <view class='elTop_right'>
+              <image src='../../images/qian.png'></image>
+              <text>我的提成</text>
+          </view>
+      </view>
+      <view class='elBottom'>
+          <view class='elBottom_left'>
+              ￥ {{redpackSum || 0}}
+          </view>
+          <view class='elBottom_right'>
+              ￥ {{redPackPercentage || 0}}
+          </view>
+      </view>
+  </view>
+</view>
+<view class='fansShow'>
+    <view class='FansInfo'>
+        <text class='blank2'></text>
+        <text class='allFansNum'>粉丝总数 (<text style='color:red'>{{fansCount || 0}}</text>)</text>
+    </view>
+    <scroll-view scroll-y='true' style='height: calc(100% - 74rpx)' bindscrolltolower='scrollBottom'>
+        <view wx:if='{{records.length}}'>
+            <view class='fansNameAndMoney' wx:for='{{records}}' wx:key='{{index}}'>
+              <view class='fansName'>
+                  <image src='{{item.headImg || "/images/tou.jpg"}}'></image>
+                  <view>
+                      <view class='nickName'>微信昵称： {{item.wxname || '游客'}}</view>
+                      <view class='elTime'>{{item.payment_time}}</view>
+                  </view>
+              </view>
+              <view class='fansMoney'>
+                  <text>￥</text>
+                  <text>{{item.amount}}</text>
+              </view>
+          </view>
+        </view>
+        <view class='noFans' wx:else>
+            <image src='https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2731900976,3823645494&fm=26&gp=0.jpg'></image>
+            <text>粉丝都偷懒了，一条记录都没有！</text>
+        </view>
+    </scroll-view>
+</view>

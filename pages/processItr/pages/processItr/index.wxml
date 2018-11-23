@@ -1,0 +1,111 @@
+<!--pages/processItr/pages/processItrList/index.wxml-->
+<view class="navbar" wx:if='{{ids !== "0"}}'>
+  <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
+</view>
+<scroll-view scroll-y class='conts' wx:if='{{currentTab == 0}}'>
+    <!-- tab_0{{currentTab+1}} -->
+    <view class='el_title'>
+        <view class='el_images'>
+            <text>{{allDatas.statusName}}</text>
+        </view>
+        <view class='ex_title'>
+            <view>
+                <image src='/images/num.png' mode='aspectFit'></image>
+                <text>订单号</text>
+            </view>
+        </view>
+        <view class='el_nums'>{{allDatas.orderno}}</view>
+    </view>
+    <view class='xinxi'>
+        <view>
+            <image src='/images/dtxx.png' mode='aspectFit'></image>
+            <text>待填信息</text>
+        </view>
+        <view class='other' wx:if='{{array[index] == "已接车"}}'>
+            <text>定损金额:</text>
+            <input placeholder='请输入定损金额' type='number' placeholder-style='color:rgb(204,204,204)' bindblur='moneyChange' value='{{allDatas.fixloss == undefined ? "" : allDatas.fixloss}}'></input>
+        </view>
+        <view class='other'>
+            <!-- <text>接车状态:</text> -->
+            <!-- <input placeholder='未接车' placeholder-style='color:rgb(204,204,204)' value='' ></input> -->
+            <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+              <view class="picker">
+                    接车状态: <text>{{array[index]}}</text>
+              </view>
+            </picker>
+        </view>
+    </view>
+    <view class='xinxi'>
+        <view>
+            <image src='/images/khxx.png' mode='aspectFit'></image>
+            <text>客户信息</text>
+        </view>
+        <view class='other' wx:if='{{array[index] != "未接车" && array[index] != "已接车" && arrar[index] != "undefined"}}'>
+            <text>定损金额：</text>
+            <view>{{allDatas.fixloss}}</view>
+            <!-- <input placeholder='请输入定损金额' type='number' placeholder-style='color:rgb(204,204,204)' bindblur='moneyChange' value='{{allDatas.fixloss}}'></input> -->
+        </view>
+        <view class='other'>
+            <text>姓名:</text>
+            <view>{{allDatas.name}}</view>
+        </view>
+        <view class='other'>
+            <text>电话:</text>
+            <view>{{allDatas.phone}}</view>
+        </view>
+    </view>
+    <view class='xinxi'>
+        <view>
+            <image src='/images/qcmx.png' mode='aspectFit'></image>
+            <text>汽车明细</text>
+        </view>
+        <view class='other'>
+            <text>汽车品牌:</text>
+            <view>{{allDatas.qcpp}}</view>
+        </view>
+        <view class='other'>
+            <text>车牌号码:</text>
+            <view>{{allDatas.cph}}</view>
+        </view>
+    </view>
+    <view class='xinxi'>
+        <view>
+            <image src='/images/cnkh.png' mode='aspectFit'></image>
+            <text>承诺客户</text>
+        </view>
+        <view class='other'>
+            <text>承诺客户:</text>
+            <view>{{allDatas.promise}}</view>
+        </view>
+    </view>
+</scroll-view>
+<scroll-view scroll-y class='conts' wx:elif='{{currentTab == 1 || currentTab == 2}}'>
+    <view class='el_title'>
+        <view class='el_images'>
+            <text>{{allDatas.statusName}}</text>
+        </view>
+        <view class='ex_title'>
+            <view>
+                <image src='/images/num.png' mode='aspectFit'></image>
+                <text>订单号</text>
+            </view>
+        </view>
+        <view class='el_nums'>{{allDatas.orderno}}</view>
+    </view>
+    <view class='images_cont' wx:if='{{currentTab == 1}}'>
+        <image wx:for='{{allDatas.claimImgList}}' src='{{item}}' class='ex_images' wx:key='{{index}}' catchtap='lookImage' data-now='1' data-index='{{index}}'></image>
+        <image wx:for='{{(3 - (allDatas.claimImgList.length)%3) == 3 ? 0 : 3 - (allDatas.claimImgList.length)%3}}' class='ex_images2' wx:key='{{index}}'></image>
+        <view>{{item}}</view>
+        <view wx:if='{{allDatas.claimImgList.length == 0}}'>
+            没有内容哦~！
+        </view>
+    </view>
+    <view class='images_cont' wx:elif='{{currentTab == 2}}'>
+        <image wx:for='{{allDatas.detailImgList}}' class='ex_images' wx:key='{{index}}' src='{{item}}' catchtap='lookImage' data-now='2' data-index='{{index}}'></image>
+        <image wx:for='{{(3 - (allDatas.detailImgList.length)%3) == 3 ? 0 : 3 - (allDatas.detailImgList.length)%3}}' class='ex_images2' wx:key='{{index}}'></image>
+        <view wx:if='{{allDatas.detailImgList.length == 0}}'>
+            没有内容哦~！
+        </view>
+    </view>
+</scroll-view>
+<button style='width:702rpx;color:rgb(77,77,77);background: #fff;' catchtap='goBack'>安全退出</button>

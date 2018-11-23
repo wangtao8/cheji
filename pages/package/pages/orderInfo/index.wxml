@@ -1,0 +1,56 @@
+<!--pages/package/pages/orderInfo/index.wxml-->
+<view class='tops'>
+    <view class='titlte'>订单详情</view>
+    <view class='nums'>订单编号：A20180818180848</view>
+</view>
+<view class='forms'>
+    <view class='conten'>
+        <text>客户姓名：</text>
+        <view>123123123</view>
+    </view>
+    <view class='conten'>
+        <text>客户电话：</text>
+        <view>阿斯达山东省</view>
+    </view>
+    <view class='conten'>
+        <text>客户地址：</text>
+        <view>阿斯达的盛大</view>
+    </view>
+    <view class='conten'>
+        <text>套餐类名：</text>
+        <view>阿斯达的盛大</view>
+    </view>
+    <view class='conten'>
+        <text>套餐价格：</text>
+        <view>阿斯达的盛大</view>
+    </view>
+    <view class='conten'>
+        <text>套餐详细：</text>
+        <view class='lastBox'>阿斯达的盛大阿斯达的盛大阿斯达的盛大阿斯达的盛大阿斯达的盛大阿斯达的盛大阿斯达的盛大阿斯达的盛大阿斯达的盛大阿斯达的盛大阿斯达的盛大阿斯达的盛大</view>
+    </view>
+    <view class='timer'>2018-18-18 18:08:18</view>
+</view>
+<view class='blank18'></view>
+<view class='elTitle'>接车保养前照</view>
+<view class='content'>
+   <view class='images'>
+      <image wx:for='{{oldImages}}' src='{{item}}' wx:key='{{index}}' mode="aspectFill" catchtap='lookImg' data-id='{{0}}' data-index='{{index}}'></image>
+   </view>
+   <view wx:if='{{showBtns}}'>
+      <button bindtap="Tophoto" class="page-body-button" animation="{{animationData}}" class='Tophoto' data-id='0'>拍照</button>
+      <text class='allUpload' catchtap='allUpload' wx:if='{{!dataAll.cph}}' data-id='0'>已拍过照？点我批量上传^ ^</text>
+      <button type='primary' class='btns' catchtap='uploadImage' data-id='0'>上传</button>
+   </view>
+</view>
+<view class='blank18'></view>
+<view class='elTitle'>到店保养后照</view>
+<view class='content'>
+   <view class='images'>
+      <image wx:for='{{newImages}}' src='{{item}}' wx:key='{{index}}' mode="aspectFill" catchtap='lookImg' data-id='{{1}}' data-index='{{index}}'></image>
+   </view>
+   <view wx:if='{{!showBtns && isOk}}'>
+      <button bindtap="Tophoto" class="page-body-button" animation="{{animationData}}" class='Tophoto' data-id='1'>拍照</button>
+      <text class='allUpload' catchtap='allUpload' wx:if='{{!dataAll.cph}}' data-id='1'>已拍过照？点我批量上传^ ^</text>
+      <button type='primary' class='btns' catchtap='uploadImage' data-id='1'>上传</button>
+   </view>
+</view>

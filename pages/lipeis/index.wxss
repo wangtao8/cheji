@@ -1,0 +1,272 @@
+/* pages/lipei/index.wxss */
+page{
+  width: 100%;
+  height: 100%;
+  background: #f8f9fb;
+}
+swiper{
+  width: 100%;
+  height: 300rpx;
+}
+.slide-image{
+  width: 100%;
+  height: 100%;
+}
+.huodong{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-top: 10rpx;
+  background: #fff;
+}
+.huodong>view{
+  width: 24%;
+  height: 160rpx;
+  margin-bottom: 10rpx;
+  /* background: red; */
+}
+.wYLPBox{
+  background: #fff;
+  position: relative;
+  width: 100%;
+  height: 142rpx;
+  margin-bottom: 14rpx;
+  margin-top: 14rpx;
+  text-align: center;
+  box-sizing: border-box;
+}
+.wYLPMs{
+  font-size: 20rpx;
+  width: 100%;
+  color: rgb(51,51,51);
+  position: absolute;
+  bottom: 10rpx;
+}
+.wYLP{
+  width:92rpx;
+  height:92rpx;
+  /* background-color:#ec7c03; */
+  position: relative;
+  top: 9rpx;
+}
+.content{
+  font-size: 32rpx;
+  border-bottom: 1rpx solid #ccc;
+  padding-bottom: 24rpx;
+  padding-top: 24rpx;
+}
+.content:last-child{
+  border: none;
+}
+.content>image{
+  width: 236rpx;
+  height: 320rpx;
+  /* background: pink; */
+  border-radius: 8rpx;
+  box-shadow:0 2px 12px 0 rgba(0,0,0,.4);
+
+}
+.content>.rightCnt{
+  float: right;
+  width: calc(100% - 256rpx);
+  height: 320rpx;
+  font-size: 20rpx;
+  /* background: yellow; */
+}
+.fG{
+  height: 100rpx;
+  width: 100%;
+  background: #ec7c03;
+  /* background: linear-gradient(to bottom right, #ccc , #fff); */
+  /* margin-bottom: 20rpx; */
+}
+.mD{
+  padding: 20rpx;
+  background: #fff;
+}
+.mD>view{
+  width: 100%;
+  height: 320rpx;
+  /* background: greenyellow; */
+  /* margin-bottom: 10rpx; */
+  align-self: center;
+  position: relative;
+  font-size: 24rpx;
+}
+.headTitle{
+  /* position: absolute; */
+  top: 20rpx;
+  font-size: 28rpx;
+}
+.geyan{
+  /* position: absolute;
+  top: 60rpx; */
+}
+.geren{
+  position: relative;
+  overflow: hidden;
+  /* text-overflow: ellipsis;
+  white-space: nowrap; */
+}
+.hD{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  font-size: 26rpx;
+}
+.hD>text{
+  margin-top: 8rpx;
+  display: block;
+}
+.hD>image{
+  width: 80rpx;
+  height: 80rpx;
+  /* background: yellow; */
+  display: block;
+  /* border:1rpx solid yellow; */
+  border-radius:40rpx;
+  margin: 0 20rpx;
+}
+/* .bodyPf{
+  position: absolute;
+  bottom: 20rpx;
+  left: 258rpx;
+} */
+.bodyPf>image{
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 6rpx;
+}
+.bodyPf>image:nth-child(2){
+  margin-left: 10rpx;
+}
+.rightCnt{
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-around; */
+}
+.rightCnt>view{
+  margin-top: 20rpx;
+}
+.bodyPf{
+  color: #3c3333;
+  position: absolute;
+  bottom: 44rpx;
+  font-size: 16rpx;
+}
+.bottomDw{
+  font-size: 24rpx;
+}
+.bottomDw>text:last-child{
+  float: right;
+  margin-right: 20rpx;
+}
+.pinfen{
+  margin-left: 16rpx;
+  font-size: 18rpx;
+  color: #ec9f18;
+}
+.shangjia{
+  width: 500rpx;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+.shangjia>image:nth-child(1){
+  width: 64rpx;
+  height: 64rpx;
+}
+.shangjia>image:nth-child(2){
+  width: 200rpx;
+  height: 64rpx;
+  margin-left: 10rpx;
+}
+.shangjia>text{
+  font-size: 34rpx;
+  margin-left: 20rpx;
+  color: #fff;
+  text-shadow:1px 1px 1px #000;
+}
+
+
+.sure{
+  position: absolute;
+  left: 20%;
+  top: 300rpx;
+  background: #fff;
+  border: 1rpx solid #ccc;
+  height: 300rpx;
+  width: 60%;
+  border-radius: 10rpx;
+  z-index: 9999;
+}
+.bottoms{
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 20rpx;
+}
+.sure>text{
+  display: block;
+  width: 80%;
+  margin: 50rpx auto 0;
+  font-size: 26rpx;
+  text-align: center;
+}
+.sure>image{
+  width: 128rpx;
+  height: 128rpx;
+  position: absolute;
+  left: calc(50% - 64rpx);
+  top: 40rpx;
+}
+button{
+  width:30%;
+  height:50rpx;
+  font-size:22rpx;
+  line-height:50rpx;
+  margin-bottom:10rpx;
+  display:inline-block;
+  padding:0;
+}
+.sure>button:last-child{
+  background: green;
+  color: #fff;
+}
+.qM{
+  font-size: 32rpx;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 10rpx;
+  padding-left: 40rpx;
+}
+.motai{
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.6);
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+.close{
+  float: right;
+  display: inline-block;
+  width: 40rpx;
+  height: 34rpx;
+  text-align: center;
+  line-height: 34rpx;
+  background: #ccc;
+  padding: 4rpx;
+  letter-spacing: 0;
+  border-bottom-left-radius: 20rpx;
+  font-size: 16rpx;
+}

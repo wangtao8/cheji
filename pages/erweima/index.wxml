@@ -1,0 +1,5 @@
+<!--pages/erweima/index.wxml-->
+<view class='erWeiMa' wx:if='{{userId}}'>
+    <image src="{{ api + 'api/v1/wx/user/user_qrCode/' + userId}}" catchtap='lookImage' data-url='{{api + "api/v1/wx/user/user_qrCode/" + userId}}'></image>
+    <view>让分享产生价值！</view>
+</view>

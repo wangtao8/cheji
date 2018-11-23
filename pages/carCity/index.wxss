@@ -1,0 +1,68 @@
+/* pages/test/index.wxss */
+page{
+  width: 100%;
+  height: 100%;
+  background: rgb(240,240,240);
+}
+.cont{
+  width: 100%;
+  margin-top: 200rpx;
+}
+.cont>input{
+  width: 700rpx;
+  height: 80rpx;
+  font-size: 28rpx;
+  margin: 0 auto;
+  background: #fff;
+  margin-bottom: 20rpx;
+  border: 1rpx dashed rgb(240,240,240);
+  box-sizing: border-box;
+  padding-left: 24rpx;
+}
+.cont>.result{
+  width: 700rpx;
+  height: 80rpx;
+  font-size: 32rpx;
+  margin: 0 auto;
+  line-height: 80rpx;
+  background: rgb(252, 149, 52);
+  color: rgb(255,255,255);
+  box-sizing: border-box;
+  padding-left: 24rpx;
+  border-radius: 8rpx;
+  box-shadow: inset 4rpx 0rpx 30rpx rgb(99, 88, 88);
+}
+picker{
+  width: 300rpx;
+  height: 80rpx;
+  font-size: 28rpx;
+  display: inline-block;
+  margin-left: 25rpx;
+}
+.cont>.titles{
+  width: 100%;
+  height: 80rpx;
+  text-align: center;
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+  box-shadow: 1rpx 4rpx 20rpx #000;
+  line-height: 80rpx;
+  background: rgb(252, 149, 52);
+  color: rgb(255,255,255);
+  /* background: linear-gradient(left,red,orange,yellow,green,blue,indigo,violet); */
+}
+.cont>.chooseCont{
+  width: 700rpx;
+  height: 300rpx;
+  box-sizing: border-box;
+  padding-top: 100rpx;
+  margin: 0 auto 20rpx;
+  border: 1rpx dashed rgb(240,240,240);
+  background: #fff;
+}
+.result>text{
+  font-size: 36rpx;
+  font-weight: bold;
+  color: red;
+  margin-left: 20rpx;
+}

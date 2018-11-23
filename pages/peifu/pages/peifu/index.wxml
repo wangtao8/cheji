@@ -1,0 +1,85 @@
+<!--pages/lipei/index.wxml-->
+<swiper indicator-dots="{{indicatorDots}}"
+  autoplay="true" interval="10000" duration="600" circular="true" indicator-dots='true'>
+  <block>
+    <swiper-item>
+      <view class='topCont'>
+          <view class='yuan1'>
+            <image src='https://chejiqiche.com/video/notice/rmb2.png' class='rmb'></image>
+            <view wx:if='{{Moneys.income.length <= 5}}'>
+              <view class='money'>{{Moneys.income}}</view>
+              <view class='lipeiFont'>理赔佣金(元)</view>
+            </view>
+            <view wx:else>
+              <view class='money'>{{Moneys.income/10000}}</view>
+              <view class='lipeiFont'>理赔佣金(万)</view>
+            </view>
+          </view>
+          <view class='btn' catchtap='lookMoney' data-id='{{0}}'>绑定结算银行卡</view>
+          <!-- <image src='https://chejiqiche.com/video/notice/anniu.png' class='btn' catchtap='lookMoney' data-id='{{0}}'></image> -->
+      </view>user
+    </swiper-item>
+    <swiper-item>
+      <view class='topCont'>
+          <view class='yuan2'>
+            <image src='https://chejiqiche.com/video/notice/rmb.png' class='rmb'></image>
+            <view wx:if='{{Moneys.balance.length <= 5}}'>
+              <view class='money2'>{{Moneys.balance}}</view>
+              <view class='lipeiFont2'>信息费(元)</view>
+            </view>
+            <view wx:else>
+              <view class='money2'>{{Moneys.balance/10000}}</view>
+              <view class='lipeiFont2'>信息费(万)</view>
+            </view>
+          </view>
+          <view class='btn' catchtap='lookMoney' data-id='{{1}}'>查看账单</view>
+          <!-- <image src='https://chejiqiche.com/video/notice/anniu.png' class='btn' catchtap='lookMoney' data-id='{{1}}'></image> -->
+      </view>
+    </swiper-item>
+  </block>
+</swiper>
+
+<view class='huodong'>
+  <view class='hD' catchtap='goInfo' data-id='8'>
+    <image src='https://chejiqiche.com/video/notice/xxs.png' mode='aspectFill' class='icons'></image>
+    <text>充值</text>
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='7'>
+    <image src='https://chejiqiche.com/video/notice/tss.png' mode='aspectFill' class='icons'></image>
+    <text>事故推送</text>   
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='6'>
+    <image src='https://chejiqiche.com/video/notice/tjs.png' mode='aspectFill' class='icons'></image>
+    <text>新建订单</text>
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='1'>
+    <image src='https://chejiqiche.com/video/notice/wss.png' mode='aspectFill' class='icons'></image>
+    <text>完善订单</text>
+    <text class='nums' wx:if='{{dataCount.UNCOMPLETE != 0}}'>{{dataCount.UNCOMPLETE}}</text>    
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='2'>
+    <image src='https://chejiqiche.com/video/notice/wjs.png' mode='aspectFill' class='icons'></image>
+    <text>未接车</text>
+    <text class='nums' wx:if='{{dataCount.INIT != 0}}'>{{dataCount.INIT}}</text>    
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='3'>
+    <image src='https://chejiqiche.com/video/notice/yjs.png' mode='aspectFill' class='icons'></image>
+    <text>服务中</text>
+    <text class='nums' wx:if='{{dataCount.SERVICING != 0}}'>{{dataCount.SERVICING}}</text>    
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='4'>
+    <image src='https://chejiqiche.com/video/notice/yjcs.png' mode='aspectFill' class='icons'></image>
+    <text>已交车</text>
+    <text class='nums' wx:if='{{dataCount.PLACED != 0}}'>{{dataCount.PLACED}}</text>    
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='5'>
+    <image src='https://chejiqiche.com/video/notice/yjss.png' mode='aspectFill' class='icons'></image>
+    <text>已结算</text>
+    <text class='nums' wx:if='{{dataCount.SETTLED != 0}}'>{{dataCount.SETTLED}}</text>    
+  </view>
+  <!-- <view class='hD' catchtap='goInfo' data-id='4'>
+    <image src='../../images/zhuce.png' mode='aspectFill' class='icons'></image>
+    <text>注册</text>
+    <image src='https://chejiqiche.com/video/notice/jiantou.png' class='rights'></image>
+  </view> -->
+</view>

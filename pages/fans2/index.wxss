@@ -1,0 +1,299 @@
+/* pages/fans/index.wxss */
+page{
+  width: 100%;
+  height: 100%;
+  background: rgb(240,240,240);
+  /* overflow: hidden; */
+}
+.nav{
+  width: 100%;
+  height: 460rpx;
+  /* background: url('https://chejiqiche.com/video/notice/true.jpg') round; */
+  background: rgb(237,68,68);
+  box-sizing: border-box;
+  padding: 60rpx 0 0 24rpx;
+  position: relative;
+}
+.userInfo{
+  width: 558rpx;
+  height: 150rpx;
+  position: relative;
+  box-sizing: border-box;
+  padding-top: 10rpx;
+}
+.userPhone{
+  width: 132rpx;
+  height: 132rpx;
+  border-radius: 62rpx;
+  /* background: pink; */
+}
+.userInfoRight{
+  width: calc(100% - 172rpx);
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: rgb(255,255,255);
+  text-shadow:0rpx 1rpx 10rpx rgb(0,0,0);
+  /* background: rgba(0,0,0,.3); */
+}
+.userName{
+  font-size: 30rpx;
+  margin-top: 28rpx;
+}
+.signature{
+  font-size: 24rpx;
+  margin-top: 24rpx;
+}
+.erWeiMa{
+  height: 140rpx;
+  width: 120rpx;
+  position: absolute;
+  right: 24rpx;
+  top: 48rpx;
+}
+.erWeiMa>view{
+  font-size: 18rpx;
+  text-align: center;
+  color: rgb(77,76,74);
+}
+.MoneyShow{
+  width: 702rpx;
+  height: 232rpx;
+  background: #fff;
+  /* margin: -78rpx auto 0; */
+  /* border-radius: 9rpx; */
+  border-top-left-radius: 9rpx;
+  border-top-right-radius: 9rpx;
+  position: relative;
+  left: -2rpx;
+  top: 20rpx;
+  z-index: 2;
+  /* border: 1rpx solid rgb(240,240,240); */
+  /* box-shadow: -1rpx 2rpx 12rpx rgba(0,0,0,.2); */
+}
+.elTop{
+  width: 100%;
+  height: 148rpx;
+  /* background: yellow; */
+  /* border-bottom: 1rpx dashed rgb(238,238,238);  */
+}
+.elBottom{
+  width: 100%;
+  height: calc(100% - 148rpx);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  position: relative;
+  top: -10rpx;
+}
+.elTop>view{
+  width: 190rpx;
+  display: inline-block;
+}
+.elTop>view:first-child{
+  width: calc(50% - 1rpx);
+  height: 100%;
+  /* border-right: 1rpx dashed rgb(238,238,238); */
+}
+.elTop_left, .elTop_right{
+  box-sizing: border-box;
+  height: 100%;
+  padding: 12rpx 0rpx 12rpx 12rpx;
+}
+.elTop_left>image, .elTop_right>image{
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 22rpx;
+}
+.elTop_left>text, .elTop_right>text{
+  font-size: 26rpx;
+  color: rgb(102,102,102);
+  display: inline-block;
+  height: 64rpx;
+  line-height: 64rpx;
+  position: relative;
+  top: -10rpx;
+}
+.elTop_left>view{
+  width: 256rpx;
+  font-size: 48rpx;
+  text-align: center;
+  color: rgb(44,87,214);
+  margin-top: -10rpx;
+}
+/* .elBottom_left>view{
+  height: 24rpx;
+} */
+.elBottom>view>view:first-child{
+  font-size: 24rpx;
+  color: rgb(102,102,102);
+}
+.elBottom>view>view:last-child{
+  font-size: 36rpx;
+  color: rgb(44,87,214);
+}
+.elBottom>view{
+  width: 33%;
+  height: 100%;
+  display: inline-block;
+  text-align: center;
+  /* line-height: 160rpx; */
+  font-size: 24rpx;
+  border-right: 2rpx solid rgb(240,240,240);
+}
+.elBottom>.elBottom_right{
+  border: none;
+}
+/* .elBottom_right{
+  color: rgb(44,87,214);
+} */
+.blank182{
+  width: 100%;
+  height: 182rpx;
+  background: #fff;
+  /* box-shadow: inset 0px -1px 10px 0px rgba(0,0,0,.2); */
+  position: relative;
+}
+.fansShow{
+  width:702rpx;
+  height:calc(100% - 700rpx);
+  margin:20rpx auto;
+  box-shadow:-1rpx 2rpx 14rpx rgba(0,0,0,.2);
+  border-radius:8rpx;
+  background: #fff;
+}
+.FansInfo{
+  width: 702rpx;
+  height: 74rpx;
+  line-height: 74rpx;
+  font-size: 30rpx;
+  /* color: rgb(255,144,2); */
+  color: rgb(102,102,102);
+  position: relative;
+  padding-left: 24rpx;
+  box-sizing: border-box; 
+  border-bottom: 1rpx solid rgb(240,240,240);
+  background: #fff;
+  border-radius: 8rpx;
+}
+.FansInfo>image{
+  width: 34rpx;
+  height: 36rpx;
+  vertical-align: middle;
+  margin-right: 20rpx;
+}
+.blank2{
+  display: inline-block;
+  width: 4rpx;
+  height: 34rpx;
+  border-radius: 2rpx;
+  /* background: rgb(255,144,2); */
+  background: rgb(255,255,255);
+  position: absolute;
+  left: 34rpx;
+  top: 20rpx;
+}
+.fansNameAndMoney{
+  height: 134rpx;
+  border-bottom: 1rpx solid rgb(240,240,240);
+}
+.fansName{
+  width: calc(100% - 130rpx);
+  height: 100%;
+  float: left;
+  position: relative;
+}
+.fansName>image{
+  width: 102rpx;
+  height: 102rpx;
+  border-radius: 62rpx;
+  position: absolute;
+  top: 16rpx;
+  left: 20rpx;
+  background: skyblue;
+}
+.fansName>view{
+  width: calc(100% - 156rpx);
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  box-sizing: border-box;
+  padding: 34rpx 0;
+}
+.nickName{
+  font-size: 24rpx;
+  color: rgb(51,51,51);
+}
+.elTime{
+  font-size: 20rpx;
+  color: rgb(153,153,153);
+  margin-top: 20rpx;
+}
+.fansMoney{
+  width: 130rpx;
+  height: 100%;
+  float: right;
+  font-size: 28rpx;
+  line-height: 134rpx;
+  color: rgb(231,31,31);
+  box-sizing: border-box;
+  padding-left: 14rpx;
+  /* font-weight: bold; */
+}
+.fansMoney>text:last-child{
+  font-size: 32rpx;
+}
+.noFans{
+  position: relative;
+  top: 80rpx;
+}
+.noFans>image{
+  display: block;
+  width: 200rpx;
+  height: 200rpx;
+  margin: 0 auto;
+  /* background: red; */
+}
+.noFans>text{
+  display: block;
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 24rpx;
+}
+.optionNav{
+  width: 702rpx;
+  height: 174rpx;
+  background: #fff;
+  margin: 24rpx auto;
+  border-radius: 8rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  box-sizing: border-box;
+  padding: 14rpx 0;
+}
+.navInfo{
+  display: inline-block;
+  width: 100rpx;
+  height: 144rpx;
+  /* background: yellow; */
+}
+.navInfo>image{
+  width: 100rpx;
+  height: 100rpx;
+  display: inline-block;
+  /* background: greenyellow; */
+}
+.navInfo>view{
+  font-size: 20rpx;
+  color: rgb(102,102,102);
+  width: 100rpx;
+  text-align: center;
+  margin-top: 10rpx;
+}

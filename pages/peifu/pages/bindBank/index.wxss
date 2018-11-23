@@ -1,0 +1,53 @@
+/* pages/bindBank/index.wxss */
+page{
+  width: 100%;
+  height: 100%;
+  background: rgb(240,240,240);
+  overflow: hidden;
+}
+.bindBank{
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+.bindTip{
+  font-size: 24rpx;
+  color: rgb(118,118,118);
+  padding: 0 24rpx;
+  margin: 40rpx 0 10rpx;
+}
+.bindName{
+  width: 100%;
+  height: 80rpx;
+  box-sizing: border-box;
+  background: rgb(255,255,255);
+  padding: 0 24rpx;
+  font-size: 28rpx;
+}
+.bindName>text{
+  display: inline-block;
+  width: 24%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: left;
+  float: left;
+  color: rgb(102,102,102);
+  border-bottom: 1rpx solid rgb(240,240,240);
+}
+.bindName>input{
+  display: inline-block;
+  width: 76%;
+  height: 100%;
+  float: right;
+  border-bottom: 1rpx solid rgb(240,240,240);
+}
+.content>.bindName:last-child>text, .content>.bindName:last-child>input{
+  border: none;
+}
+/* .bindName:nth-child(3)>text, .bindName:nth-child(3)>input{
+  
+} */
+.btn{
+  width: 80%;
+  margin: 40rpx auto;
+}

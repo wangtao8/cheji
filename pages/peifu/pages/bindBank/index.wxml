@@ -1,0 +1,27 @@
+<!--pages/bindBank/index.wxml-->
+<form bindsubmit="formSubmit" class='bindBank'>
+  <view class='bindTip'>请绑定持卡人本人的银行卡</view>
+  <view class='content'>
+    <view class='bindName' wx:if='{{ids==1}}'>
+        <text>持卡人</text>
+        <input type='text' name='bankUserName' placeholder='请输入您的真实姓名'></input>
+    </view>
+    <view class='bindName'>
+        <text>卡号</text>
+        <input type='number' maxlength='19' name='bankcard' placeholder='请输入您的卡号'></input>
+    </view>
+    <view class='bindName'>
+        <text>开户银行</text>
+        <input name='bankName' placeholder='请输入您的开户银行'></input>
+    </view>
+    <view class='bindName'>
+        <text>开户支行</text>
+        <input name='bankSecondName' placeholder='请输入开户支行详细地址'></input>
+    </view>
+    <view class='bindName'>
+        <text>身份证</text>
+        <input type='idcard' maxlength='19' name='idcard' placeholder='请输入您的身份证'></input>
+    </view>
+  </view>
+  <button type='primary' class='btn' formType="submit">{{ids==0?'修改':'绑定'}}银行卡</button>
+</form>

@@ -1,0 +1,38 @@
+<!--pages/package/pages/info/index.wxml-->
+<view class='bg333'>
+  <view class='fonts' wx:for='{{dataAll.detailList}}' wx:key='index'>
+    <text class='name'>产品:</text>
+    <text class='name2'>{{item}}</text>
+    <!-- <text class='name3'>(1L-1桶)</text> -->
+  </view>
+</view>
+<view class='motai' hidden='{{showNow}}'>
+  <view style='height: 480rpx; top:{{elTop}}' class='NowfourS'>
+    <view class='topYd'>
+      <view class='contYd'>
+        <view>立即下单</view>
+        <view>我们将尽快与您联系</view>
+      </view>
+      <image src='/images/close.png' catchtap='yesFourSHellpMe'></image>
+    </view>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class='conten'>
+        <text>客户姓名：</text>
+        <input type='text' placeholder='请输入您的姓名' name='name' value='{{name}}'></input>
+      </view>
+      <view class='conten'>
+        <text>客户电话：</text>
+        <input type='number' placeholder='请输入您的电话' maxlength='11' name='phone' value='{{phone}}'></input>
+      </view>
+      <button open-type="openSetting" class='openSet'>打开授权设置页</button>
+      <button class='yesFourSHellpMe' formType="submit">确定</button>
+    </form>
+  </view>
+</view>
+<view class='blan14'></view>
+<view class='bottomBtn'>
+  <view>套餐价格：
+    <text>￥{{dataAll.price}}</text>
+  </view>
+  <view class='btn' catchtap='nowOrder'>立即下单</view>
+</view>
