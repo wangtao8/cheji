@@ -5,7 +5,7 @@ page {
 }
 
 .btns {
-  top: 500rpx;
+  top: 410rpx;
   left: calc(50% - 106rpx);
   opacity: 0;
   width: 214rpx;
@@ -17,7 +17,7 @@ page {
   width: 100%;
   background: rgb(240,240,240);
   position: absolute;
-  top: 610rpx;
+  top: 530rpx;
   left: 0;
 }
 .renzhen{
@@ -30,7 +30,7 @@ page {
   z-index: 9999999999;
 }
 .logining {
-  height: 410rpx;
+  height: 320rpx;
   line-height: 50rpx;
   font-size: 32rpx;
   position: relative;
@@ -58,7 +58,7 @@ page {
   padding: 20rpx;
   margin: 0 auto;
   position: absolute;
-  top: 270rpx;
+  top: 190rpx;
   left: calc(50% - 93rpx);
 }
 
@@ -79,7 +79,7 @@ page {
 }
 
 .status2 {
-  top: 500rpx;
+  top: 410rpx;
   left: calc(50% - 106rpx);
   width: 214rpx;
   height: 64rpx;
@@ -100,7 +100,7 @@ page {
   line-height:64rpx;
   text-align:center;
   left:0;
-  top:500rpx;
+  top:410rpx;
 }
 
 .ueserInfo>text:last-child {
@@ -114,10 +114,10 @@ page {
 }
 
 .business{
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-around; */
   position: relative;
   top: 270rpx;
 }
@@ -125,10 +125,12 @@ page {
 .xX {
   margin-bottom: 14rpx;
   position: relative;
-  top: 20rpx;
+  /* top: 20rpx; */
   margin-top: 20rpx;
+  margin-left: 20rpx;
   height: 130rpx;
-  width: 22%
+  width: 22%;
+  display: inline-block;
 }
 
 .xX>image {

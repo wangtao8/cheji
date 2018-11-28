@@ -16,6 +16,8 @@ Page({
    */
   onLoad: function (options) {
     var dataAll = JSON.parse(decodeURIComponent(options.data))
+    var isGouMai = options.isGouMai
+    this.setData({ isGouMai: isGouMai})
     console.log('dataAll:', dataAll)
     var _this = this
     app.getUserId = res => {
@@ -42,6 +44,7 @@ Page({
     var price = this.data.dataAll.price
     var name = e.detail.value.name
     var phone = e.detail.value.phone
+    var prePrice = this.data.dataAll.prePrice
     wx.getLocation({
       type: 'gcj02', //返回可以用于wx.openLocation的经纬度
       success(res) {
@@ -77,7 +80,7 @@ Page({
               })
               return false
             }
-            _this.order(id, phone, price, name, longitude, latitude, address)
+            _this.order(id, phone, price, name, longitude, latitude, address, prePrice)
           },
           fail: function (e) {
             console.log('错误：', e)
@@ -94,7 +97,7 @@ Page({
       }
     })
   },
-  order: function (packageid, phone, price, name,  lng, lat, address){
+  order: function (packageid, phone, price, name, lng, lat, address, prePrice){
     var userId = app.globalData.sessionId
     var _this = this
     wx.request({
@@ -107,7 +110,8 @@ Page({
         "name": name,
         "lng": lng,
         "lat": lat,
-        "address": address
+        "address": address,
+        "prePrice": prePrice
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -127,6 +131,47 @@ Page({
   },
   nowOrder: function(){
     this.setData({ showNow: false })
+  },
+  quxiao: function(){//取消订单
+    var userId = app.globalData.sessionId
+    var id = this.data.dataAll.id
+    wx.showModal({
+      title: '提示',
+      content: '取消后订单不可恢复，是否取消？',
+      success(res) {
+        if (res.confirm) {
+          wx.request({
+            url: api + 'api/v1/wx/bizMaintainPackageOrder/update',
+            data: {
+              'orderStatus': 'CANCELED',
+              'thirdSessionKey': userId,
+              'id': id
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            method: 'POST',
+            success: function (res) {
+              console.log('取消订单结果：', res.data)
+              if (res.data.errorCode == 0) {
+                wx.showToast({
+                  title: '取消成功！',
+                  icon: 'success'
+                })
+                setTimeout(function(){
+                  wx.navigateBack({
+                    delta: 1
+                  })
+                },1000)
+              }
+              wx.hideLoading()
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

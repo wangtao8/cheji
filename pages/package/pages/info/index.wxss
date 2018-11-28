@@ -25,6 +25,24 @@ page{
   text-align: center;
   margin: 0 auto;
   display: inline-block;
+  position: absolute;
+  right: 24rpx;
+  bottom: 34rpx;
+}
+.btn2{
+  width: 240rpx;
+  height: 90rpx;
+  border-radius: 45rpx;
+  background: rgb(255,255,255);
+  color: red;
+  font-size: 36rpx;
+  line-height: 90rpx;
+  text-align: center;
+  margin: 0 auto;
+  display: inline-block;
+  position: absolute;
+  right: 24rpx;
+  bottom: 34rpx;
 }
 .fonts{
   margin-bottom: 50rpx;
@@ -148,13 +166,23 @@ form button{
   position: fixed;
   bottom: 154rpx;
 }
-.bottomBtn>view:first-child{
+.bottomBtn>.xianjia{
   color: rgb(153,153,153);
   font-size: 28rpx;
   width: 400rpx;
   display: inline-block;
 }
-.bottomBtn>view>text{
+.bottomBtn>.yuanjia{
+  color: rgb(153,153,153);
+  font-size: 28rpx;
+  width: 400rpx;
+  display: inline-block;
+}
+.yuanjia>text{
+  color: #ccc;
+  text-decoration: line-through;
+}
+.bottomBtn>.xianjia>text{
   font-size: 36rpx;
   color: rgb(233,23,23);
 }

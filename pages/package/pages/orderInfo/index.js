@@ -10,16 +10,106 @@ Page({
     showBtns: true,
     isOk: true,
     oldImages: [],
-    newImages: []
+    newImages: [],
+    windowShow2: false,
+    array: [],
+    index3: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var _this = this
     app.getUserId = res => {
 
     }
+    var dataAll = JSON.parse(decodeURIComponent(options.data))
+    console.log('dataAll:', dataAll)
+    this.setData({ dataAll: dataAll})
+    wx.getSystemInfo({
+      success(res) {
+        var PmHeight = res.windowHeight
+        var elTop = PmHeight - 240 + 'rpx'
+        console.log('PmHeight:', PmHeight)
+        _this.setData({ elTop: elTop })
+      }
+    })
+    var orderStatus = dataAll.orderStatus
+    if (orderStatus == '已下单') {
+      _this.setData({ array: ['已下单', '已接车', '取消订单']})
+    } else if (orderStatus == '已接车') {
+      _this.setData({ array: ['已接车', '已完成'] })
+    } else if (orderStatus == '已完成') {
+      _this.setData({ array: ['已完成'] })
+    }
+  },
+  closeWindow: function () {//关闭咨询窗口
+    var _this = this
+    var dataAll = this.data.dataAll
+    if (dataAll.statusName == '服务中') {
+      _this.setData({ windowShow: false })
+    } else {
+      _this.setData({ windowShow2: false })
+    }
+  },
+  changeStaus: function () {
+    this.setData({ windowShow2: true })
+  },
+  changeValue: function(){
+    wx.showLoading({
+      title: '请稍等...',
+    })
+    var array = this.data.array
+    var index = this.data.index3
+    var nowData = array[index]
+    var _this = this
+    if (nowData == '已接车') {
+      _this.changeStautsFn(0)
+    } else if (nowData == '已完成') {
+      _this.changeStautsFn(1)
+    } else if (nowData == '已取消') {
+      _this.changeStautsFn(2)
+    }
+  },
+  changeStautsFn: function(types){
+    var orderStatus
+    var userId = app.globalData.sessionId
+    var id = this.data.dataAll.id
+    var _this = this
+    if(types == 0) {//已接车
+      orderStatus = 'RECEPT'
+    } else if (types == 1) {//已完成
+      orderStatus = 'FINISH'
+    } else {//已取消
+      orderStatus = 'CANCELED'
+    }
+    wx.request({
+      url: api + 'api/v1/wx/bizMaintainPackageOrder/update',
+      data: {
+        'thirdSessionKey': userId,
+        'orderStatus': orderStatus,
+        'id': id
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      success: function(res){
+        console.log('更该订单状态结果：', res.data)
+        wx.showToast({
+          title: '更改状态成功！',
+          icon: 'success'
+        })
+        _this.closeWindow()
+      }
+    })
+  },
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index3: e.detail.value
+    })
   },
   Tophoto: function(e){
     var oldImages = this.data.oldImages
@@ -79,22 +169,103 @@ Page({
   uploadImage: function(e){
     var id = e.currentTarget.dataset.id
     var _this = this
+    wx.showLoading({
+      title: '上传图片中..',
+    })
     if (id == 0) {
+      var preImgs = _this.data.oldImages
+      _this.ulpoad(0, preImgs)
+      // _this.uploadPre(0, preImgs)
       _this.setData({ showBtns: false })
     } else {
+      var aftImgs = _this.data.newImages
+      _this.ulpoad(1, aftImgs)
+      // _this.uploadPre(0, aftImgs)
       _this.setData({ isOk: false})
     }
+  },
+  ulpoad: function(types,list){//上传图片到服务器
+    var _this = this
+    var userId = app.globalData.sessionId
+    var claimImg
+    var k = 0
+    for (let i = 0; i < list.length; i++){
+      console.log('list:', list[i])
+      wx.uploadFile({
+        url: api + 'api/v1/wx/claim/uploadfile',
+        filePath: list[i],
+        name: 'file',
+        formData: {
+          'thirdSessionKey': userId
+        },
+        success: function (res) {
+          k++
+          console.log('xxxxxxxxxxxx:', res.data)
+          const data = JSON.parse(res.data)
+          claimImg = claimImg === undefined ? data.data[0] : claimImg + '#' + data.data[0] //拼接图片url地址
+          if (list.length == k) {
+            console.log('拼接好的图片：', claimImg, 'i:', i)
+            _this.uploadPre(types, claimImg)
+          }
+        }
+      })
+    }
+  },
+  uploadPre: function(types, list){//把已经上传的图片地址存到数据库
+    var userId = app.globalData.sessionId
+    var id = this.data.dataAll.id
+    var data
+    console.log('list:', list)
+    if (types == 0) {
+      data = {
+        'thirdSessionKey': userId,
+        'id': id,
+        'preImgs': list
+      }
+    } else {
+      data = {
+        'thirdSessionKey': userId,
+        'id': id,
+        'aftImgs': list
+      }
+    }
+    console.log('data:', data)
+    wx.request({
+      url: api + 'api/v1/wx/bizMaintainPackageOrder/update',
+      data: data,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      success: function(res){
+        console.log('上传图片的返回值：', res.data)
+        wx.showToast({
+          title: '上传图片成功！',
+          icon: 'success'
+        })
+      }
+    })
   },
   lookImg: function(e){
     var id = e.currentTarget.dataset.id
     var index = e.currentTarget.dataset.index
+    var perList = this.data.dataAll.preImgsList
+    var aftList = this.data.dataAll.aftImgsList
     var _this = this
     var imgList
     if (id ==0) {
-      imgList = _this.data.oldImages
+      if (perList.length > 0) {
+        imgList = perList
+      } else {
+        imgList = _this.data.oldImages
+      }
       // console.log('oldImages:', imgList)
     } else {
-      imgList = _this.data.newImages
+      if (aftList.length > 0) {
+        imgList = aftList
+      } else {
+        imgList = _this.data.newImages
+      }
       // console.log('newImages:', imgList)
     }
     wx.previewImage({
@@ -114,6 +285,13 @@ Page({
    */
   onShow: function () {
     var _this = this
+    var dataAll = this.data.dataAll
+    if (dataAll.preImgsList.length > 0) {
+      _this.setData({ showBtns: false, })
+    }
+    if (dataAll.aftImgsList.length > 0) {
+      _this.setData({ isOk: false, })
+    }
     //创建动画
     var animation = wx.createAnimation({
       duration: 800,

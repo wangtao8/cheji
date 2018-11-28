@@ -1,0 +1,76 @@
+<!--pages/package/pages/home/index.wxml-->
+<!--pages/lipei/index.wxml-->
+<swiper indicator-dots="{{indicatorDots}}"
+  autoplay="true">
+  <block>
+    <swiper-item>
+        <image src='https://chejiqiche.com/video/notice/banner.png' style='width:100%;height:100%;'></image>
+    </swiper-item>
+  </block>
+</swiper>
+
+<view class='huodong' wx:if='{{id == 1}}'>
+  <view class='hD' catchtap='goInfo' data-id='0'>
+    <image src='https://chejiqiche.com/video/notice/wss.png' mode='aspectFill' class='icons'></image>
+    <text>全部订单</text>
+    <text class='nums' wx:if='{{dataCount.totalCount != 0}}'>{{dataCount.totalCount}}</text>    
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='1'>
+    <image src='https://chejiqiche.com/video/notice/wjs.png' mode='aspectFill' class='icons'></image>
+    <text>已下单</text>
+    <text class='nums' wx:if='{{dataCount.CREATED != 0}}'>{{dataCount.CREATED}}</text>    
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='2'>
+    <image src='https://chejiqiche.com/video/notice/yjs.png' mode='aspectFill' class='icons'></image>
+    <text>已接车</text>
+    <text class='nums' wx:if='{{dataCount.RECEPT != 0}}'>{{dataCount.RECEPT}}</text>    
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='3'>
+    <image src='https://chejiqiche.com/video/notice/yjcs.png' mode='aspectFill' class='icons'></image>
+    <text>已完成</text>
+    <text class='nums' wx:if='{{dataCount.FINISH != 0}}'>{{dataCount.FINISH}}</text>    
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='4'>
+    <image src='https://chejiqiche.com/video/notice/yjss.png' mode='aspectFill' class='icons'></image>
+    <text>已取消</text>
+    <text class='nums' wx:if='{{dataCount.CANCELED != 0}}'>{{dataCount.CANCELED}}</text>    
+  </view>
+  <!-- <view class='hD' catchtap='goInfo' data-id='4'>
+    <image src='../../images/zhuce.png' mode='aspectFill' class='icons'></image>
+    <text>注册</text>
+    <image src='https://chejiqiche.com/video/notice/jiantou.png' class='rights'></image>
+  </view> -->
+</view>
+
+<view class='huodong' wx:else>
+  <view class='hD' catchtap='goInfo' data-id='0'>
+    <image src='https://chejiqiche.com/video/notice/wss.png' mode='aspectFill' class='icons'></image>
+    <text>全部订单</text>
+    <text class='nums' wx:if='{{dataCount.totalCount != 0}}'>{{dataCount.totalCount}}</text>    
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='1'>
+    <image src='https://chejiqiche.com/video/notice/wjs.png' mode='aspectFill' class='icons'></image>
+    <text>已下单</text>
+    <text class='nums' wx:if='{{dataCount.CREATED != 0}}'>{{dataCount.CREATED}}</text>    
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='2'>
+    <image src='https://chejiqiche.com/video/notice/yjs.png' mode='aspectFill' class='icons'></image>
+    <text>已接车</text>
+    <text class='nums' wx:if='{{dataCount.RECEPT != 0}}'>{{dataCount.RECEPT}}</text>    
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='3'>
+    <image src='https://chejiqiche.com/video/notice/yjcs.png' mode='aspectFill' class='icons'></image>
+    <text>已完成</text>
+    <text class='nums' wx:if='{{dataCount.FINISH != 0}}'>{{dataCount.FINISH}}</text>    
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='4'>
+    <image src='https://chejiqiche.com/video/notice/yjss.png' mode='aspectFill' class='icons'></image>
+    <text>已取消</text>
+    <text class='nums' wx:if='{{dataCount.CANCELED != 0}}'>{{dataCount.CANCELED}}</text>    
+  </view>
+  <!-- <view class='hD' catchtap='goInfo' data-id='4'>
+    <image src='../../images/zhuce.png' mode='aspectFill' class='icons'></image>
+    <text>注册</text>
+    <image src='https://chejiqiche.com/video/notice/jiantou.png' class='rights'></image>
+  </view> -->
+</view>

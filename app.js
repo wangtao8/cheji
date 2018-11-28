@@ -319,8 +319,8 @@ App({
     // api: 'https://chejiqiche.com/',
     wss: 'wss://chejiqiche.com/wss',
     // wss: 'ws://118.24.150.197:7397/',
-    // api: 'http://118.24.150.197:8080/',
-    api: 'http://kosan.tunnel.qydev.com/',
+    api: 'http://118.24.150.197:8080/',
+    // api: 'http://kosan.tunnel.qydev.com/',
     // api: 'http://192.168.11.119:8080/',
     zt: false
   }

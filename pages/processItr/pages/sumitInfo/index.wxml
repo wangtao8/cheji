@@ -37,6 +37,7 @@
       </form>
   </view>
 </view>
+
 <view class='bottoms' wx:if='{{windowShow2}}'>
   <!-- <view class='tishi'>如有需要 · 请留下您的联系方式</view> -->
   <view style='height: 480rpx; top:{{elTop}}'>

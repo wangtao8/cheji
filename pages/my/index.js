@@ -96,6 +96,23 @@ Page({
     
   },
   /**
+   * 跳转到汽车保养列表
+   */
+  package: function(e){
+    var id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '../package/pages/home/index?id=' + id,
+    })
+  },
+  /**
+   * 跳转到汽车保养页面
+   */
+  qqby:function(){
+    wx.navigateTo({
+      url: '../package/pages/index/index',
+    })
+  },
+  /**
    * 获得用户信息
    */
   getUserInfo: function(e) {

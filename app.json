@@ -1,9 +1,11 @@
 {
   "pages": [
-    "pages/package/pages/orderInfo/index",
     "pages/my/index",
-    "pages/package/pages/info/index",
     "pages/package/pages/index/index",
+    "pages/package/pages/home/index",
+    "pages/package/pages/stuatsList/index",
+    "pages/package/pages/orderInfo/index",
+    "pages/package/pages/info/index",
     "pages/index/index",
     "pages/carCity/index",
     "pages/test/index",

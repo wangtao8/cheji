@@ -145,7 +145,7 @@ Page({
     var itemDataString = encodeURIComponent(JSON.stringify(val))//字符串拼接
     console.log('itemDataString:', itemDataString)
     wx.navigateTo({
-      url: '../info/index?data=' + itemDataString,
+      url: '../info/index?data=' + itemDataString + '&isGouMai=1',
     })
   }
 })

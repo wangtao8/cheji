@@ -31,8 +31,15 @@
 </view>
 <view class='blan14'></view>
 <view class='bottomBtn'>
-  <view>套餐价格：
+  <view wx:if='{{dataAll.prePrice != ""}}' class='yuanjia'>
+      原价：<text>￥{{dataAll.prePrice}}</text>
+  </view>
+  <view class='xianjia' style='margin-top: {{dataAll.prePrice != "" ? "0rpx" : "24rpx"}};'>套餐价格：
     <text>￥{{dataAll.price}}</text>
   </view>
-  <view class='btn' catchtap='nowOrder'>立即下单</view>
+  <view class='btn' catchtap='nowOrder' wx:if='{{dataAll.orderStatus == undefined}}'>立即下单</view>
+  <view class='btn' catchtap='quxiao' wx:elif='{{dataAll.orderStatus == "已下单" }}'>取消订单</view>
+  <view class='btn2' catchtap='quxiao' wx:elif='{{dataAll.orderStatus == "已接车" }}'>已接车</view>
+  <view class='btn2' wx:elif='{{dataAll.orderStatus == "已取消"}}'>已取消订单</view>
+  <view class='btn2' wx:elif='{{dataAll.orderStatus == "已完成"}}'>已完成</view>
 </view>

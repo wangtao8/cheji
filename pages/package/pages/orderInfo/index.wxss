@@ -1,7 +1,7 @@
 /* pages/package/pages/orderInfo/index.wxss */
 .conten{
   height: 52rpx;
-  line-height: 52rpx;
+  line-height: 34rpx;
   padding: 20rpx 24rpx;
   /* border-bottom: 1rpx solid rgb(240,240,240); */
 }
@@ -129,4 +129,155 @@
 }
 .btns{
   margin-bottom: 24rpx;
+}
+
+.forms2{
+  background: #fff;
+  /* margin-top:-40rpx; */
+  padding: 40rpx 24rpx;
+}
+.conten2{
+  /* height: 52rpx; */
+  background: #fff;
+  line-height: 52rpx;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid rgb(240,240,240);
+  font-size: 30rpx;
+}
+.conten2>text{
+  width: 174rpx;
+  /* font-weight: 600; */
+  float: left;
+  color: rgb(51,51,51);
+  font-size: 30rpx;
+}
+.conten2>input{
+  display: inline-block;
+  /* background: yellow; */
+  box-sizing: border-box;
+  width: 526rpx;
+  height: 48rpx;
+  /* background: rgb(229,229,229); */
+  border-radius: 4rpx;
+  font-size: 30rpx;
+}
+.conten2>view{
+  display: inline-block;
+  /* background: yellow; */
+  box-sizing: border-box;
+  width: 526rpx;
+  height: 48rpx;
+  /* background: rgb(229,229,229); */
+  border-radius: 4rpx;
+  font-size: 30rpx;
+  /* overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; */
+}
+.conten2>button{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  background: #ec7c03;
+  color: #fff;
+  font-size: 30rpx;
+  line-height: 40rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+  margin-top: 20rpx;
+}
+.conten2::after{
+  display: block;
+  clear: both;
+  content: '';
+}
+
+.bottoms{
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  /* position: absolute; */
+  /* bottom: 0; */
+  /* left: 0; */
+}
+.bottoms>view{
+  width: 100%;
+  background: #fff;
+  position: absolute;
+  /* top: 400rpx; */
+  left: 0;
+}
+form>view{
+  color: #1AAD16;
+}
+.topYd{
+  text-align: center;
+  height: 128rpx;
+  box-sizing: border-box;
+  padding: 14rpx 0;
+  border-bottom: 1rpx solid #efefef;
+  position: relative;
+}
+.topYd>image{
+  display: inline-block;
+  width: 28rpx;
+  height: 28rpx;
+  position: absolute;
+  right: 24rpx;
+  top: 24rpx;
+}
+.contYd>view:first-child{
+  font-size: 34rpx;
+  font-weight: bold;
+  color: rgb(104,104,104);
+}
+.contYd>view:last-child{
+  font-size: 34rpx;
+  font-weight: bold;
+  color: rgb(66,66,64);
+  margin: 20rpx 0;
+}
+.userName, .userPhone, .message{
+  /* margin-top: 20rpx; */
+  /* width: 702rpx; */
+  font-size: 26rpx;
+  color: rgb(77,77,77);
+  margin: 20rpx auto 0;
+  border-bottom: 1rpx solid #efefef;
+  box-sizing: border-box;
+  padding: 0 24rpx 24rpx;
+}
+.userName>text, .userPhone>text{
+  display: inline-block;
+  height: 80rpx;
+  line-height: 80rpx;
+  float: left;
+  font-size: 30rpx;
+}
+input{
+  /* margin: 20rpx 0; */
+  box-sizing: border-box;
+  padding-left: 20rpx;
+  width: 500rpx;
+  height: 80rpx;
+  /* background: rgb(230,230,230); */
+  border-radius: 6rpx;
+  display: inline-block;
+  font-size: 26rpx;
+}
+.bottoms button{
+  margin-left:0;
+  width:600rpx;
+  background:#ec7c03;
+  border-radius:80rpx;
+  color:#fff;
+  margin:74rpx auto 0;
+  letter-spacing:20rpx;
+  height:100rpx;
+  font-size:40rpx;
 }

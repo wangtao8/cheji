@@ -1,56 +1,97 @@
 <!--pages/package/pages/orderInfo/index.wxml-->
 <view class='tops'>
-    <view class='titlte'>订单详情</view>
-    <view class='nums'>订单编号：A20180818180848</view>
+  <view class='titlte'>订单详情</view>
+  <view class='nums'>订单编号：{{dataAll.orderno}}</view>
 </view>
 <view class='forms'>
-    <view class='conten'>
-        <text>客户姓名：</text>
-        <view>123123123</view>
-    </view>
-    <view class='conten'>
-        <text>客户电话：</text>
-        <view>阿斯达山东省</view>
-    </view>
-    <view class='conten'>
-        <text>客户地址：</text>
-        <view>阿斯达的盛大</view>
-    </view>
-    <view class='conten'>
-        <text>套餐类名：</text>
-        <view>阿斯达的盛大</view>
-    </view>
-    <view class='conten'>
-        <text>套餐价格：</text>
-        <view>阿斯达的盛大</view>
-    </view>
-    <view class='conten'>
-        <text>套餐详细：</text>
-        <view class='lastBox'>阿斯达的盛大阿斯达的盛大阿斯达的盛大阿斯达的盛大阿斯达的盛大阿斯达的盛大阿斯达的盛大阿斯达的盛大阿斯达的盛大阿斯达的盛大阿斯达的盛大阿斯达的盛大</view>
-    </view>
-    <view class='timer'>2018-18-18 18:08:18</view>
+  <view class='conten'>
+    <text>客户姓名：</text>
+    <view>{{dataAll.name}}</view>
+  </view>
+  <view class='conten'>
+    <text>客户电话：</text>
+    <view>{{dataAll.phone}}</view>
+  </view>
+  <view class='conten'>
+    <text>客户地址：</text>
+    <view>{{dataAll.address}}</view>
+  </view>
+  <view class='conten'>
+    <text>套餐类名：</text>
+    <view>{{dataAll.packageName}}</view>
+  </view>
+  <view class='conten'>
+    <text>套餐价格：</text>
+    <view>{{dataAll.price}}</view>
+  </view>
+  <view class='conten'>
+    <text>套餐详细：</text>
+    <view class='lastBox'>{{dataAll.detail}}</view>
+  </view>
+  <view class='timer'>{{dataAll.createTime}}</view>
+</view>
+<view class='blank18'></view>
+<view class='elTitle'>改变状态</view>
+<view class='forms2'>
+  <view class='conten2'>
+    <text>订单状态：</text>
+    <view>{{array[index3]}}</view>
+    <button catchtap='changeStaus'>更改状态</button>
+  </view>
 </view>
 <view class='blank18'></view>
 <view class='elTitle'>接车保养前照</view>
 <view class='content'>
-   <view class='images'>
-      <image wx:for='{{oldImages}}' src='{{item}}' wx:key='{{index}}' mode="aspectFill" catchtap='lookImg' data-id='{{0}}' data-index='{{index}}'></image>
-   </view>
-   <view wx:if='{{showBtns}}'>
-      <button bindtap="Tophoto" class="page-body-button" animation="{{animationData}}" class='Tophoto' data-id='0'>拍照</button>
-      <text class='allUpload' catchtap='allUpload' wx:if='{{!dataAll.cph}}' data-id='0'>已拍过照？点我批量上传^ ^</text>
-      <button type='primary' class='btns' catchtap='uploadImage' data-id='0'>上传</button>
-   </view>
+  <view class='images' wx:if='{{dataAll.preImgsList == ""}}'>
+    <image wx:for='{{oldImages}}' src='{{item}}' wx:key='{{index}}' mode="aspectFill" catchtap='lookImg' data-id='{{0}}' data-index='{{index}}'></image>
+  </view>
+  <view wx:if='{{dataAll.preImgsList == "" && showBtns}}'>
+    <button bindtap="Tophoto" class="page-body-button" animation="{{animationData}}" class='Tophoto' data-id='0'>拍照</button>
+    <text class='allUpload' catchtap='allUpload' wx:if='{{!dataAll.cph}}' data-id='0'>已拍过照？点我批量上传^ ^</text>
+    <button type='primary' class='btns' catchtap='uploadImage' data-id='0'>上传</button>
+  </view>
+  <view class='images' wx:else>
+    <image wx:for='{{dataAll.preImgsList}}' src='{{item}}' wx:key='{{index}}' mode="aspectFill" catchtap='lookImg' data-id='{{0}}' data-index='{{index}}'></image>
+  </view>
 </view>
 <view class='blank18'></view>
 <view class='elTitle'>到店保养后照</view>
 <view class='content'>
-   <view class='images'>
-      <image wx:for='{{newImages}}' src='{{item}}' wx:key='{{index}}' mode="aspectFill" catchtap='lookImg' data-id='{{1}}' data-index='{{index}}'></image>
-   </view>
-   <view wx:if='{{!showBtns && isOk}}'>
-      <button bindtap="Tophoto" class="page-body-button" animation="{{animationData}}" class='Tophoto' data-id='1'>拍照</button>
-      <text class='allUpload' catchtap='allUpload' wx:if='{{!dataAll.cph}}' data-id='1'>已拍过照？点我批量上传^ ^</text>
-      <button type='primary' class='btns' catchtap='uploadImage' data-id='1'>上传</button>
-   </view>
+  <view class='images' wx:if='{{dataAll.aftImgsList == ""}}'>
+    <image wx:for='{{newImages}}' src='{{item}}' wx:key='{{index}}' mode="aspectFill" catchtap='lookImg' data-id='{{1}}' data-index='{{index}}'></image>
+  </view>
+  <view wx:if='{{dataAll.aftImgsList == "" && !showBtns && isOk}}'>
+    <button bindtap="Tophoto" class="page-body-button" animation="{{animationData}}" class='Tophoto' data-id='1'>拍照</button>
+    <text class='allUpload' catchtap='allUpload' wx:if='{{!dataAll.cph}}' data-id='1'>已拍过照？点我批量上传^ ^</text>
+    <button type='primary' class='btns' catchtap='uploadImage' data-id='1'>上传</button>
+  </view>
+  <view class='images' wx:else>
+    <image wx:for='{{dataAll.aftImgsList}}' src='{{item}}' wx:key='{{index}}' mode="aspectFill" catchtap='lookImg' data-id='{{1}}' data-index='{{index}}'></image>
+  </view>
+  <view class='bottoms' wx:if='{{windowShow2}}'>
+    <!-- <view class='tishi'>如有需要 · 请留下您的联系方式</view> -->
+    <view style='height: 480rpx; top:{{elTop}}'>
+        <view class='topYd'>
+          <view class='contYd'>
+            <view></view>
+            <view>更改理赔状态</view>
+          </view>
+          <image src='/images/close.png' catchtap='closeWindow'></image>
+        </view>
+        <view class='userName'>
+          <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view class="picker">
+              订单状态:
+              <text>{{array[index3]}}</text>
+            </view>
+          </picker>
+        </view>
+        <!-- <view class='message'>
+        <text>贴心留言：</text>
+        <textarea name='message'></textarea>
+      </view> -->
+        <!-- <button formType='submit'>提交</button> -->
+        <button catchtap='changeValue'>提交</button>
+    </view>
+  </view>
 </view>
