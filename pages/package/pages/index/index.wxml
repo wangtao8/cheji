@@ -2,13 +2,13 @@
 <view class='topBanner'>
     <image src='https://chejiqiche.com/video/notice/ByBner.png' class='banner'></image>
 </view>
-<view class='content' wx:for='{{cont}}' wx:key='index' catchtap='goInfo' data-val='{{item}}'> 
+<view class='content' wx:for='{{cont}}' wx:key='{{index}}' catchtap='goInfo' data-val='{{item}}'> 
     <view class='imageLeft'>
         <image src='{{item.img}}'></image>
     </view>
     <view class='contRight'>
         <view class='info'>
-            <view class='fonts' wx:for='{{item.detailList}}' wx:for-item="datail" wx:for-index="datailindex">{{datail}}</view>
+            <view class='fonts' wx:for='{{item.detailList}}' wx:for-item="datail" wx:key="{{datailindex}}">{{datail}}</view>
         </view>
         <view class='money'>
             ￥: <text>{{item.price}}</text>

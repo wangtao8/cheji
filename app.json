@@ -1,14 +1,9 @@
 {
   "pages": [
-    "pages/my/index",
-    "pages/package/pages/index/index",
-    "pages/package/pages/home/index",
-    "pages/package/pages/stuatsList/index",
-    "pages/package/pages/orderInfo/index",
-    "pages/package/pages/info/index",
     "pages/index/index",
+    "pages/aichepei/index",
+    "pages/my/index",
     "pages/carCity/index",
-    "pages/test/index",
     "pages/login/index",
     "pages/registered/index",
     "pages/fans2/index",
@@ -73,6 +68,16 @@
         "pages/processItr/index",
         "pages/peifuAllOrder/index",
         "pages/sumitInfo/index"
+      ]
+    },
+    {
+      "root": "pages/package",
+      "pages": [
+        "pages/index/index",
+        "pages/home/index",
+        "pages/info/index",
+        "pages/orderInfo/index",
+        "pages/stuatsList/index"
       ]
     }
   ],

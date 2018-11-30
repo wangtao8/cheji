@@ -73,18 +73,10 @@ Page({
       }
     })
     _this.getTeacherInfo()
-
+    
   },
   closeWindow: function () {//关闭咨询窗口
     this.setData({ windowShow: false })
-  },
-  /**
-   * 跳转到汽车保养页面
-   */
-  qqby: function () {
-    wx.navigateTo({
-      url: '../package/pages/index/index',
-    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -105,9 +97,9 @@ Page({
       console.log('是否有新版本：', res.hasUpdate)
     })
 
-    /** 
-     * 更新并重启应用
-     */
+   /** 
+    * 更新并重启应用
+    */
     updateManager.onUpdateReady(function () {
       wx.showModal({
         title: '更新提示',
@@ -342,14 +334,14 @@ Page({
     var id = e.currentTarget.dataset.id
     if (id == 7) {
       _this.setData({ windowShow: true })
-    } else if (id == 8) {
+    } else if ( id == 8) {
       wx.navigateTo({
         url: '../erweima/index'
       })
     } else {
       wx.navigateTo({
         url: '../lipeiInfo/index?ids=' + id
-      })
+      }) 
     }
   },
   /**
@@ -399,9 +391,9 @@ Page({
     * 提交理赔订单
     */
   uploadForm: function (userPhone, userName, longitudes, latitudes, address, userId) {
-    /**
-      *type 值=0为事故代办 值=1为无损赔付 值=2为人伤垫付 值=3为交单理赔 值=4为法律服务 值=5为现场理赔
-      */
+  /**
+    *type 值=0为事故代办 值=1为无损赔付 值=2为人伤垫付 值=3为交单理赔 值=4为法律服务 值=5为现场理赔
+    */
     var _this = this
     var types = 7
     wx.request({
@@ -424,7 +416,7 @@ Page({
         if (e.data.errorCode == 5001) {
 
         } else {
-          _this.setData({ windowShow: false, isClick: true })
+          _this.setData({ windowShow: false, isClick: true})
           wx.showModal({
             title: '提示',
             content: '提交成功，请等待回复',

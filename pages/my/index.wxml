@@ -60,10 +60,10 @@
     <image src='https://chejiqiche.com/video/notice/tt.png'></image>
     <text>信息处理</text>
   </view>
-  <view class='xX' catchtap='qqby'>
+  <!-- <view class='xX' catchtap='qqby'>
     <image src='https://chejiqiche.com/video/notice/byn.png'></image>
     <text>汽车保养</text>
-  </view>
+  </view> -->
   <view class='xX' catchtap='package' data-id='{{1}}'>
     <image src='https://chejiqiche.com/video/notice/yeP.png'></image>
     <text>用户端口</text>

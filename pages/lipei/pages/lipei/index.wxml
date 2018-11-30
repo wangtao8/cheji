@@ -6,8 +6,36 @@
     </swiper-item>
   </block>
 </swiper>
+<view class='bottoms' wx:if='{{windowShow}}'>
+  <!-- <view class='tishi'>如有需要 · 请留下您的联系方式</view> -->
+  <view style='height: 480rpx; top:{{elTop}}'>
+    <form bindsubmit='formSubmit'>
+      <view class='topYd'>
+        <view class='contYd'>
+          <view>立即咨询</view>
+          <view>专业理赔第一时间为您服务</view>
+        </view>
+        <image src='/images/close.png' catchtap='closeWindow'></image>
+      </view>
+      <view class='userName'>
+        <text>您的姓名：</text>
+        <input type='text' name='userName' placeholder='请输入您的名字'></input>
+      </view>
+      <view class='userPhone'>
+        <text>联系电话：</text>
+        <input type='number' name='userPhone' maxlength='11' placeholder='请输入您的电话号码'></input>
+      </view>
+      <!-- <view class='message'>
+          <text>贴心留言：</text>
+          <textarea name='message'></textarea>
+        </view> -->
+      <button formType='submit' style='background: {{isClick == true ? "#ec7c03" : "#ccc"}}' wx:if='{{isClick}}'>提交</button>
+      <button style='background: {{isClick == true ? "#ec7c03" : "#ccc"}}' wx:else>提交</button>
+    </form>
+  </view>
+</view>
 <view class='huodong'>
-  <view class='hD' catchtap='goInfo' data-id='9'>
+  <view class='hD' catchtap='goInfo' data-id='6'>
     <image src='https://chejiqiche.com/video/notice/zx.png' mode='aspectFill'></image>
     <text>事故咨询</text>
   </view>
@@ -35,9 +63,9 @@
     <image src='https://chejiqiche.com/video/notice/db.png' mode='aspectFill'></image>
     <text>免费代步车</text>
   </view>
-  <view class='hD' catchtap='goInfo' data-id='6'>
+  <view class='hD' catchtap='goInfo' data-id='8'>
     <image src='https://chejiqiche.com/video/notice/xm.png' mode='aspectFill'></image>
-    <text>其他服务</text>
+    <text>邀请码</text>
   </view>
 </view>
 

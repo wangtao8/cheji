@@ -1,5 +1,6 @@
 var app = getApp()
 var api = app.globalData.api
+var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
 Page({
   data: {
     imgUrls: [
@@ -13,10 +14,101 @@ Page({
     interval: 5000,
     duration: 1000,
     userMotai: true,
-    sure: true
+    sure: true,
+    windowShow: false,
+    isClick: true
+  },
+  /**
+  * 用户提交表单
+  */
+  formSubmit: function (e) {
+    var _this = this
+    var formValue = e.detail.value
+    var userId = app.globalData.sessionId
+    _this.setData({ isClick: false })
+    wx.showLoading({
+      title: '提交中',
+    })
+    if (formValue.userPhone && formValue.userName) {
+      wx.getLocation({
+        type: 'gcj02',
+        success: function (res) {
+          var latitudes = parseFloat(res.latitude)
+          var longitudes = parseFloat(res.longitude)
+          console.log(longitudes)
+          var qqmapsdk = new QQMapWX({
+            key: 'E6OBZ-I2YK6-QWESQ-MH3TB-OZUKO-THBPD' // 必填
+          });
+          qqmapsdk.reverseGeocoder({//逆地址解析
+            location: {
+              latitude: latitudes,
+              longitude: longitudes
+            },
+            success: function (addressRes) {
+              var address = addressRes.result.formatted_addresses.recommend//需要的地址
+              console.log('查看逆解析的地址包括所有信息：', formValue.userPhone, formValue.userName, longitudes, latitudes, address)
+              _this.uploadForm(formValue.userPhone, formValue.userName, longitudes, latitudes, address, userId)
+              wx.hideLoading()
+            }
+          })
+        }
+      })
+    } else {
+      _this.setData({ isClick: true })
+      wx.showToast({
+        title: '请完善您的个人信息',
+        icon: 'none'
+      })
+    }
+  },
+  /** 
+   * 提交理赔订单
+   */
+  uploadForm: function (userPhone, userName, longitudes, latitudes, address, userId) {
+    /**
+      *type 值=0为事故代办 值=1为无损赔付 值=2为人伤垫付 值=3为交单理赔 值=4为法律服务 值=5为现场理赔
+      */
+    var _this = this
+    var types = 7
+    wx.request({
+      url: api + 'api/v1/wx/claim/add',
+      data: {
+        'phone': userPhone,
+        'name': userName,
+        'lng': longitudes,
+        'lat': latitudes,
+        'address': address,
+        'thirdSessionKey': userId,
+        'type': types
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: 'POST',
+      success: function (e) {
+        console.log('上传用户信息结果：', e)
+        if (e.data.errorCode == 5001) {
+
+        } else {
+          _this.setData({ windowShow: false, isClick: true })
+          wx.showModal({
+            title: '提示',
+            content: '提交成功，请等待回复',
+          })
+        }
+      }
+    })
   },
   onLoad: function(){
     var _this = this
+    wx.getSystemInfo({
+      success(res) {
+        var PmHeight = res.windowHeight
+        var elTop = PmHeight - 240 + 'rpx'
+        console.log('PmHeight:', PmHeight)
+        _this.setData({ elTop: elTop })
+      }
+    })
     /**
       * WxParse.wxParse(bindName , type, data, target,imagePadding)
       * 1.bindName绑定的数据名(必填)
@@ -319,12 +411,23 @@ Page({
       sure: false
     })
   },
-  goInfo: function(e){//跳转到理赔详情页
+  goInfo: function (e) {
     var _this = this
     var id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: '../lipeiInfo/index?ids=' + id
-    })
+    if (id == 7) {
+      _this.setData({ windowShow: true })
+    } else if (id == 8) {
+      wx.navigateTo({
+        url: '../../../erweima/index'
+      })
+    } else {
+      wx.navigateTo({
+        url: '../../../lipeiInfo/index?ids=' + id
+      })
+    }
+  },
+  closeWindow: function () {//关闭咨询窗口
+    this.setData({ windowShow: false })
   },
   goPptInfo: function(e){//获得轮播图详情
     var val = e.currentTarget.dataset.value

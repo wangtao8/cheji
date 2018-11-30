@@ -1,0 +1,160 @@
+<!--pages/index/index.wxml-->
+<image src='https://chejiqiche.com/video/notice/bg2.png' class='bgImage' mode='aspectFill'></image>
+<view class='font-infor'>
+  <image src='https://chejiqiche.com/video/notice/99.png' mode='aspectFit'></image>
+  <view>Own car</view>
+  <view>发交通事故奖励120红包</view>
+</view>
+<image src='https://chejiqiche.com/video/notice/timg4.gif' class='photos' catchtap='goPhoto'></image>
+<view class='head-image' catchtap='goPhoto'>
+  <image src='https://chejiqiche.com/video/notice/dong.gif' mode='aspectFit'></image>
+  <text>立即摄像</text>
+</view>
+<view class='bottoms' wx:if='{{windowShow}}'>
+  <!-- <view class='tishi'>如有需要 · 请留下您的联系方式</view> -->
+  <view style='height: 480rpx; top:{{elTop}}'>
+    <form bindsubmit='formSubmit'>
+      <view class='topYd'>
+        <view class='contYd'>
+          <view>立即咨询</view>
+          <view>专业理赔第一时间为您服务</view>
+        </view>
+        <image src='/images/close.png' catchtap='closeWindow'></image>
+      </view>
+      <view class='userName'>
+        <text>您的姓名：</text>
+        <input type='text' name='userName' placeholder='请输入您的名字'></input>
+      </view>
+      <view class='userPhone'>
+        <text>联系电话：</text>
+        <input type='number' name='userPhone' maxlength='11' placeholder='请输入您的电话号码'></input>
+      </view>
+      <!-- <view class='message'>
+          <text>贴心留言：</text>
+          <textarea name='message'></textarea>
+        </view> -->
+      <button formType='submit' style='background: {{isClick == true ? "#ec7c03" : "#ccc"}}' wx:if='{{isClick}}'>提交</button>
+      <button style='background: {{isClick == true ? "#ec7c03" : "#ccc"}}' wx:else>提交</button>
+    </form>
+  </view>
+</view>
+<!-- <view class='classification'>
+  <view class='lP' catchtap='prompt' data-id='2'>
+    <image src='https://chejiqiche.com/video/notice/lipei.png' mode='aspectFit'></image>
+    <text>爱车赔</text>
+  </view>
+  <view class='mR' catchtap='prompt'>
+    <image src='https://chejiqiche.com/video/notice/meirong.png' mode='aspectFit'></image>
+    <text>合伙人</text>
+  </view>
+  <view class='xC' catchtap='prompt'>
+    <image src='https://chejiqiche.com/video/notice/xinche.png' mode='aspectFit'></image>
+    <text>吃回扣</text>
+  </view>
+  <view class='bY' catchtap='prompt'>
+    <image src='https://chejiqiche.com/video/notice/weixiu.png' mode='aspectFit'></image>
+    <text>闪救援</text>
+  </view>
+  <view class='jY' catchtap='prompt'>
+    <image src='https://chejiqiche.com/video/notice/baoyang.png' mode='aspectFit'></image>
+    <text>保养维修</text>
+  </view>
+  <view class='cX' catchtap='prompt'>
+    <image src='https://chejiqiche.com/video/notice/peifu.png' mode='aspectFit'></image>
+    <text>钣金油漆</text>
+  </view>
+  <view class='mR' catchtap='prompt'>
+    <image src='https://chejiqiche.com/video/notice/shenhe.png' mode='aspectFit'></image>
+    <text>全车抛光</text>
+  </view>
+  <view class='eS' catchtap='prompt'>
+    <image src='https://chejiqiche.com/video/notice/ershou.png' mode='aspectFit'></image>
+    <text>全车贴膜</text>
+  </view>
+</view> -->
+
+<scroll-view scroll-y class='classification'>
+  <view class='hD' catchtap='goInfo' data-id='6'>
+    <image src='https://chejiqiche.com/video/notice/zx.png' mode='aspectFill'></image>
+    <text>事故咨询</text>
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='0'>
+    <image src='https://chejiqiche.com/video/notice/cl.png' mode='aspectFill'></image>
+    <text>事故代办</text>
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='1'>
+    <image src='https://chejiqiche.com/video/notice/pf.png' mode='aspectFill'></image>
+    <text>物损赔付</text>
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='2'>
+    <image src='https://chejiqiche.com/video/notice/fk.png' mode='aspectFill'></image>
+    <text>三者垫付</text>
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='3'>
+    <image src='https://chejiqiche.com/video/notice/cx.png' mode='aspectFill'></image>
+    <text>交单理赔</text>
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='4'>
+    <image src='https://chejiqiche.com/video/notice/fl.png' mode='aspectFill'></image>
+    <text>法律服务</text>
+  </view>
+  <view class='hD' catchtap='goInfo' data-id='5'>
+    <image src='https://chejiqiche.com/video/notice/db.png' mode='aspectFill'></image>
+    <text>免费代步车</text>
+  </view>
+  <!-- <view class='hD' catchtap='goInfo' data-id='8'>
+    <image src='https://chejiqiche.com/video/notice/xm.png' mode='aspectFill'></image>
+    <text>邀请码</text>
+  </view> -->
+  <view class='hD' catchtap='goInfo' data-id='8'>
+    <image src='https://chejiqiche.com/video/notice/xm.png' mode='aspectFill'></image>
+    <text>邀请码</text>
+  </view>
+  <view class='wYLPBox'>
+    <!-- <view class='wYLP' animation="{{animationData}}" catchtap='goInfo' data-id='7'>
+          我要理赔
+      </view> -->
+    <!-- <image src='https://chejiqiche.com/video/notice/buttom.png' class='wYLP' catchtap='goInfo' data-id='7' animation="{{animationData}}"></image> -->
+    <image src='/images/1.png' class='wYLP' catchtap='goInfo' data-id='7' animation="{{animationData}}"></image>
+    <view class='wYLPMs'>免费一站式理赔体验</view>
+  </view>
+  <view class='fG'>
+    <view class='shangjia'>
+      <image src='/images/gw.png'></image>
+      <image src='/images/ft.png' mode='aspectFit'></image>
+      <!-- <text>理赔顾问团队</text> -->
+    </view>
+  </view>
+  <view class='mD'>
+    <view class='content' wx:for="{{allTeacher}}" wx:key='{{index}}'>
+      <image src='{{item.imgUrl}}' mode='aspectFill'></image>
+      <!-- <image src='https://chejiqiche.com/video/notice/timg.png' mode='aspectFill'></image> -->
+      <view class='rightCnt'>
+        <view class='headTitle'>
+          <text>理赔顾问：</text>
+          <view>{{item.name}}</view>
+        </view>
+        <!-- <view class='headTitle'>理赔顾问：胡敬华</view> -->
+        <view class='geyan'>
+          <text>人生格言：</text>
+          <view>{{item.motto}}</view>
+        </view>
+        <view class='geren'>
+          <text>服务理念：</text>
+          <view>{{item.story}}</view>
+        </view>
+        <view class='bodyPf'>
+          <text>服务评分：</text>
+          <image wx:for='{{star}}' src='/images/star1.png' wx:key='{{index}}'></image>
+          <image wx:for='{{5 - star}}' src='/images/star0.png' wx:key='{{index}}'></image>
+          <text class='pinfen'>{{star}}.0评分</text>
+          <!-- <text>(888条订单)</text> -->
+        </view>
+        <!-- <view class='bottomDw'>
+          <text>成都市锦江区汽车城大道188号</text>
+          <text>0.28km</text>
+        </view> -->
+      </view>
+    </view>
+  </view>
+</scroll-view>
