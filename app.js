@@ -1,24 +1,24 @@
 //app.js
 App({
-  onShow: function() {
+  onShow: function () {
     // var _this = this
     // var api = _this.globalData.api
     // var requestIs = _this.globalData.requestIs
     // console.log('onLaunch里面有没有执行：', !requestIs)
   },
-  onLaunch: function() {
+  onLaunch: function () {
     var _this = this
-    
+
     var api = _this.globalData.api
     var wss = _this.globalData.wss
     // 查看是否授权
     wx.getSetting({
-      success: function(res) {
+      success: function (res) {
         if (res.authSetting['scope.userInfo']) {
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称
           console.log('已经授权')
           wx.getUserInfo({
-            success: function(res) {
+            success: function (res) {
               console.log(res.userInfo)
               getApp().globalData.userInfo = res.userInfo
               _this.globalData.status = 1
@@ -31,7 +31,7 @@ App({
       }
     })
     wx.login({
-      success: function(res) {
+      success: function (res) {
         if (res.code) {
           // console.log(res)
           // 发起网络请求
@@ -41,12 +41,12 @@ App({
           console.log('api++++++++++++++++++++++++++++++:', api + 'api/v1/wx/getSession?code=' + res.code)
           wx.request({
             url: api + 'api/v1/wx/getSession?code=' + res.code,
-            success: function(ress) {
+            success: function (ress) {
               console.log('接收的值xxxxxxxxxxxxxx:', ress.data.data.sessionId)
               _this.globalData.sessionId = ress.data.data.sessionId
               _this.getUserId(ress.data.data.sessionId)
               var userId = ress.data.data.sessionId
-              
+
               wx.request({
                 url: api + 'api/v1/wx/user/get',
                 data: {
@@ -55,10 +55,10 @@ App({
                 header: {
                   'content-type': 'application/json'
                 },
-                success: function(res) {
+                success: function (res) {
                   console.log('获得所有信息：', res.data.data)
                   _this.globalData.allData = res.data.data
-                  if (res.data.data.wxname == ''){
+                  if (res.data.data.wxname == '') {
                     console.log('还没有上传用户头像，但是已经授权的情况')
                     var userInfo = getApp().globalData.userInfo
                     var avatarUrl = userInfo.avatarUrl
@@ -101,23 +101,23 @@ App({
                   }
                   getApp().globalData.requestIs = true
                   var userType = res.data.data.userType //用户的身份信息
-                  if (userType == 1) {
+                  if (userType == 1 || userType == 2) {
                     wx.connectSocket({
                       url: wss
                     })
-                    wx.onSocketOpen(function(res) {
+                    wx.onSocketOpen(function (res) {
                       console.log('WebSocket连接已打开2222！')
                       wx.sendSocketMessage({
                         data: JSON.stringify({
                           'thirdSessionKey': userId
                         }),
-                        success: function(res) {
+                        success: function (res) {
                           console.log('消息发送成功11111！')
                         }
                       })
                     })
-                    
-                    wx.onSocketError(function(res) {
+
+                    wx.onSocketError(function (res) {
                       console.log('WebSocket连接打开失败，请检查！', res)
                     })
                     wx.getLocation({
@@ -174,10 +174,10 @@ App({
                       }
                     })
                     //每隔10s想后台推送用户定位
-                    setInterval(function() {
+                    setInterval(function () {
                       wx.getLocation({
                         type: 'gcj02',
-                        success: function(res) {
+                        success: function (res) {
                           var latitude = res.latitude
                           var longitude = res.longitude
                           console.log('地址推送：', latitude, longitude)
@@ -187,12 +187,12 @@ App({
                               'lat': latitude,
                               'lng': longitude
                             }),
-                            success: function(res) {
+                            success: function (res) {
                               console.log('消息发送成功22222！')
                             },
-                            fail: function(e){
+                            fail: function (e) {
                               wx.closeSocket({
-                                success: function(res){
+                                success: function (res) {
                                   console.log('发送消息失败后：', res)
                                 }
                               })
@@ -229,9 +229,9 @@ App({
                         }
                       })
                     }, 10000)
-                    
+
                     //接收消息
-                    wx.onSocketMessage(function(res) {
+                    wx.onSocketMessage(function (res) {
                       console.log('收到服务器内容22222：' + res.data)
                       wx.vibrateLong()//使手机发生震动
                       wx.showTabBarRedDot({ //显示提示的小红点 放在webscoket 接收消息里面
@@ -273,7 +273,7 @@ App({
                   _this.globalData.userType = userType
                   _this.globalData.isOk = true
                   _this.globalData.extensionAccount = extensionAccount//是否已经使用二维码进入
-                  
+
                   var status = _this.globalData.status
                   var userType = _this.globalData.userType
                   var userInfo = _this.globalData.userInfo
@@ -300,7 +300,7 @@ App({
                     _this.getInfoCallback(getInfo)
                   }
                 },
-                fail: function(e){
+                fail: function (e) {
                   console.log('请求失败的原因：', e)
                 }
               })
@@ -316,10 +316,11 @@ App({
   globalData: {
     userInfo: null,
     sessionId: null,
-    // api: 'https://chejiqiche.com/',
+    api: 'https://chejiqiche.com/',
     wss: 'wss://chejiqiche.com/wss',
     // wss: 'ws://118.24.150.197:7397/',
-    api: 'http://118.24.150.197:8080/',
+    // wss: 'ws://alexlee85.tunnel.qydev.com/',
+    // api: 'http://118.24.150.197:8080/',
     // api: 'http://kosan.tunnel.qydev.com/',
     // api: 'http://192.168.11.119:8080/',
     zt: false

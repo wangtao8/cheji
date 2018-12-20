@@ -60,18 +60,30 @@
     <image src='https://chejiqiche.com/video/notice/tt.png'></image>
     <text>信息处理</text>
   </view>
+  <view class='xX' catchtap='yanghu'>
+    <image src='https://chejiqiche.com/video/notice/yanghu.png'></image>
+    <text>养护订单</text>
+  </view>
   <!-- <view class='xX' catchtap='qqby'>
     <image src='https://chejiqiche.com/video/notice/byn.png'></image>
     <text>汽车保养</text>
   </view> -->
-  <view class='xX' catchtap='package' data-id='{{1}}'>
+  <!-- <view class='xX' catchtap='package' data-id='{{1}}'>
     <image src='https://chejiqiche.com/video/notice/yeP.png'></image>
-    <text>用户端口</text>
+    <text>保养订单</text>
   </view>
   <view class='xX' catchtap='package' data-id='{{2}}' wx:if='{{userType == 1 || userType == 2}}'>
     <image src='https://chejiqiche.com/video/notice/noP.png'></image>
-    <text>修理端口</text>
+    <text>保养工单</text>
   </view>
+  <view class='xX' catchtap='weixiu' data-id='{{1}}'>
+    <image src='https://chejiqiche.com/video/notice/weixiu2.png'></image>
+    <text>维修订单</text>
+  </view>
+  <view class='xX' catchtap='weixiu' data-id='{{2}}' wx:if='{{userType == 1 || userType == 2}}'>
+    <image src='https://chejiqiche.com/video/notice/gongdan.png'></image>
+    <text>维修工单</text>
+  </view> -->
   <view class='xX'>
     <image src='https://chejiqiche.com/video/notice/kefu.png'></image>
     <text>客服中心</text>

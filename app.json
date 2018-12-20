@@ -1,8 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/aichepei/index",
     "pages/my/index",
+    "pages/allpage/index",
+    "pages/aichepei/index",
     "pages/carCity/index",
     "pages/login/index",
     "pages/registered/index",
@@ -72,6 +73,16 @@
     },
     {
       "root": "pages/package",
+      "pages": [
+        "pages/index/index",
+        "pages/home/index",
+        "pages/info/index",
+        "pages/orderInfo/index",
+        "pages/stuatsList/index"
+      ]
+    },
+    {
+      "root": "pages/weixiu",
       "pages": [
         "pages/index/index",
         "pages/home/index",

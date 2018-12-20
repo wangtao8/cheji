@@ -96,10 +96,14 @@
       <image src='https://chejiqiche.com/video/notice/byn.png'></image>
       <text>汽车保养</text>
     </view>
-    <view class='hD'>
+    <view class='hD' catchtap='qqwx'>
+      <image src='https://chejiqiche.com/video/notice/baoyang.png'></image>
+      <text>汽车维修</text>
+    </view>
+    <!-- <view class='hD'>
       <image src='https://chejiqiche.com/video/notice/a6.png' mode='aspectFill'></image>
       <text>158钣金油漆</text>
-    </view>
+    </view> -->
     <view class='hD'>
       <image src='https://chejiqiche.com/video/notice/a7.png' mode='aspectFill'></image>
       <text>158全车抛光</text>

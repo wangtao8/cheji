@@ -95,6 +95,11 @@ Page({
     }
     
   },
+  yanghu: function(){
+    wx.navigateTo({
+      url: '../allpage/index',
+    })
+  },
   /**
    * 跳转到汽车保养列表
    */
@@ -102,6 +107,12 @@ Page({
     var id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '../package/pages/home/index?id=' + id,
+    })
+  },
+  weixiu: function (e) {
+    var id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '../weixiu/pages/home/index?id=' + id,
     })
   },
   /**
