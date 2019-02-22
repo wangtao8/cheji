@@ -531,12 +531,14 @@ Page({
   goMyOrder: function(e) {
     var _this = this
     var ids = e.currentTarget.dataset.id // 1为提交  0为红包 3为订单
+    const innerAudioContext = app.globalData.innerAudioContext
     wx.navigateTo({
       url: '/pages/mySubmit/index?id=' + ids,
     })
     _this.setData({
       zT: false
     })
+    InnerAudioContext.stop()
   },
   goLogin: function() {
     wx.navigateTo({

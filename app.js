@@ -5,10 +5,15 @@ App({
     // var api = _this.globalData.api
     // var requestIs = _this.globalData.requestIs
     // console.log('onLaunch里面有没有执行：', !requestIs)
+    
   },
   onLaunch: function () {
     var _this = this
-
+    const innerAudioContext = wx.createInnerAudioContext()
+    innerAudioContext.loop = true
+    innerAudioContext.autoplay = false //播放提醒音乐
+    innerAudioContext.src = api + 'video/notice/noticelp.mp3'
+    this.globalData.innerAudioContext = innerAudioContext
     var api = _this.globalData.api
     var wss = _this.globalData.wss
     // 查看是否授权
@@ -162,13 +167,21 @@ App({
                                 index: 3
                               })
                               getApp().globalData.zt = true
-                              const innerAudioContext = wx.createInnerAudioContext()
-                              innerAudioContext.autoplay = true //播放提醒音乐
-                              innerAudioContext.loop = false
-                              innerAudioContext.volume = 1
-                              innerAudioContext.src = api + 'video/notice/noticelp.mp3'
+                              const innerAudioContext = _this.globalData.innerAudioContext
+                              innerAudioContext.play()
+                              _this.globalData.innerAudioContext = innerAudioContext
                               console.log('链接：', api + 'video/notice/noticelp.mp3')
                             })
+                          }
+                        })
+                      },
+                      fail(err) {
+                        wx.showModal({
+                          title: '您在哪啊？',
+                          content: '啊哦，获取您的位置信息失败了！点击确定,打开位置信息吧~',
+                          showCancel: false,
+                          success() {
+                            wx.openSetting()
                           }
                         })
                       }
@@ -217,12 +230,9 @@ App({
                                   index: 3
                                 })
                                 getApp().globalData.zt = true
-                                const innerAudioContext = wx.createInnerAudioContext()
-                                innerAudioContext.autoplay = true //播放提醒音乐
-                                innerAudioContext.loop = false
-                                innerAudioContext.volume = 1
-                                innerAudioContext.src = api + 'video/notice/noticelp.mp3'
-                                console.log('链接：', api + 'video/notice/noticelp.mp3')
+                                const innerAudioContext = _this.globalData.innerAudioContext
+                                innerAudioContext.play()
+                                _this.globalData.innerAudioContext = innerAudioContext
                               })
                             }
                           })
@@ -238,11 +248,9 @@ App({
                         index: 3
                       })
                       getApp().globalData.zt = true
-                      const innerAudioContext = wx.createInnerAudioContext()
-                      innerAudioContext.autoplay = true //播放提醒音乐
-                      innerAudioContext.loop = false
-                      innerAudioContext.volume = 1
-                      innerAudioContext.src = api + 'video/notice/noticelp.mp3'
+                      const innerAudioContext = _this.globalData.innerAudioContext
+                      innerAudioContext.play()
+                      _this.globalData.innerAudioContext = innerAudioContext
                     })
 
                     wx.onSocketClose(function (res) {

@@ -21,6 +21,11 @@
     "pages/liPeiNews/index",
     "pages/lipeiInfo/index"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "疏通道路拥堵，从定位问题开始，请开启定位哦！"
+    }
+  },
   "subPackages": [
     {
       "root": "pages/lipei",
